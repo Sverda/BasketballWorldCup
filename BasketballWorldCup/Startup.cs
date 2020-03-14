@@ -1,6 +1,10 @@
+using BasketballWorldCup.Database;
+using BasketballWorldCup.Domain.Services;
+using BasketballWorldCup.Domain.Services.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +29,11 @@ namespace BasketballWorldCup
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<BasketballContext>(options =>
+                options.UseSqlServer(
+                    @"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;"));
+            services.AddTransient<ITeamsService, TeamsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

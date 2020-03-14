@@ -7,10 +7,8 @@ namespace BasketballWorldCup.Database
     {
         public DbSet<Team> Teams { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public BasketballContext(DbContextOptions<BasketballContext> options) : base(options)
         {
-            //TODO: Move to user's secret
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;");
         }
     }
 }
