@@ -15,16 +15,17 @@
         {{team.name}}
       </td>
       <td>
-        {{team.tier}}
+        {{team.tier + 1}}
       </td>
     </tr>
   </table>
 </div>
 
+<br/>
 <h2>Teams by tier</h2>
 
 <div *ngFor="let teamByTier of teamsByTier; let i = index">
-  <h3>Tier {{i}}</h3>
+  <h3>Tier {{i + 1}}</h3>
   <table>
     <tr>
       <th>Id</th>
@@ -39,7 +40,7 @@
         {{team.name}}
       </td>
       <td>
-        {{team.tier}}
+        {{team.tier + 1}}
       </td>
     </tr>
   </table>

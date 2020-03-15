@@ -25,7 +25,7 @@ namespace BasketballWorldCup.Controllers
         [Route("{tier}")]
         public IActionResult GetTeamsByTier(int tier)
         {
-            if (tier <= 0 || tier > 4)
+            if (tier < 0 || tier >= 4)
             {
                 return BadRequest("There are only four tiers");
             }

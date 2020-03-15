@@ -12,10 +12,10 @@ export class TeamsComponent
     this.teamsService = teamsService;
     this.showTeams();
     this.teamsByTier = [];
+    this.showTeamsByTier(0);
     this.showTeamsByTier(1);
     this.showTeamsByTier(2);
     this.showTeamsByTier(3);
-    this.showTeamsByTier(4);
   }
 
   teams: Team[];

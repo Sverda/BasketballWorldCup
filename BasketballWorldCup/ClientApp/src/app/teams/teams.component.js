@@ -12,10 +12,10 @@ var TeamsComponent = /** @class */ (function () {
         this.teamsService = teamsService;
         this.showTeams();
         this.teamsByTier = [];
+        this.showTeamsByTier(0);
         this.showTeamsByTier(1);
         this.showTeamsByTier(2);
         this.showTeamsByTier(3);
-        this.showTeamsByTier(4);
     }
     TeamsComponent.prototype.showTeams = function () {
         var _this = this;
