@@ -19,4 +19,5 @@ export class TeamsService {
 export interface ITeam{
   id: number;
   name: string;
+  tier: number;
 }
