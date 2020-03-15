@@ -12,11 +12,11 @@ export class TeamsService {
 
   getTeams() {
     console.log(this.baseUrl + this.teamsUrl);
-    return this.http.get<ITeam[]>(this.baseUrl + this.teamsUrl);
+    return this.http.get<Team[]>(this.baseUrl + this.teamsUrl);
   }
 }
 
-export interface ITeam{
+export interface Team{
   id: number;
   name: string;
   tier: number;

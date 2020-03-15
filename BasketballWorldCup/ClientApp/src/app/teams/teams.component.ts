@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ITeam, TeamsService } from "./teams.service";
+import { Team as ITeam, TeamsService } from "./teams.service";
 
-@Component
-({
+@Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
 })
@@ -17,8 +16,7 @@ export class TeamsComponent
   teams: ITeam[];
   teamsService: TeamsService;
 
-  showTeams()
-  {
+  showTeams() {
     this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 }
