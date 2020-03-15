@@ -1,4 +1,5 @@
 ﻿using BasketballWorldCup.Domain.Services.Abstractions;
+using BasketballWorldCup.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketballWorldCup.Controllers
@@ -18,6 +19,18 @@ namespace BasketballWorldCup.Controllers
         public IActionResult GetTeams()
         {
             var teams = _teamsService.GetTeams();
+            return Ok(teams);
+        }
+
+        [Route("{tier}")]
+        public IActionResult GetTeamsByTier(int tier)
+        {
+            if (tier <= 0 || tier > 4)
+            {
+                return BadRequest("There are only four tiers");
+            }
+
+            var teams = _teamsService.GetTeamsByTier((Tier)tier);
             return Ok(teams);
         }
     }

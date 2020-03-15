@@ -20,3 +20,27 @@
     </tr>
   </table>
 </div>
+
+<h2>Teams by tier</h2>
+
+<div *ngFor="let teamByTier of teamsByTier; let i = index">
+  <h3>Tier {{i}}</h3>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Tier</th>
+    </tr>
+    <tr *ngFor="let team of teamByTier">
+      <td>
+        {{team.id}}
+      </td>
+      <td>
+        {{team.name}}
+      </td>
+      <td>
+        {{team.tier}}
+      </td>
+    </tr>
+  </table>
+</div>

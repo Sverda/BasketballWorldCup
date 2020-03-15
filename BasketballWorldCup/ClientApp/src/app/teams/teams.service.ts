@@ -11,8 +11,11 @@ export class TeamsService {
   teamsUrl = 'api/teams';
 
   getTeams() {
-    console.log(this.baseUrl + this.teamsUrl);
     return this.http.get<Team[]>(this.baseUrl + this.teamsUrl);
+  }
+
+  getTeamsByTier(tier: number) {
+    return this.http.get<Team[]>(this.baseUrl + this.teamsUrl + '/' + tier);
   }
 }
 

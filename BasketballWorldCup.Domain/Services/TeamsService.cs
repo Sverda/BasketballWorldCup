@@ -19,5 +19,10 @@ namespace BasketballWorldCup.Domain.Services
         {
             return _context.Teams.ToList();
         }
+
+        public IEnumerable<Team> GetTeamsByTier(Tier tier)
+        {
+            return _context.Teams.Where(t => t.Tier == tier).ToList();
+        }
     }
 }

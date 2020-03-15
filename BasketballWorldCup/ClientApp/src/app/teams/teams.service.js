@@ -17,8 +17,10 @@ var TeamsService = /** @class */ (function () {
         this.baseUrl = baseUrl;
     }
     TeamsService.prototype.getTeams = function () {
-        console.log(this.baseUrl + this.teamsUrl);
         return this.http.get(this.baseUrl + this.teamsUrl);
+    };
+    TeamsService.prototype.getTeamsByTier = function (tier) {
+        return this.http.get(this.baseUrl + this.teamsUrl + '/' + tier);
     };
     TeamsService = __decorate([
         core_1.Injectable({ providedIn: 'root' }),
