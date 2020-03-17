@@ -28,9 +28,11 @@ var TeamsComponent = /** @class */ (function () {
     };
     TeamsComponent.prototype.onSelect = function (team) {
         if (this.selectedTeams.filter(function (t) { return t.id === team.id; }).length > 0) {
-            return;
+            this.selectedTeams = this.selectedTeams.filter(function (t) { return t.id !== team.id; });
         }
-        this.selectedTeams.push(team);
+        else {
+            this.selectedTeams.push(team);
+        }
     };
     TeamsComponent.prototype.isActive = function (team) {
         return this.selectedTeams.filter(function (t) { return t.id === team.id; }).length > 0;

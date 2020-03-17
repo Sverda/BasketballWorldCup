@@ -34,10 +34,11 @@ export class TeamsComponent
 
   onSelect(team: Team) {
     if (this.selectedTeams.filter(t => t.id === team.id).length > 0) {
-      return;
+      this.selectedTeams = this.selectedTeams.filter(t => t.id !== team.id);
     }
-
-    this.selectedTeams.push(team);
+    else {
+      this.selectedTeams.push(team);
+    }
   }
 
   isActive(team: Team): boolean {
