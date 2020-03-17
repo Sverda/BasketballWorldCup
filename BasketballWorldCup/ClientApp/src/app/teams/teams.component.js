@@ -16,6 +16,7 @@ var TeamsComponent = /** @class */ (function () {
         this.showTeamsByTier(1);
         this.showTeamsByTier(2);
         this.showTeamsByTier(3);
+        this.selectedTeams = [];
     }
     TeamsComponent.prototype.showTeams = function () {
         var _this = this;
@@ -24,6 +25,15 @@ var TeamsComponent = /** @class */ (function () {
     TeamsComponent.prototype.showTeamsByTier = function (tier) {
         var _this = this;
         this.teamsService.getTeamsByTier(tier).subscribe(function (result) { _this.teamsByTier[tier] = result; }, function (error) { return console.error(error); });
+    };
+    TeamsComponent.prototype.onSelect = function (team) {
+        if (this.selectedTeams.filter(function (t) { return t.id === team.id; }).length > 0) {
+            return;
+        }
+        this.selectedTeams.push(team);
+    };
+    TeamsComponent.prototype.isActive = function (team) {
+        return this.selectedTeams.filter(function (t) { return t.id === team.id; }).length > 0;
     };
     TeamsComponent = __decorate([
         core_1.Component({

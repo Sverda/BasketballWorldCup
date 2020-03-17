@@ -25,7 +25,7 @@
   </table>
 </div>
 
-<br/>
+<br />
 <h2>Teams by tier</h2>
 
 <div *ngFor="let teamByTier of teamsByTier; let i = index">
@@ -39,7 +39,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let team of teamByTier">
+      <tr *ngFor="let team of teamByTier" [class.bg-success]="isActive(team)" (click)="onSelect(team)">
         <th scope="row">
           {{team.id}}
         </th>

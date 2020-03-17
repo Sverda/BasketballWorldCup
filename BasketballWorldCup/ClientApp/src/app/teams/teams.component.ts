@@ -8,6 +8,11 @@ import { TeamsService, Team } from "./teams.service";
 
 export class TeamsComponent
 {
+  teams: Team[];
+  teamsByTier: Team[][]
+  teamsService: TeamsService;
+  selectedTeams: Team[];
+
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
     this.showTeams();
@@ -16,11 +21,8 @@ export class TeamsComponent
     this.showTeamsByTier(1);
     this.showTeamsByTier(2);
     this.showTeamsByTier(3);
+    this.selectedTeams = [];
   }
-
-  teams: Team[];
-  teamsByTier: Team[][]
-  teamsService: TeamsService;
 
   showTeams() {
     this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
@@ -28,5 +30,17 @@ export class TeamsComponent
 
   showTeamsByTier(tier: number) {
     this.teamsService.getTeamsByTier(tier).subscribe(result => { this.teamsByTier[tier] = result; }, error => console.error(error));
+  }
+
+  onSelect(team: Team) {
+    if (this.selectedTeams.filter(t => t.id === team.id).length > 0) {
+      return;
+    }
+
+    this.selectedTeams.push(team);
+  }
+
+  isActive(team: Team): boolean {
+    return this.selectedTeams.filter(t => t.id === team.id).length > 0;
   }
 }
