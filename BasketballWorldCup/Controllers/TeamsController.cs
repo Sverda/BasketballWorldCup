@@ -22,6 +22,7 @@ namespace BasketballWorldCup.Controllers
             return Ok(teams);
         }
 
+        [HttpGet]
         [Route("{tier}")]
         public IActionResult GetTeamsByTier(int tier)
         {
@@ -32,6 +33,14 @@ namespace BasketballWorldCup.Controllers
 
             var teams = _teamsService.GetTeamsByTier((Tier)tier);
             return Ok(teams);
+        }
+
+        [HttpPost]
+        public IActionResult AddTeam(Team team)
+        {
+            _teamsService.AddTeam(team);
+
+            return Ok();
         }
     }
 }

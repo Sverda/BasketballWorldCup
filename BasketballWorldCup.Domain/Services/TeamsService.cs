@@ -24,5 +24,11 @@ namespace BasketballWorldCup.Domain.Services
         {
             return _context.Teams.Where(t => t.Tier == tier).ToList();
         }
+
+        public void AddTeam(Team team)
+        {
+            _context.Add(team);
+            _context.SaveChanges();
+        }
     }
 }
