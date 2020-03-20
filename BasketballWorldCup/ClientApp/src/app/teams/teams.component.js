@@ -26,7 +26,7 @@ var TeamsComponent = /** @class */ (function () {
         var _this = this;
         this.teamsService.getTeamsByTier(tier).subscribe(function (result) { _this.teamsByTier[tier] = result; }, function (error) { return console.error(error); });
     };
-    TeamsComponent.prototype.onSelect = function (team) {
+    TeamsComponent.prototype.onTeamSelect = function (team) {
         if (this.selectedTeams.filter(function (t) { return t.id === team.id; }).length > 0) {
             this.selectedTeams = this.selectedTeams.filter(function (t) { return t.id !== team.id; });
         }

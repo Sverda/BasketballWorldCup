@@ -39,7 +39,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let team of teamByTier" [class.bg-success]="isActive(team)" (click)="onSelect(team)">
+      <tr *ngFor="let team of teamByTier" [class.bg-success]="isActive(team)" (click)="onTeamSelect(team)">
         <th scope="row">
           {{team.id}}
         </th>

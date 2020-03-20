@@ -32,7 +32,7 @@ export class TeamsComponent
     this.teamsService.getTeamsByTier(tier).subscribe(result => { this.teamsByTier[tier] = result; }, error => console.error(error));
   }
 
-  onSelect(team: Team) {
+  onTeamSelect(team: Team) {
     if (this.selectedTeams.filter(t => t.id === team.id).length > 0) {
       this.selectedTeams = this.selectedTeams.filter(t => t.id !== team.id);
     }
