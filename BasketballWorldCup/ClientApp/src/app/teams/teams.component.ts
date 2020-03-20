@@ -5,27 +5,20 @@ import { TeamsService, Team } from "./teams.service";
   selector: 'app-teams',
   templateUrl: './teams.component.html',
 })
-
 export class TeamsComponent
 {
-  teams: Team[];
-  teamsByTier: Team[][]
   teamsService: TeamsService;
+  teamsByTier: Team[][]
   selectedTeams: Team[];
 
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
-    this.showTeams();
     this.teamsByTier = [];
     this.showTeamsByTier(0);
     this.showTeamsByTier(1);
     this.showTeamsByTier(2);
     this.showTeamsByTier(3);
     this.selectedTeams = [];
-  }
-
-  showTeams() {
-    this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   showTeamsByTier(tier: number) {

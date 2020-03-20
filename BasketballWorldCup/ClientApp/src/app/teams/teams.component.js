@@ -10,7 +10,6 @@ var core_1 = require("@angular/core");
 var TeamsComponent = /** @class */ (function () {
     function TeamsComponent(teamsService) {
         this.teamsService = teamsService;
-        this.showTeams();
         this.teamsByTier = [];
         this.showTeamsByTier(0);
         this.showTeamsByTier(1);
@@ -18,10 +17,6 @@ var TeamsComponent = /** @class */ (function () {
         this.showTeamsByTier(3);
         this.selectedTeams = [];
     }
-    TeamsComponent.prototype.showTeams = function () {
-        var _this = this;
-        this.teamsService.getTeams().subscribe(function (result) { _this.teams = result; }, function (error) { return console.error(error); });
-    };
     TeamsComponent.prototype.showTeamsByTier = function (tier) {
         var _this = this;
         this.teamsService.getTeamsByTier(tier).subscribe(function (result) { _this.teamsByTier[tier] = result; }, function (error) { return console.error(error); });

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TeamsComponent } from "./teams/teams.component";
+import { TeamsManagerComponent } from "./teams-manager/teams-manager.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TeamsComponent } from "./teams/teams.component";
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TeamsComponent
+    TeamsComponent,
+    TeamsManagerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -27,6 +29,7 @@ import { TeamsComponent } from "./teams/teams.component";
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'teams', component: TeamsComponent },
+      { path: 'teams-manager', component: TeamsManagerComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
