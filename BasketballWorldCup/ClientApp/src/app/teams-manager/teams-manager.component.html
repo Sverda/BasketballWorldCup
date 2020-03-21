@@ -8,10 +8,7 @@
   <div class="form-group">
     <label for="inputTier">Tier</label>
     <select class="form-control" id="inputTier" [(ngModel)]="newTeam.tier" name="tier">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
+      <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
     </select>
   </div>
   <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>

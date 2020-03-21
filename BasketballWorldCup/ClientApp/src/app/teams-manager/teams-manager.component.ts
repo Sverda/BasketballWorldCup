@@ -9,11 +9,13 @@ export class TeamsManagerComponent {
   teamsService: TeamsService;
   teams: Team[];
   newTeam: Team;
+  tiers: number[];
 
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
     this.showTeams();
     this.newTeam = { id: 0, name: "", tier: 1 };
+    this.tiers = [0, 1, 2, 3];
   }
 
   showTeams() {
@@ -23,5 +25,6 @@ export class TeamsManagerComponent {
   addTeam() {
     this.teamsService.addTeam(this.newTeam);
     this.teams.push(this.newTeam);
+    this.newTeam = { id: 0, name: "", tier: 1 };
   }
 }
