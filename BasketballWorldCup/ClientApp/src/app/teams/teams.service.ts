@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root'})
 export class TeamsService {
+  baseUrl: string;
+  teamsUrl = 'api/teams';
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
-
-  baseUrl: string;
-  teamsUrl = 'api/teams';
 
   getTeams() {
     return this.http.get<Team[]>(this.baseUrl + this.teamsUrl);
@@ -19,13 +19,13 @@ export class TeamsService {
   }
 
   addTeam(team: Team) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    const body = {
-      id: team.id,
-      name: team.name,
-      tier: team.tier
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
     };
-    return this.http.post<Team>(this.baseUrl + this.teamsUrl, body, { headers });
+
+    return this.http.post<Team>(this.baseUrl + this.teamsUrl, team, httpOptions);
   }
 }
 

@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { TeamsComponent } from "./teams/teams.component";
 import { TeamsManagerComponent } from "./teams-manager/teams-manager.component";
+import { AddTeamComponent } from "./add-team/add-team.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TeamsManagerComponent } from "./teams-manager/teams-manager.component";
     NavMenuComponent,
     HomeComponent,
     TeamsComponent,
-    TeamsManagerComponent
+    TeamsManagerComponent,
+    AddTeamComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

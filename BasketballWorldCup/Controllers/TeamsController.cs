@@ -36,7 +36,7 @@ namespace BasketballWorldCup.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTeam(Team team)
+        public IActionResult AddTeam([FromBody] Team team)
         {
             var addedTeam = _teamsService.AddTeam(team);
 
