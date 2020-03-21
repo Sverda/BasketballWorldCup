@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TeamsService, Team } from "./teams.service";
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
 })
-export class TeamsComponent
-{
+export class TeamsComponent implements OnInit{
   teamsService: TeamsService;
   teamsByTier: Team[][]
   selectedTeams: Team[];
 
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
+  }
+
+  ngOnInit(): void {
     this.teamsByTier = [];
     this.showTeamsByTier(0);
     this.showTeamsByTier(1);
