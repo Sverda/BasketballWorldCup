@@ -1,6 +1,7 @@
 ﻿using BasketballWorldCup.Database;
 using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,19 @@ namespace BasketballWorldCup.Domain.Services
             _context.Add(team);
             _context.SaveChanges();
 
+            return team;
+        }
+
+        public Team DeleteTeam(int teamId)
+        {
+            var team = _context.Teams.SingleOrDefault(t => t.Id == teamId);
+            if (team is null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(teamId), "Team not found");
+            }
+
+            _context.Teams.Remove(team);
+            _context.SaveChanges();
             return team;
         }
     }

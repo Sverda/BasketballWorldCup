@@ -10,6 +10,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Tier</th>
+      <th scope="col">Manage</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
       </td>
       <td>
         {{team.tier + 1}}
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="onDelete(team)">Delete</button>
       </td>
     </tr>
     </tbody>

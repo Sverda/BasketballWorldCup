@@ -28,4 +28,10 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
   showTeams() {
     this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
   }
+
+  onDelete(team: Team) {
+    this.teams = this.teams.filter(t => t.id !== team.id);
+
+    this.teamsService.deleteTeam(team).subscribe(data => console.log(data));
+  }
 }

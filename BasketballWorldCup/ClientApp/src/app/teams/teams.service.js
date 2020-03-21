@@ -34,6 +34,9 @@ var TeamsService = /** @class */ (function () {
         };
         return this.http.post(this.baseUrl + this.teamsUrl, team, httpOptions);
     };
+    TeamsService.prototype.deleteTeam = function (team) {
+        return this.http.delete(this.baseUrl + this.teamsUrl + '/' + team.id);
+    };
     TeamsService = __decorate([
         core_1.Injectable({ providedIn: 'root' }),
         __param(1, core_1.Inject('BASE_URL'))

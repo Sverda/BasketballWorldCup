@@ -42,5 +42,14 @@ namespace BasketballWorldCup.Controllers
 
             return Ok(addedTeam);
         }
+
+        [HttpDelete]
+        [Route("{teamId}")]
+        public IActionResult DeleteTeam(int teamId)
+        {
+            var deletedTeam = _teamsService.DeleteTeam(teamId);
+
+            return Ok(deletedTeam);
+        }
     }
 }

@@ -32,6 +32,10 @@ export class TeamsService {
 
     return this.http.post<Team>(this.baseUrl + this.teamsUrl, team, httpOptions);
   }
+
+  deleteTeam(team: Team) {
+    return this.http.delete<Team>(this.baseUrl + this.teamsUrl + '/' + team.id);
+  }
 }
 
 export interface Team{
