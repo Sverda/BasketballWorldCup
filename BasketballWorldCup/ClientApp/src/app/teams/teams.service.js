@@ -11,11 +11,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
+var rxjs_1 = require("rxjs");
 var TeamsService = /** @class */ (function () {
     function TeamsService(http, baseUrl) {
         this.http = http;
         this.teamsUrl = 'api/teams';
         this.baseUrl = baseUrl;
+        this.addedUserSubject = new rxjs_1.Subject();
     }
     TeamsService.prototype.getTeams = function () {
         return this.http.get(this.baseUrl + this.teamsUrl);
@@ -24,6 +26,7 @@ var TeamsService = /** @class */ (function () {
         return this.http.get(this.baseUrl + this.teamsUrl + '/' + tier);
     };
     TeamsService.prototype.addTeam = function (team) {
+        this.addedUserSubject.next(team);
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json'

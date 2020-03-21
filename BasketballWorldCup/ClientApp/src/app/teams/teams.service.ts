@@ -1,13 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root'})
 export class TeamsService {
   baseUrl: string;
   teamsUrl = 'api/teams';
+  public addedUserSubject: Subject<Team>;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
+    this.addedUserSubject = new Subject<Team>();
   }
 
   getTeams() {
@@ -19,6 +22,8 @@ export class TeamsService {
   }
 
   addTeam(team: Team) {
+    this.addedUserSubject.next(team);
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
