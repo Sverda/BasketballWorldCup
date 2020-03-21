@@ -26,8 +26,9 @@ var TeamsService = /** @class */ (function () {
     TeamsService.prototype.addTeam = function (team) {
         var headers = new http_1.HttpHeaders().set('content-type', 'application/json');
         var body = {
+            id: team.id,
             name: team.name,
-            tier: team.tier - 1
+            tier: team.tier
         };
         return this.http.post(this.baseUrl + this.teamsUrl, body, { headers: headers });
     };

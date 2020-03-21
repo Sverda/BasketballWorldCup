@@ -38,9 +38,9 @@ namespace BasketballWorldCup.Controllers
         [HttpPost]
         public IActionResult AddTeam(Team team)
         {
-            _teamsService.AddTeam(team);
+            var addedTeam = _teamsService.AddTeam(team);
 
-            return Ok();
+            return Ok(addedTeam);
         }
     }
 }

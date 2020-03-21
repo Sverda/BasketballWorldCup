@@ -8,6 +8,6 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
         IEnumerable<Team> GetTeams();
 
         IEnumerable<Team> GetTeamsByTier(Tier tier);
-        void AddTeam(Team team);
+        Team AddTeam(Team team);
     }
 }

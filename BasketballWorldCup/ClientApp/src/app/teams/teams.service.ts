@@ -21,8 +21,9 @@ export class TeamsService {
   addTeam(team: Team) {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     const body = {
+      id: team.id,
       name: team.name,
-      tier: team.tier - 1
+      tier: team.tier
     };
     return this.http.post<Team>(this.baseUrl + this.teamsUrl, body, { headers });
   }
