@@ -3,18 +3,18 @@
 <form>
   <div class="form-group">
     <label for="nameInput">Name</label>
-    <input type="text" class="form-control" id="nameInput" placeholder="Enter name">
+    <input type="text" class="form-control" id="nameInput" placeholder="Enter name" [(ngModel)]="newTeam.name" name="name">
   </div>
   <div class="form-group">
     <label for="inputTier">Tier</label>
-    <select class="form-control" id="inputTier">
+    <select class="form-control" id="inputTier" [(ngModel)]="newTeam.tier" name="tier">
       <option>1</option>
       <option>2</option>
       <option>3</option>
       <option>4</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>
 </form>
 
 <br/>

@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root'})
 export class TeamsService {
@@ -16,6 +16,15 @@ export class TeamsService {
 
   getTeamsByTier(tier: number) {
     return this.http.get<Team[]>(this.baseUrl + this.teamsUrl + '/' + tier);
+  }
+
+  addTeam(team: Team) {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const body = {
+      name: team.name,
+      tier: team.tier - 1
+    };
+    return this.http.post<Team>(this.baseUrl + this.teamsUrl, body, { headers });
   }
 }
 

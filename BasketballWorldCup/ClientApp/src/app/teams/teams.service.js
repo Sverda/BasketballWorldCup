@@ -10,6 +10,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
 var TeamsService = /** @class */ (function () {
     function TeamsService(http, baseUrl) {
         this.http = http;
@@ -21,6 +22,14 @@ var TeamsService = /** @class */ (function () {
     };
     TeamsService.prototype.getTeamsByTier = function (tier) {
         return this.http.get(this.baseUrl + this.teamsUrl + '/' + tier);
+    };
+    TeamsService.prototype.addTeam = function (team) {
+        var headers = new http_1.HttpHeaders().set('content-type', 'application/json');
+        var body = {
+            name: team.name,
+            tier: team.tier - 1
+        };
+        return this.http.post(this.baseUrl + this.teamsUrl, body, { headers: headers });
     };
     TeamsService = __decorate([
         core_1.Injectable({ providedIn: 'root' }),
