@@ -22,7 +22,6 @@ namespace BasketballWorldCup
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -36,10 +35,10 @@ namespace BasketballWorldCup
                 options.UseSqlServer(
                     @"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;"));
             services.AddTransient<ITeamsService, TeamsService>();
+            services.AddTransient<IZonesService, ZonesService>();
             services.AddAutoMapper(typeof(BasketballProfile));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
