@@ -43,9 +43,10 @@ namespace BasketballWorldCup.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTeam([FromBody] Team team)
+        public IActionResult AddTeam([FromBody] TeamDto team)
         {
-            var addedTeam = _teamsService.AddTeam(team);
+            var teamToAdd = _mapper.Map<Team>(team);
+            var addedTeam = _teamsService.AddTeam(teamToAdd);
             var dto = _mapper.Map<TeamDto>(addedTeam);
             return Ok(dto);
         }

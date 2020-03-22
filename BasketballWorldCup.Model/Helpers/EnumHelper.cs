@@ -17,5 +17,14 @@ namespace BasketballWorldCup.Model.Helpers
 
             return attributes.First().Description;
         }
+
+        public static T GetEnumFromDescription<T>(this string description) where T : Enum
+        {
+            var enumValue = Enum.GetValues(typeof(T))
+                .Cast<T>()
+                .FirstOrDefault(v => v.GetDescription() == description);
+
+            return enumValue;
+        }
     }
 }

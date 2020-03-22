@@ -10,8 +10,12 @@ namespace BasketballWorldCup.Mapping
         public BasketballProfile()
         {
             CreateMap<Team, TeamDto>()
-                .ForMember(destination => destination.QualificationZone,
-                    member => member.MapFrom(source => source.QualificationZone.GetDescription()));
+                .ForMember(dto => dto.QualificationZone,
+                    member => member.MapFrom(team => team.QualificationZone.GetDescription()));
+
+            CreateMap<TeamDto, Team>()
+                .ForMember(team => team.QualificationZone,
+                    member => member.MapFrom(dto => dto.QualificationZone.GetEnumFromDescription<QualificationZone>()));
         }
     }
 }
