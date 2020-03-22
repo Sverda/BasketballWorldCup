@@ -6,28 +6,32 @@
 <div>
   <table class="table table-striped table-bordered table-hover">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Tier</th>
-      <th scope="col">Manage</th>
-    </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Tier</th>
+        <th scope="col">Qualification Zone</th>
+        <th scope="col">Manage</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teams">
-      <th scope="row">
-        {{team.id}}
-      </th>
-      <td>
-        {{team.name}}
-      </td>
-      <td>
-        {{team.tier + 1}}
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="onDelete(team)">Delete</button>
-      </td>
-    </tr>
+      <tr *ngFor="let team of teams">
+        <th scope="row">
+          {{team.id}}
+        </th>
+        <td>
+          {{team.name}}
+        </td>
+        <td>
+          {{team.tier + 1}}
+        </td>
+        <td>
+          {{team.qualificationZone}}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="onDelete(team)">Delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

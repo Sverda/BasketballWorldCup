@@ -11,5 +11,11 @@
       <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
     </select>
   </div>
+  <div class="form-group">
+    <label for="inputZone">Qualification Zone</label>
+    <select class="form-control" id="inputZone" [(ngModel)]="newTeam.qualificationZone" name="qualificationZone">
+      <option *ngFor="let zone of zones">{{zone}}</option>
+    </select>
+  </div>
   <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>
 </form>
