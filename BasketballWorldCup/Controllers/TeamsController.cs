@@ -1,6 +1,9 @@
-﻿using BasketballWorldCup.Domain.Services.Abstractions;
+﻿using AutoMapper;
+using BasketballWorldCup.Domain.Services.Abstractions;
+using BasketballWorldCup.Mapping.Dto;
 using BasketballWorldCup.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BasketballWorldCup.Controllers
 {
@@ -9,17 +12,20 @@ namespace BasketballWorldCup.Controllers
     public class TeamsController : ControllerBase
     {
         private readonly ITeamsService _teamsService;
+        private readonly IMapper _mapper;
 
-        public TeamsController(ITeamsService teamsService)
+        public TeamsController(ITeamsService teamsService, IMapper mapper)
         {
             _teamsService = teamsService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetTeams()
         {
             var teams = _teamsService.GetTeams();
-            return Ok(teams);
+            var dto = _mapper.Map<IEnumerable<TeamDto>>(teams);
+            return Ok(dto);
         }
 
         [HttpGet]
@@ -32,15 +38,16 @@ namespace BasketballWorldCup.Controllers
             }
 
             var teams = _teamsService.GetTeamsByTier((Tier)tier);
-            return Ok(teams);
+            var dto = _mapper.Map<IEnumerable<TeamDto>>(teams);
+            return Ok(dto);
         }
 
         [HttpPost]
         public IActionResult AddTeam([FromBody] Team team)
         {
             var addedTeam = _teamsService.AddTeam(team);
-
-            return Ok(addedTeam);
+            var dto = _mapper.Map<TeamDto>(addedTeam);
+            return Ok(dto);
         }
 
         [HttpDelete]
@@ -48,8 +55,8 @@ namespace BasketballWorldCup.Controllers
         public IActionResult DeleteTeam(int teamId)
         {
             var deletedTeam = _teamsService.DeleteTeam(teamId);
-
-            return Ok(deletedTeam);
+            var dto = _mapper.Map<TeamDto>(deletedTeam);
+            return Ok(dto);
         }
     }
 }
