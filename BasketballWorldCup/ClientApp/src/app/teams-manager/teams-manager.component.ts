@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TeamsService, Team } from "../teams/teams.service";
 import { Subscription } from "rxjs";
+import { TeamsService, Team } from "../services/teams.service";
 
 @Component({
     selector: 'teams-manager',
