@@ -43,4 +43,5 @@ export interface Team{
   name: string;
   tier: number;
   qualificationZone: string;
+  flag: File;
 }

@@ -20,13 +20,18 @@ export class AddTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "" };
     this.tiers = [0, 1, 2, 3];
     this.zonesService.getZones().subscribe(result => { this.zones = result; }, error => console.error(error));
+    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
+  }
+
+  onFileChanged(event) {
+    console.log(event.target.files[0]);
+    this.newTeam.flag = event.target.files[0];
   }
 
   addTeam() {
     this.teamsService.addTeam(this.newTeam).subscribe(data => console.log(data));
-    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "" };
+    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
   }
 }
