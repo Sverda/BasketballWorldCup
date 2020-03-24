@@ -13,6 +13,11 @@ export class AddTeamComponent implements OnInit {
   private newTeam: Team;
   private tiers: number[];
   private zones: string[];
+  private imgURL: any;
+
+  public imagePath;
+  public message: string;
+
 
   constructor(teamsService: TeamsService, zonesService: ZonesService) {
     this.teamsService = teamsService;
@@ -25,12 +30,23 @@ export class AddTeamComponent implements OnInit {
     this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
   }
 
-  onFileChanged(event) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.newTeam.flag = reader.result as Uint8Array;
+  preview(files) {
+    if (files.length === 0)
+      return;
+
+    const mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) === null) {
+      this.message = "Only images are supported.";
+      return;
     }
-    reader.readAsArrayBuffer(event.target.files[0]);
+
+    const reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      this.imgURL = reader.result;
+    }
   }
 
   addTeam() {

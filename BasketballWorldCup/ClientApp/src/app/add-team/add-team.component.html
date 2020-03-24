@@ -19,7 +19,9 @@
   </div>
   <div class="form-group">
     <label for="inputFlag">Flag</label>
-    <input type="file" class="form-control" id="inputFlag" (change)="onFileChanged($event)">
+    <span style="color:red;" *ngIf="message">{{message}}</span>
+    <input #file type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)"/>
+    <img [src]="imgURL" height="200" *ngIf="imgURL">
   </div>
   <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>
 </form>
