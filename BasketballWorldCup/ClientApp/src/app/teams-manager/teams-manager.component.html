@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Flag</th>
         <th scope="col">Name</th>
         <th scope="col">Tier</th>
         <th scope="col">Qualification Zone</th>
@@ -19,6 +20,9 @@
         <th scope="row">
           {{team.id}}
         </th>
+        <td>
+          <img [src]="team.flag"/>
+        </td>
         <td>
           {{team.name}}
         </td>

@@ -43,5 +43,5 @@ export interface Team{
   name: string;
   tier: number;
   qualificationZone: string;
-  flag: Uint8Array;
+  flag: string;
 }

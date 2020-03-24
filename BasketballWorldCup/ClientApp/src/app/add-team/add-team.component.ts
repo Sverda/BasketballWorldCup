@@ -13,9 +13,9 @@ export class AddTeamComponent implements OnInit {
   private newTeam: Team;
   private tiers: number[];
   private zones: string[];
-  private imgURL: any;
+  private imgURL: string;
 
-  public imagePath;
+  public imagePath: File[];
   public message: string;
 
 
@@ -30,8 +30,8 @@ export class AddTeamComponent implements OnInit {
     this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
   }
 
-  preview(files) {
-    if (files.length === 0)
+  preview(files: File[]) {
+    if (files.length === 0 || files.length > 1)
       return;
 
     const mimeType = files[0].type;
@@ -40,12 +40,12 @@ export class AddTeamComponent implements OnInit {
       return;
     }
 
-    const reader = new FileReader();
+    const previewReader = new FileReader();
     this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      console.log(reader.result);
-      this.imgURL = reader.result;
+    previewReader.readAsDataURL(files[0]);
+    previewReader.onload = () => {
+      console.log(previewReader.result);
+      this.newTeam.flag = previewReader.result as string;
     }
   }
 

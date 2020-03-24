@@ -21,7 +21,7 @@
     <label for="inputFlag">Flag</label>
     <span style="color:red;" *ngIf="message">{{message}}</span>
     <input #file type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)"/>
-    <img [src]="imgURL" height="200" *ngIf="imgURL">
+    <img [src]="newTeam.flag" height="200" *ngIf="newTeam.flag">
   </div>
   <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>
 </form>
