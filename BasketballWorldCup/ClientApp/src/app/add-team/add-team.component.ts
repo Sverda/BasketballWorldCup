@@ -26,8 +26,11 @@ export class AddTeamComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    console.log(event.target.files[0]);
-    this.newTeam.flag = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.newTeam.flag = reader.result as Uint8Array;
+    }
+    reader.readAsArrayBuffer(event.target.files[0]);
   }
 
   addTeam() {
