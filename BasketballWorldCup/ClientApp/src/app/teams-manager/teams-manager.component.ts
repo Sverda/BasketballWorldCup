@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { TeamsService, Team } from "../services/teams.service";
+import { AddTeamComponent } from "../add-team/add-team.component";
 
 @Component({
     selector: 'teams-manager',
@@ -12,7 +14,7 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
   teamAddedSubs: Subscription;
   teams: Team[];
 
-  constructor(teamsService: TeamsService) {
+  constructor(private dialog:  MatDialog, teamsService: TeamsService) {
     this.teamsService = teamsService;
   }
 
@@ -23,6 +25,10 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.teamAddedSubs.unsubscribe();
+  }
+
+  showNewTeamDialog() {
+    this.dialog.open(AddTeamComponent, {});
   }
 
   showTeams() {

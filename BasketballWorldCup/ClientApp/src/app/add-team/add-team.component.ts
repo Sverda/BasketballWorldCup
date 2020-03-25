@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { TeamsService, Team } from "../services/teams.service";
+import { Component, Inject, OnInit } from '@angular/core';
 import { ZonesService } from "../services/zones.service";
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { TeamsService, Team } from "../services/teams.service";
 
 @Component({
-    selector: 'add-team',
     templateUrl: './add-team.component.html'
 })
 export class AddTeamComponent implements OnInit {
 
-  private readonly zonesService: ZonesService;
-  private readonly teamsService: TeamsService;
   private newTeam: Team;
   private tiers: number[];
   private zones: string[];
@@ -19,9 +17,11 @@ export class AddTeamComponent implements OnInit {
   public message: string;
 
 
-  constructor(teamsService: TeamsService, zonesService: ZonesService) {
-    this.teamsService = teamsService;
-    this.zonesService = zonesService;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<AddTeamComponent>,
+    private teamsService: TeamsService,
+    private zonesService: ZonesService) {
   }
 
   ngOnInit(): void {

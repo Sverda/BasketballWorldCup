@@ -1,27 +1,34 @@
-<h3>Add Team</h3>
-
-<form>
-  <div class="form-group">
-    <label for="nameInput">Name</label>
-    <input type="text" class="form-control" id="nameInput" placeholder="Enter name" [(ngModel)]="newTeam.name" name="name">
-  </div>
-  <div class="form-group">
-    <label for="inputTier">Tier</label>
-    <select class="form-control" id="inputTier" [(ngModel)]="newTeam.tier" name="tier">
-      <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="inputZone">Qualification Zone</label>
-    <select class="form-control" id="inputZone" [(ngModel)]="newTeam.qualificationZone" name="qualificationZone">
-      <option *ngFor="let zone of zones">{{zone}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="inputFlag">Flag</label>
-    <span style="color:red;" *ngIf="message">{{message}}</span>
-    <input #file type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)"/>
-    <img [src]="newTeam.flag" height="200" *ngIf="newTeam.flag">
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="addTeam()">Submit</button>
-</form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Team</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" [(ngModel)]="newTeam.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="inputTier">Tier</label>
+        <select class="form-control" id="inputTier" [(ngModel)]="newTeam.tier" name="tier">
+          <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inputZone">Qualification Zone</label>
+        <select class="form-control" id="inputZone" [(ngModel)]="newTeam.qualificationZone" name="qualificationZone">
+          <option *ngFor="let zone of zones">{{zone}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inputFlag">Flag</label>
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <input #file type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)" />
+        <img [src]="newTeam.flag" height="200" *ngIf="newTeam.flag">
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="addTeam()" color="primary">Submit</button>
+  </mat-card-actions>
+</mat-card>
