@@ -7,7 +7,6 @@ import { TeamsService, Team } from "../services/teams.service";
     templateUrl: './add-team.component.html'
 })
 export class AddTeamComponent implements OnInit {
-
   private newTeam: Team;
   private tiers: number[];
   private zones: string[];
@@ -52,5 +51,6 @@ export class AddTeamComponent implements OnInit {
   addTeam() {
     this.teamsService.addTeam(this.newTeam).subscribe(data => console.log(data));
     this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
+    this.dialogRef.close();
   }
 }
