@@ -11,5 +11,7 @@ namespace BasketballWorldCup.Mapping.Dto
         public Tier Tier { get; set; }
 
         public string QualificationZone { get; set; }
+
+        public string Flag { get; set; }
     }
 }

@@ -9,5 +9,7 @@
         public Tier Tier { get; set; }
 
         public QualificationZone QualificationZone { get; set; }
+
+        public string Flag { get; set; }
     }
 }
