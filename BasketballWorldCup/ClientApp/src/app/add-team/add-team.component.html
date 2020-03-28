@@ -6,27 +6,27 @@
     <form (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="form-group">
         <label for="nameInput">Name</label>
-        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" ngModel name="name">
+        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" ngModel name="name" required>
       </div>
       <div class="form-group">
         <label for="inputTier">Tier</label>
-        <select class="form-control" id="inputTier" ngModel name="tier">
+        <select class="form-control" id="inputTier" ngModel name="tier" required>
           <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="inputZone">Qualification Zone</label>
-        <select class="form-control" id="inputZone" ngModel name="qualificationZone">
+        <select class="form-control" id="inputZone" ngModel name="qualificationZone" required>
           <option *ngFor="let zone of zones">{{zone}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="inputFlag">Flag</label>
         <span style="color:red;" *ngIf="message">{{message}}</span>
-        <input type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)" #file ngModel name="flag"/>
+        <input type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)" #file ngModel name="flag" required/>
       </div>
       <mat-card-actions>
-        <button mat-raised-button type="submit" color="primary">Submit</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="f.invalid">Submit</button>
       </mat-card-actions>
     </form>
   </mat-card-content>
