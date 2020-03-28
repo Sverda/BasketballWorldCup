@@ -33,18 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\teams\teams.component.ts" />
-    <None Remove="ClientApp\src\app\teams\teams.service.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BasketballWorldCup.Database\BasketballWorldCup.Database.csproj" />
     <ProjectReference Include="..\BasketballWorldCup.Domain\BasketballWorldCup.Domain.csproj" />
     <ProjectReference Include="..\BasketballWorldCup.Model\BasketballWorldCup.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\teams\teams.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\teams.service.ts" />
   </ItemGroup>
 
