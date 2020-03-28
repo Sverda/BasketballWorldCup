@@ -48,7 +48,7 @@ export class AddTeamComponent implements OnInit {
     }
   }
 
-  addTeam() {
+  onSubmit() {
     this.teamsService.addTeam(this.newTeam).subscribe(data => console.log(data));
     this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
     this.dialogRef.close();
