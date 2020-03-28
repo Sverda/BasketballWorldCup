@@ -1,6 +1,8 @@
-﻿namespace BasketballWorldCup.Model
+﻿using BasketballWorldCup.Model;
+
+namespace BasketballWorldCup.Mapping.Dto
 {
-    public class Team
+    public class TeamDto
     {
         public int Id { get; set; }
 
@@ -8,7 +10,7 @@
 
         public Tier Tier { get; set; }
 
-        public QualificationZone QualificationZone { get; set; }
+        public string QualificationZone { get; set; }
 
         public string Flag { get; set; }
     }

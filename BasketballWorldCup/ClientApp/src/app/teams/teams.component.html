@@ -1,0 +1,31 @@
+<h2>Teams by tier</h2>
+
+<div *ngFor="let teamByTier of teamsByTier; let i = index">
+  <h3>Tier {{i + 1}}</h3>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Flag</th>
+        <th scope="col">Name</th>
+        <th scope="col">Tier</th>
+        <th scope="col">Qualification Zone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teamByTier" [class.bg-success]="isActive(team)" (click)="onTeamSelect(team)">
+        <td scope="row">
+          <img [src]="team.flag" />
+        </td>
+        <th>
+          {{team.name}}
+        </th>
+        <td>
+          {{team.tier + 1}}
+        </td>
+        <td>
+          {{team.qualificationZone}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

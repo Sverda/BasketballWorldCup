@@ -1,6 +1,12 @@
+using AutoMapper;
+using BasketballWorldCup.Database;
+using BasketballWorldCup.Domain.Services;
+using BasketballWorldCup.Domain.Services.Abstractions;
+using BasketballWorldCup.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +22,6 @@ namespace BasketballWorldCup
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -25,9 +30,15 @@ namespace BasketballWorldCup
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<BasketballContext>(options =>
+                options.UseSqlServer(
+                    @"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;"));
+            services.AddTransient<ITeamsService, TeamsService>();
+            services.AddTransient<IZonesService, ZonesService>();
+            services.AddAutoMapper(typeof(BasketballProfile));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
