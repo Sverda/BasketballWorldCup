@@ -1,16 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ZonesService } from "../services/zones.service";
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { TeamsService, Team } from "../services/teams.service";
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TeamsService } from "../services/teams.service";
 
 @Component({
     templateUrl: './add-team.component.html'
 })
 export class AddTeamComponent implements OnInit {
+  @ViewChild("f", { static: false }) addTeamForm: NgForm;
   private tiers: number[];
   private zones: string[];
-  private imgURL: string;
+  private flagData: string;
 
   public message: string;
 
@@ -41,14 +42,14 @@ export class AddTeamComponent implements OnInit {
     previewReader.readAsDataURL(files[0]);
     previewReader.onload = () => {
       console.log(previewReader.result);
-      this.imgURL = previewReader.result as string;
+      this.flagData = previewReader.result as string;
     }
   }
 
-  onSubmit(form: NgForm) {
-    form.value.flag = this.imgURL;
-    console.log(form.value);
-    this.teamsService.addTeam(form.value).subscribe(data => console.log(data));
+  onSubmit() {
+    this.addTeamForm.value.flag = this.flagData;
+    console.log(this.addTeamForm.value);
+    this.teamsService.addTeam(this.addTeamForm.value).subscribe(data => console.log(data));
     this.dialogRef.close();
   }
 }
