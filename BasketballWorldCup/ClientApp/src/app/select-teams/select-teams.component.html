@@ -1,3 +1,11 @@
 <app-wizard-step [title]="title" (nextStepClicked)="goToNextStep()">
-  
+  <form [formGroup]="selectTeamsForm">
+    <label>
+      <span>First name *</span>
+      <input class="form-control"
+             type="text"
+             formControlName="firstName"
+             required />
+    </label>
+  </form>
 </app-wizard-step>

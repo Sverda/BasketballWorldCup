@@ -8,7 +8,7 @@ const routes: Routes = [
     component: SimulationComponent,
     children: [
       {
-        path: 'select-teams',
+        path: 'select-teams/:zoneId',
         loadChildren: () => import('../select-teams/select-teams.module').then(m => m.SelectTeamsModule)
       }
     ]
