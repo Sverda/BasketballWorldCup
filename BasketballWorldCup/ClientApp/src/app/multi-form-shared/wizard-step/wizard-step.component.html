@@ -1,17 +1,25 @@
-<section>
-  <header>
-    <h1>{{ title }}</h1>
-  </header>
-
-  <div>
-    <button id="previous-button" (click)="goToPreviousStep()">
-      <i class="material-icons">navigate_before</i> <span>Previous</span>
-    </button>
-
+<section class="container">
+  <div class="row">
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+  </div>
+  <div class="row">
     <ng-content></ng-content>
-
-    <button id="next-button" (click)="goToNextStep()">
-      <span>Next</span> <i class="material-icons">navigate_next</i>
-    </button>
+  </div>
+  <div class="row">
+    <div class="col-1">
+      <button class="btn btn-primary" id="previous-button" (click)="goToPreviousStep()">
+        <i class="material-icons align-middle">arrow_back</i>
+        <span>Previous Step</span>
+      </button>
+    </div>
+    <div class="col-10"></div>
+    <div class="col-1">
+      <button class="btn btn-primary" id="next-button" (click)="goToNextStep()">
+        <span>Next Step</span>
+        <i class="material-icons align-middle">arrow_forward</i>
+      </button>
+    </div>
   </div>
 </section>

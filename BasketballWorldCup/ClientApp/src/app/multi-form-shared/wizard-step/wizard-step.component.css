@@ -1,63 +1,28 @@
+div {
+  padding: 0px 0px;
+}
+
 header {
-  background-color: #1e1e1e;
   height: 10vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 header h1 {
-  color: white;
+  color: #2a2f3d;
   margin: 0;
-  padding: 1rem;
-  text-align: center;
-  font-size: 2.8rem;
+  text-align: start;
 }
 
-section {
-  height: 80vh;
+button.btn-primary {
+  padding: 0px 0px;
+  width: 130px;
+  height: 40px;
 }
 
-section div {
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
+button.btn-primary > span {
+  font-size: 15px;
 }
 
-section div button {
-  border: none;
-  background: #2b2b2b;
-  height: max-content;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  padding: 0.5rem 0;
-  outline: 0.1rem #b3b3b3 solid;
-  cursor: pointer;
-}
-
-section div button#previous-button {
-  padding-right: 1rem;
-}
-
-section div button#next-button {
-  padding-left: 1rem;
-}
-
-section div button span {
-  display: none;
-}
-
-section div button:focus, section div button:hover {
-  outline: 0.2rem white solid;
-  background: #111;
-}
-
-@media all and (min-width: 768px) {
-  section div button span {
-    display: block;
-  }
+button.btn-primary > i {
+  font-size: 20px;
 }

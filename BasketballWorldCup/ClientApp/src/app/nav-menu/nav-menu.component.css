@@ -17,6 +17,6 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-nav.navbar.bg-white {
-  background-color: #ff6732 !important;
+nav.navbar {
+  background-color: #2a2f3d !important;
 }

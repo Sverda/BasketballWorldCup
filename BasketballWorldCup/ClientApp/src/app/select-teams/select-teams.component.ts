@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-teams.component.css']
 })
 export class SelectTeamsComponent implements OnInit {
+  title = 'Zone 1';
+  submitted = false;
 
   constructor() { }
+
+  goToNextStep() {
+    this.submitted = true;
+  }
 
   ngOnInit() {
   }
