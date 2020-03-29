@@ -2,14 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-
+  {
+    path: 'simulation',
+    loadChildren: () => import('./simulation/simulation.module').then(m => m.SimulationModule)
+  },
   {
     path: 'teams-manager',
     loadChildren: () => import('./teams-manager/teams-manager.module').then(m => m.TeamsManagerModule)
   },
   {
-    path: 'select-teams', 
-    loadChildren: () => import('./select-teams/select-teams.module').then(m => m.SelectTeamsModule)
+    path: '',
+    redirectTo: 'simulation',
+    pathMatch: 'full'
   }
 ];
 

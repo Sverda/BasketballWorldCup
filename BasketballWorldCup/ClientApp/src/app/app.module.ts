@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule
+    AppRoutingModule
   ],
   exports: [],
   providers: [],
