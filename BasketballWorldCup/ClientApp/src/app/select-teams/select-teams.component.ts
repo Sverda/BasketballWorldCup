@@ -11,7 +11,7 @@ import { ZonesService } from "../services/zones.service";
   styleUrls: ["./select-teams.component.css"]
 })
 export class SelectTeamsComponent implements OnInit {
-  private title: string;
+  public title: string;
   private submitted = false;
   selectTeamsForm = this.fb.group(
     {

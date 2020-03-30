@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { TeamsService, Team } from "../services/teams.service";
 import { AddTeamComponent } from "../add-team/add-team.component";
 

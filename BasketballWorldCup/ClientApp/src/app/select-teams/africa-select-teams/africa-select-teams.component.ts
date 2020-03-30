@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./africa-select-teams.component.css"]
 })
 export class AfricaSelectTeamsComponent implements OnInit {
-  private zoneId = 0;
+  public zoneId = 0;
 
   constructor() {
     console.log("Africa const: " + this.zoneId);

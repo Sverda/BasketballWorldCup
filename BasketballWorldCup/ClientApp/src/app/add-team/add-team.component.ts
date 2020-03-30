@@ -9,8 +9,8 @@ import { TeamsService } from "../services/teams.service";
 })
 export class AddTeamComponent implements OnInit {
   @ViewChild("f", { static: false }) addTeamForm: NgForm;
-  private tiers: number[];
-  private zones: string[];
+  public tiers: number[];
+  public zones: string[];
   private flagData: string;
 
   public message: string;
