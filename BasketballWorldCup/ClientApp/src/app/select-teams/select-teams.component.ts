@@ -22,7 +22,7 @@ export class SelectTeamsComponent implements OnInit {
     }
   );
 
-  @Input() zoneId: number;
+  @Input() zoneId: string;
 
   constructor(
     private readonly router: Router,
@@ -33,6 +33,7 @@ export class SelectTeamsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("Select teams: " + this.zoneId);
     this.title = "Zone: " + this.zoneId;
   }
 

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 import { SimulationComponent } from "./simulation.component";
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: "africa",
-        loadChildren: () => import('../select-teams/africa-select-teams/africa-select-teams.module').then(m => m.AfricaSelectTeamsModule)
+        loadChildren: () => import("../select-teams/africa-select-teams/africa-select-teams.module").then(m => m.AfricaSelectTeamsModule)
       }
     ]
   }

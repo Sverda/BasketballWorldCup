@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { AfricaSelectTeamsComponent } from "./africa-select-teams.component";
 import { SelectTeamsModule } from "../select-teams.module";
 
@@ -8,7 +10,10 @@ import { SelectTeamsModule } from "../select-teams.module";
   declarations: [AfricaSelectTeamsComponent],
   imports: [
     CommonModule,
-    SelectTeamsModule
+    FormsModule,
+    ReactiveFormsModule,
+    SelectTeamsModule,
+    RouterModule.forChild([{ path: "", component: AfricaSelectTeamsComponent }]),
   ],
   exports: [AfricaSelectTeamsComponent]
 })
