@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from "@angular/core";
+import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { FormBuilder, Validators } from "@angular/forms";
 import { TeamsService } from "../services/teams.service";
 import { ZonesService } from "../services/zones.service";
 
 @Component({
-  selector: 'app-select-teams',
-  templateUrl: './select-teams.component.html',
-  styleUrls: ['./select-teams.component.css']
+  selector: "app-select-teams",
+  templateUrl: "./select-teams.component.html",
+  styleUrls: ["./select-teams.component.css"]
 })
 export class SelectTeamsComponent implements OnInit {
   private title: string;
@@ -22,6 +22,8 @@ export class SelectTeamsComponent implements OnInit {
     }
   );
 
+  @Input() zoneId: number;
+
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
@@ -31,13 +33,10 @@ export class SelectTeamsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const zoneId = this.route.snapshot.params["zoneId"];
-    this.title = "Zone " + zoneId;
+    this.title = "Zone: " + this.zoneId;
   }
 
   goToNextStep() {
     this.submitted = true;
-    const zoneId = parseInt(this.route.snapshot.params["zoneId"]) + 1;
-    this.router.navigate(["/simulation/select-teams", zoneId]);
   }
 }

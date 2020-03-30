@@ -4,12 +4,12 @@ import { SimulationComponent } from "./simulation.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: SimulationComponent,
     children: [
       {
-        path: 'select-teams/:zoneId',
-        loadChildren: () => import('../select-teams/select-teams.module').then(m => m.SelectTeamsModule)
+        path: "africa",
+        loadChildren: () => import('../select-teams/africa-select-teams/africa-select-teams.module').then(m => m.AfricaSelectTeamsModule)
       }
     ]
   }
