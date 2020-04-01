@@ -25,6 +25,9 @@ var TeamsService = /** @class */ (function () {
     TeamsService.prototype.getTeamsByTier = function (tier) {
         return this.http.get(this.baseUrl + this.teamsUrl + '/' + tier);
     };
+    TeamsService.prototype.getTeamsByZone = function (zone) {
+        return this.http.get(this.baseUrl + this.teamsUrl + '/zone/' + zone);
+    };
     TeamsService.prototype.addTeam = function (team) {
         this.addedUserSubject.next(team);
         var httpOptions = {

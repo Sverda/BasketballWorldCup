@@ -24,7 +24,7 @@ export class SelectTeamsComponent implements OnInit {
   );
 
   public teams: SelectionTeam[];
-  @Input() zoneId: string;
+  @Input() zoneId: number;
 
   constructor(
     private readonly router: Router,
@@ -36,7 +36,7 @@ export class SelectTeamsComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Zone: " + this.zoneId;
-    this.teamsService.getTeams().pipe(map((data: Team[]) => data.map(t => new SelectionTeam(t)))).subscribe(result => { this.teams = result; }, error => console.error(error));
+    this.teamsService.getTeamsByZone(this.zoneId).pipe(map((data: Team[]) => data.map(t => new SelectionTeam(t)))).subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   selectTeam(team: SelectionTeam) {
@@ -45,7 +45,6 @@ export class SelectTeamsComponent implements OnInit {
     } else {
       team.select();
     }
-    console.log(this.teams);
   }
 
   goToNextStep() {

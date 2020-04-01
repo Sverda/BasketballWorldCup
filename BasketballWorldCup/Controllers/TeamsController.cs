@@ -42,6 +42,20 @@ namespace BasketballWorldCup.Controllers
             return Ok(dto);
         }
 
+        [HttpGet]
+        [Route("zone/{zone}")]
+        public IActionResult GetTeamsByZone(int zone)
+        {
+            if (zone < 0 || zone >= 4)
+            {
+                return BadRequest("There are only four tiers");
+            }
+
+            var teams = _teamsService.GetTeamsByZone((QualificationZone)zone);
+            var dto = _mapper.Map<IEnumerable<TeamDto>>(teams);
+            return Ok(dto);
+        }
+
         [HttpPost]
         public IActionResult AddTeam([FromBody] TeamDto team)
         {

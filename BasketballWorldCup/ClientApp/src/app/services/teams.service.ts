@@ -21,6 +21,10 @@ export class TeamsService {
     return this.http.get<Team[]>(this.baseUrl + this.teamsUrl + '/' + tier);
   }
 
+  getTeamsByZone(zone: number) {
+    return this.http.get<Team[]>(this.baseUrl + this.teamsUrl + '/zone/' + zone);
+  }
+
   addTeam(team: Team) {
     this.addedUserSubject.next(team);
 

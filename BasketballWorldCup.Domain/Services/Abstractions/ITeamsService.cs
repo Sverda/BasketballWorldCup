@@ -9,6 +9,8 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
 
         IEnumerable<Team> GetTeamsByTier(Tier tier);
 
+        IEnumerable<Team> GetTeamsByZone(QualificationZone zone);
+
         Team AddTeam(Team team);
 
         Team DeleteTeam(int teamId);

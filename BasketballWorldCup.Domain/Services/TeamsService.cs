@@ -26,6 +26,11 @@ namespace BasketballWorldCup.Domain.Services
             return _context.Teams.Where(t => t.Tier == tier).ToList();
         }
 
+        public IEnumerable<Team> GetTeamsByZone(QualificationZone zone)
+        {
+            return _context.Teams.Where(t => t.QualificationZone == zone).ToList();
+        }
+
         public Team AddTeam(Team team)
         {
             _context.Add(team);
