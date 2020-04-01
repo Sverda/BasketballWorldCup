@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
 import { TeamsService, Team } from "../services/teams.service";
 import { ZonesService } from "../services/zones.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-select-teams",
@@ -22,7 +23,7 @@ export class SelectTeamsComponent implements OnInit {
     }
   );
 
-  public teams: Team[];
+  public teams: SelectionTeam[];
   @Input() zoneId: string;
 
   constructor(
@@ -35,10 +36,39 @@ export class SelectTeamsComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Zone: " + this.zoneId;
-    this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
+    this.teamsService.getTeams().pipe(map((data: Team[]) => data.map(t => new SelectionTeam(t)))).subscribe(result => { this.teams = result; }, error => console.error(error));
+  }
+
+  selectTeam(team: SelectionTeam) {
+    if (team.isSelected()) {
+      team.unselect();
+    } else {
+      team.select();
+    }
+    console.log(this.teams);
   }
 
   goToNextStep() {
     this.submitted = true;
+  }
+}
+
+class SelectionTeam {
+  private selected: boolean;
+
+  constructor(public readonly data: Team) {
+    this.unselect();
+  }
+
+  isSelected(): boolean {
+    return this.selected;
+  }
+
+  select() {
+    this.selected = true;
+  }
+
+  unselect() {
+    this.selected = false;
   }
 }
