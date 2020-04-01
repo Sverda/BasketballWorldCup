@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SelectTeamsComponent } from "./select-teams.component";
 import { MultiFormSharedModule } from "../multi-form-shared/multi-form-shared.module";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MultiFormSharedModule } from "../multi-form-shared/multi-form-shared.mo
     CommonModule,
     MultiFormSharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   exports: [
     SelectTeamsComponent

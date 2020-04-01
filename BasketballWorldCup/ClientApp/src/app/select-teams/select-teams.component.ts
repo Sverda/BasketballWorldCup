@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
-import { TeamsService } from "../services/teams.service";
+import { TeamsService, Team } from "../services/teams.service";
 import { ZonesService } from "../services/zones.service";
 
 @Component({
@@ -22,6 +22,7 @@ export class SelectTeamsComponent implements OnInit {
     }
   );
 
+  public teams: Team[];
   @Input() zoneId: string;
 
   constructor(
@@ -33,8 +34,8 @@ export class SelectTeamsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("Select teams: " + this.zoneId);
     this.title = "Zone: " + this.zoneId;
+    this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   goToNextStep() {
