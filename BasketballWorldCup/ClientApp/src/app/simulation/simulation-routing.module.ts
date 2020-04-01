@@ -10,6 +10,18 @@ const routes: Routes = [
       {
         path: "africa",
         loadChildren: () => import("../select-teams/africa-select-teams/africa-select-teams.module").then(m => m.AfricaSelectTeamsModule)
+      },
+      {
+        path: "europe",
+        loadChildren: () => import("../select-teams/europe-select-teams/europe-select-teams.module").then(m => m.EuropeSelectTeamsModule)
+      },
+      {
+        path: "americas",
+        loadChildren: () => import("../select-teams/americas-select-teams/americas-select-teams.module").then(m => m.AmericasSelectTeamsModule)
+      },
+      {
+        path: "asia",
+        loadChildren: () => import("../select-teams/asia-select-teams/asia-select-teams.module").then(m => m.AsiaSelectTeamsModule)
       }
     ]
   }

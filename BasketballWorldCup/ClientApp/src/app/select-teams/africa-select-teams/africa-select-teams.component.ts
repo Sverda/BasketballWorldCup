@@ -9,11 +9,9 @@ export class AfricaSelectTeamsComponent implements OnInit {
   public zoneId = 0;
 
   constructor() {
-    console.log("Africa const: " + this.zoneId);
   }
 
   ngOnInit() {
-    console.log("Africa: " + this.zoneId);
   }
 
 }
