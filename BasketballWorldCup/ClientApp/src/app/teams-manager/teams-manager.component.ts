@@ -1,31 +1,30 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from "rxjs";
-import { MatDialog } from '@angular/material/dialog';
-import { TeamsService } from "../services/teams.service";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
+
 import { AddTeamComponent } from "../add-team/add-team.component";
 import { Team } from "../model/team.interface";
+import { TeamState } from "../store/state/team.state";
+import { DeleteTeam } from "../store/actions/team.actions";
+
 
 @Component({
-    selector: 'teams-manager',
-    templateUrl: './teams-manager.component.html'
+    selector: "teams-manager",
+    templateUrl: "./teams-manager.component.html"
 })
 export class TeamsManagerComponent implements OnInit, OnDestroy{
 
-  teamsService: TeamsService;
-  teamAddedSubs: Subscription;
   teams: Team[];
 
-  constructor(private dialog:  MatDialog, teamsService: TeamsService) {
-    this.teamsService = teamsService;
-  }
+  constructor(
+    private dialog: MatDialog,
+    private store: Store<{ team: TeamState }> ) { }
 
   ngOnInit(): void {
     this.showTeams();
-    this.teamAddedSubs = this.teamsService.addedUserSubject.subscribe(data => { this.teams.push(data) });
   }
 
   ngOnDestroy(): void {
-    this.teamAddedSubs.unsubscribe();
   }
 
   showNewTeamDialog() {
@@ -33,12 +32,10 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
   }
 
   showTeams() {
-    this.teamsService.getTeams().subscribe(result => { this.teams = result; }, error => console.error(error));
+    this.store.select(state => state.team.teams).subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   onDelete(team: Team) {
-    this.teams = this.teams.filter(t => t.id !== team.id);
-
-    this.teamsService.deleteTeam(team).subscribe(data => console.log(data));
+    this.store.dispatch(DeleteTeam({ teamId: team.id }));
   }
 }

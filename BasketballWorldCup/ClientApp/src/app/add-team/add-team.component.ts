@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
-import { Team } from "../model/team.interface";
 import { TeamState } from "../store/state/team.state";
 import { AddTeam } from "../store/actions/team.actions";
 

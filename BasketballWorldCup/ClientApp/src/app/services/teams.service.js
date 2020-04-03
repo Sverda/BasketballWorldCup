@@ -37,8 +37,8 @@ var TeamsService = /** @class */ (function () {
         };
         return this.http.post(this.baseUrl + this.teamsUrl, team, httpOptions);
     };
-    TeamsService.prototype.deleteTeam = function (team) {
-        return this.http.delete(this.baseUrl + this.teamsUrl + "/" + team.id);
+    TeamsService.prototype.deleteTeam = function (teamId) {
+        return this.http.delete(this.baseUrl + this.teamsUrl + "/" + teamId);
     };
     TeamsService = __decorate([
         core_1.Injectable({ providedIn: "root" }),

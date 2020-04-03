@@ -38,7 +38,7 @@ export class TeamsService {
     return this.http.post<Team>(this.baseUrl + this.teamsUrl, team, httpOptions);
   }
 
-  public deleteTeam(team: Team): Observable<Team> {
-    return this.http.delete<Team>(this.baseUrl + this.teamsUrl + "/" + team.id);
+  public deleteTeam(teamId: number): Observable<Team> {
+    return this.http.delete<Team>(this.baseUrl + this.teamsUrl + "/" + teamId);
   }
 }

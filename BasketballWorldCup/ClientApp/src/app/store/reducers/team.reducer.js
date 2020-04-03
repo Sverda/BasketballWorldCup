@@ -27,6 +27,9 @@ var teamReducer = store_1.createReducer(team_state_1.initialTeamState, store_1.o
 }), store_1.on(TeamActions.AddTeamSuccess, function (state, _a) {
     var team = _a.team;
     return (__assign(__assign({}, state), { teams: __spreadArrays(state.teams, [team]) }));
+}), store_1.on(TeamActions.DeleteTeamSuccess, function (state, _a) {
+    var team = _a.team;
+    return (__assign(__assign({}, state), { teams: state.teams.filter(function (t) { return t.id !== team.id; }) }));
 }));
 function reducer(state, action) {
     return teamReducer(state, action);

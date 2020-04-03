@@ -21,3 +21,13 @@ export const AddTeamSuccess = createAction(
   "[Teams] Add Team Success",
   props<{ team: Team }>()
 );
+
+export const DeleteTeam = createAction(
+  "[Teams] Delete Team",
+  props<{ teamId: number }>()
+);
+
+export const DeleteTeamSuccess = createAction(
+  "[Teams] Delete Team Success",
+  props<{ team: Team }>()
+);

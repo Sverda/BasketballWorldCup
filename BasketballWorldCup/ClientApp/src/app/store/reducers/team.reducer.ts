@@ -17,6 +17,10 @@ const teamReducer = createReducer(
   on(TeamActions.AddTeamSuccess, (state, { team }) => ({
     ...state,
     teams: [...state.teams, team]
+  })),
+  on(TeamActions.DeleteTeamSuccess, (state, { team }) => ({
+    ...state,
+    teams: state.teams.filter(t => t.id !== team.id)
   }))
 );
 
