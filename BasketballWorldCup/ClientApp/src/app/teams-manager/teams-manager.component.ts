@@ -21,7 +21,7 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
     private store: Store<{ team: TeamState }> ) { }
 
   ngOnInit(): void {
-    this.showTeams();
+    this.store.select(state => state.team.teams).subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   ngOnDestroy(): void {
@@ -29,10 +29,6 @@ export class TeamsManagerComponent implements OnInit, OnDestroy{
 
   showNewTeamDialog() {
     this.dialog.open(AddTeamComponent, {});
-  }
-
-  showTeams() {
-    this.store.select(state => state.team.teams).subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   onDelete(team: Team) {

@@ -7,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AsiaSelectTeamsComponent implements OnInit {
   public zoneId = 3;
+  public zoneName = "Asia & Oceania";
 
   constructor() { }
 

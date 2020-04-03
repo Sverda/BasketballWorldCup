@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { map } from "rxjs/operators";
+import { map, filter } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
@@ -22,6 +22,7 @@ export class SelectTeamsComponent implements OnInit {
   public teams: SelectedTeam[];
   public selectTeamsGroup: FormGroup;
   @Input() zoneId: number;
+  @Input() zoneName: string;
 
   constructor(
     private readonly router: Router,
@@ -37,7 +38,10 @@ export class SelectTeamsComponent implements OnInit {
     this.selectTeamsGroup = this.fb.group({});
 
     this.store.select(state => state.team.teams)
-      .pipe(map((data: Team[]) => data.map(t => new SelectedTeam(t))))
+      .pipe(
+        map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)),
+        map((data: Team[]) => data.map(t => new SelectedTeam(t)))
+      )
       .subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
