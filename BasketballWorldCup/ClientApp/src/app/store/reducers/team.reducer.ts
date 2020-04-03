@@ -8,12 +8,15 @@ import * as TeamActions from "../actions/team.actions";
 const teamReducer = createReducer(
   initialTeamState,
   on(TeamActions.GetTeams, state => ({
-    ...state,
-    teams: state.teams
+    ...state
   })),
   on(TeamActions.GetTeamsSuccess, (state, { teams }) => ({
     ...state,
     teams: teams
+  })),
+  on(TeamActions.AddTeamSuccess, (state, { team }) => ({
+    ...state,
+    teams: [...state.teams, team]
   }))
 );
 

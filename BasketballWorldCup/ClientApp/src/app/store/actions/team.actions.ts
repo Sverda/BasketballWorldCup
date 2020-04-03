@@ -16,3 +16,8 @@ export const AddTeam = createAction(
   "[Teams] Add Team",
   props<{team: Team}>()
 );
+
+export const AddTeamSuccess = createAction(
+  "[Teams] Add Team Success",
+  props<{ team: Team }>()
+);

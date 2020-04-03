@@ -1,11 +1,16 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Inject, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
+
 import { ZonesService } from "../services/zones.service";
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TeamsService } from "../services/teams.service";
+import { Team } from "../model/team.interface";
+import { TeamState } from "../store/state/team.state";
+import { AddTeam } from "../store/actions/team.actions";
+
 
 @Component({
-    templateUrl: './add-team.component.html'
+    templateUrl: "./add-team.component.html"
 })
 export class AddTeamComponent implements OnInit {
   @ViewChild("f", { static: false }) addTeamForm: NgForm;
@@ -19,8 +24,8 @@ export class AddTeamComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<AddTeamComponent>,
-    private teamsService: TeamsService,
-    private zonesService: ZonesService) {
+    private zonesService: ZonesService,
+    private store: Store<{ team: TeamState }> ) {
   }
 
   ngOnInit(): void {
@@ -49,7 +54,7 @@ export class AddTeamComponent implements OnInit {
   onSubmit() {
     this.addTeamForm.value.flag = this.flagData;
     console.log(this.addTeamForm.value);
-    this.teamsService.addTeam(this.addTeamForm.value).subscribe(data => console.log(data));
+    this.store.dispatch(AddTeam({ team: this.addTeamForm.value }));
     this.dialogRef.close();
   }
 }

@@ -39,11 +39,6 @@ export class SelectTeamsComponent implements OnInit {
     this.store.select(state => state.team.teams)
       .pipe(map((data: Team[]) => data.map(t => new SelectedTeam(t))))
       .subscribe(result => { this.teams = result; }, error => console.error(error));
-
-    //this.teamsService
-    //  .getTeamsByZone(this.zoneId)
-    //  .pipe(map((data: Team[]) => data.map(t => new SelectedTeam(t))))
-    //  .subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
   selectTeam(team: SelectedTeam) {
