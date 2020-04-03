@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
 import { MatDialog } from '@angular/material/dialog';
-import { TeamsService, Team } from "../services/teams.service";
+import { TeamsService } from "../services/teams.service";
 import { AddTeamComponent } from "../add-team/add-team.component";
+import { Team } from "../model/team.interface";
 
 @Component({
     selector: 'teams-manager',

@@ -33,8 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\model\team.interface.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.actions.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.reducer.ts" />
+    <None Remove="ClientApp\src\app\store\effects\team.effects.ts" />
+    <None Remove="ClientApp\src\app\store\state\app.state.ts" />
+    <None Remove="ClientApp\src\app\store\state\team.state.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,9 +48,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\select-teams\store\select-teams.actions.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\select-teams\store\select-teams.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\team.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\actions\team.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\effects\team.effects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\reducers\team.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\teams.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\state\app.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\state\team.state.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\store\selectors\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

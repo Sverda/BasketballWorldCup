@@ -1,10 +1,15 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { TeamsService, Team } from "../services/teams.service";
-import { ZonesService } from "../services/zones.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { map } from "rxjs/operators";
+import { Store } from "@ngrx/store";
+
+import { ZonesService } from "../services/zones.service";
+import { TeamsService } from "../services/teams.service";
+import { SelectedTeam } from "../model/selected-team.class";
+import { Team } from "../model/team.interface";
+import { TeamState } from "../store/state/team.state";
 
 @Component({
   selector: "app-select-teams",
@@ -14,8 +19,8 @@ import { map } from "rxjs/operators";
 export class SelectTeamsComponent implements OnInit {
   public title: string;
   private submitted = false;
-  public teams: SelectionTeam[];
-  private selectTeamsGroup: FormGroup;
+  public teams: SelectedTeam[];
+  public selectTeamsGroup: FormGroup;
   @Input() zoneId: number;
 
   constructor(
@@ -24,19 +29,24 @@ export class SelectTeamsComponent implements OnInit {
     private readonly teamsService: TeamsService,
     private readonly zonesService: ZonesService,
     private readonly fb: FormBuilder,
+    private store: Store<{ team: TeamState }> 
   ) {}
 
   ngOnInit() {
     this.title = "Zone: " + this.zoneId;
     this.selectTeamsGroup = this.fb.group({});
 
-    this.teamsService
-      .getTeamsByZone(this.zoneId)
-      .pipe(map((data: Team[]) => data.map(t => new SelectionTeam(t))))
+    this.store.select(state => state.team.teams)
+      .pipe(map((data: Team[]) => data.map(t => new SelectedTeam(t))))
       .subscribe(result => { this.teams = result; }, error => console.error(error));
+
+    //this.teamsService
+    //  .getTeamsByZone(this.zoneId)
+    //  .pipe(map((data: Team[]) => data.map(t => new SelectedTeam(t))))
+    //  .subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
-  selectTeam(team: SelectionTeam) {
+  selectTeam(team: SelectedTeam) {
     if (team.isSelected()) {
       team.unselect();
     } else {
@@ -46,25 +56,5 @@ export class SelectTeamsComponent implements OnInit {
 
   goToNextStep() {
     this.submitted = true;
-  }
-}
-
-class SelectionTeam {
-  private selected: boolean;
-
-  constructor(public readonly data: Team) {
-    this.unselect();
-  }
-
-  isSelected(): boolean {
-    return this.selected;
-  }
-
-  select() {
-    this.selected = true;
-  }
-
-  unselect() {
-    this.selected = false;
   }
 }

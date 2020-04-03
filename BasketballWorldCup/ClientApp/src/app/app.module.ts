@@ -4,11 +4,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { selectTeamsReducer } from "./select-teams/store/select-teams.reducer";
+import * as fromTeam from "./store/reducers/team.reducer";
+import { TeamEffects } from "./store/effects/team.effects";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,11 @@ import { selectTeamsReducer } from "./select-teams/store/select-teams.reducer";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({selectTeams: selectTeamsReducer}),
+    EffectsModule.forRoot([TeamEffects]),
+    StoreModule.forRoot({ team: fromTeam.reducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
     AppRoutingModule
   ],
   exports: [],
