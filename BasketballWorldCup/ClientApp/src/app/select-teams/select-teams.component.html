@@ -12,16 +12,16 @@
       <tbody>
       <tr *ngFor="let team of teams" (click)="selectTeam(team)">
         <td>
-          <mat-checkbox [checked]="team.isSelected()"></mat-checkbox>
+          <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
         </td>
         <td>
-          <img [src]="team.data.flag" />
+          <img [src]="team.flag" />
         </td>
         <td>
-          {{team.data.name}}
+          {{team.name}}
         </td>
         <td>
-          {{team.data.tier + 1}}
+          {{team.tier + 1}}
         </td>
       </tr>
       </tbody>

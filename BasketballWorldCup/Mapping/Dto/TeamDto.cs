@@ -13,5 +13,7 @@ namespace BasketballWorldCup.Mapping.Dto
         public string QualificationZone { get; set; }
 
         public string Flag { get; set; }
+
+        public bool IsSelected { get; set; }
     }
 }

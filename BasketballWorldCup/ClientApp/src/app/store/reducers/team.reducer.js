@@ -21,6 +21,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var store_1 = require("@ngrx/store");
 var team_state_1 = require("../state/team.state");
 var TeamActions = require("../actions/team.actions");
+var SelectOrUnselectTeam = TeamActions.SelectOrUnselectTeam;
+function updateTeamInArray(array, selectedTeam) {
+    return array.map(function (team) {
+        if (team.id !== selectedTeam.id) {
+            return team;
+        }
+        else {
+            return __assign({}, selectedTeam);
+        }
+    });
+}
 var teamReducer = store_1.createReducer(team_state_1.initialTeamState, store_1.on(TeamActions.GetTeams, function (state) { return (__assign({}, state)); }), store_1.on(TeamActions.GetTeamsSuccess, function (state, _a) {
     var teams = _a.teams;
     return (__assign(__assign({}, state), { teams: teams }));
@@ -30,6 +41,9 @@ var teamReducer = store_1.createReducer(team_state_1.initialTeamState, store_1.o
 }), store_1.on(TeamActions.DeleteTeamSuccess, function (state, _a) {
     var team = _a.team;
     return (__assign(__assign({}, state), { teams: state.teams.filter(function (t) { return t.id !== team.id; }) }));
+}), store_1.on(SelectOrUnselectTeam, function (state, _a) {
+    var team = _a.team;
+    return (__assign(__assign({}, state), { teams: updateTeamInArray(state.teams, team) }));
 }));
 function reducer(state, action) {
     return teamReducer(state, action);

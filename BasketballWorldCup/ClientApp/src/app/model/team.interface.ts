@@ -4,4 +4,5 @@ export interface Team {
   tier: number;
   qualificationZone: string;
   flag: string;
+  isSelected: boolean;
 }

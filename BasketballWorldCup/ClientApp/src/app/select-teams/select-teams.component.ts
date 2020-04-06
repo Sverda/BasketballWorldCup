@@ -7,9 +7,9 @@ import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
 import { TeamsService } from "../services/teams.service";
-import { SelectedTeam } from "../model/selected-team.class";
 import { Team } from "../model/team.interface";
 import { TeamState } from "../store/state/team.state";
+import { SelectOrUnselectTeam } from "../store/actions/team.actions";
 
 @Component({
   selector: "app-select-teams",
@@ -19,8 +19,9 @@ import { TeamState } from "../store/state/team.state";
 export class SelectTeamsComponent implements OnInit {
   public title: string;
   private submitted = false;
-  public teams: SelectedTeam[];
+  public teams: Team[];
   public selectTeamsGroup: FormGroup;
+
   @Input() zoneId: number;
   @Input() zoneName: string;
 
@@ -38,19 +39,19 @@ export class SelectTeamsComponent implements OnInit {
     this.selectTeamsGroup = this.fb.group({});
 
     this.store.select(state => state.team.teams)
-      .pipe(
-        map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)),
-        map((data: Team[]) => data.map(t => new SelectedTeam(t)))
-      )
+      .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
       .subscribe(result => { this.teams = result; }, error => console.error(error));
   }
 
-  selectTeam(team: SelectedTeam) {
-    if (team.isSelected()) {
-      team.unselect();
+  selectTeam(team: Team) {
+    let updatedTeam = { ...team };
+    if (updatedTeam.isSelected) {
+      updatedTeam.isSelected = false;
     } else {
-      team.select();
+      updatedTeam.isSelected = true;
     }
+
+    this.store.dispatch(SelectOrUnselectTeam({ team: updatedTeam }));
   }
 
   goToNextStep() {

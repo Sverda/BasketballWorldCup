@@ -31,3 +31,8 @@ export const DeleteTeamSuccess = createAction(
   "[Teams] Delete Team Success",
   props<{ team: Team }>()
 );
+
+export const SelectOrUnselectTeam = createAction(
+  "[Teams] Select/Unselect Team",
+  props<{ team: Team }>()
+);
