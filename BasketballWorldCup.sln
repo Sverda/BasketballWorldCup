@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketballWorldCup", "Baske
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketballWorldCup.Model", "BasketballWorldCup.Model\BasketballWorldCup.Model.csproj", "{4F9E1FAC-D48E-41D1-8F41-B7A7BB626275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketballWorldCup.Database", "BasketballWorldCup.Database\BasketballWorldCup.Database.csproj", "{C764206C-545F-4691-BF04-91C84F5029A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketballWorldCup.Database", "BasketballWorldCup.Database\BasketballWorldCup.Database.csproj", "{C764206C-545F-4691-BF04-91C84F5029A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketballWorldCup.Domain", "BasketballWorldCup.Domain\BasketballWorldCup.Domain.csproj", "{E906CE03-00BE-45ED-8D6D-918B605F7ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketballWorldCup.Domain", "BasketballWorldCup.Domain\BasketballWorldCup.Domain.csproj", "{E906CE03-00BE-45ED-8D6D-918B605F7ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketballWorldCup.Tests", "BasketballWorldCup.Tests\BasketballWorldCup.Tests.csproj", "{1468CCD7-C232-40F5-900D-6F3AF6CB3917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E906CE03-00BE-45ED-8D6D-918B605F7ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E906CE03-00BE-45ED-8D6D-918B605F7ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E906CE03-00BE-45ED-8D6D-918B605F7ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1468CCD7-C232-40F5-900D-6F3AF6CB3917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1468CCD7-C232-40F5-900D-6F3AF6CB3917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1468CCD7-C232-40F5-900D-6F3AF6CB3917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1468CCD7-C232-40F5-900D-6F3AF6CB3917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
