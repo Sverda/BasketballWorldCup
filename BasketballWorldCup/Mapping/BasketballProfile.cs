@@ -11,7 +11,8 @@ namespace BasketballWorldCup.Mapping
         {
             CreateMap<Team, TeamDto>()
                 .ForMember(dto => dto.QualificationZone,
-                    member => member.MapFrom(team => team.QualificationZone.GetDescription()));
+                    member => member.MapFrom(team => team.QualificationZone.GetDescription()))
+                .ForMember(dto => dto.IsSelected, opt => opt.Ignore());
 
             CreateMap<TeamDto, Team>()
                 .ForMember(team => team.QualificationZone,

@@ -1,33 +1,36 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>New Team</mat-card-title>
+    <mat-card-title>Create Team</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="form-group">
         <label for="nameInput">Name</label>
-        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" [(ngModel)]="newTeam.name" name="name">
+        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" ngModel name="name" required #nameControl="ngModel">
+        <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">Please enter a name</span>
       </div>
       <div class="form-group">
         <label for="inputTier">Tier</label>
-        <select class="form-control" id="inputTier" [(ngModel)]="newTeam.tier" name="tier">
+        <select class="form-control" id="inputTier" ngModel name="tier" required #tierControl="ngModel">
           <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier + 1}}</option>
         </select>
+        <span class="help-block" *ngIf="tierControl.invalid && tierControl.touched">Please select a tier</span>
       </div>
       <div class="form-group">
         <label for="inputZone">Qualification Zone</label>
-        <select class="form-control" id="inputZone" [(ngModel)]="newTeam.qualificationZone" name="qualificationZone">
+        <select class="form-control" id="inputZone" ngModel name="qualificationZone" required #zoneControl="ngModel">
           <option *ngFor="let zone of zones">{{zone}}</option>
         </select>
+        <span class="help-block" *ngIf="zoneControl.invalid && zoneControl.touched">Please select a zone</span>
       </div>
       <div class="form-group">
         <label for="inputFlag">Flag</label>
         <span style="color:red;" *ngIf="message">{{message}}</span>
-        <input #file type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)" />
+        <input type="file" class="form-control" id="inputFlag" accept='image/*' (change)="preview(file.files)" #file ngModel name="flag" required />
       </div>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" color="primary" [disabled]="f.invalid">Submit</button>
+      </mat-card-actions>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="addTeam()" color="primary">Submit</button>
-  </mat-card-actions>
 </mat-card>

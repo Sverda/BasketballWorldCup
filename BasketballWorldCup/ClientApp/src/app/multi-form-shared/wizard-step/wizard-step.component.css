@@ -1,0 +1,28 @@
+div {
+  padding: 0px 0px;
+}
+
+header {
+  height: 10vh;
+  display: flex;
+}
+
+header h1 {
+  color: #2a2f3d;
+  margin: 0;
+  text-align: start;
+}
+
+button.btn-primary {
+  padding: 0px 0px;
+  width: 130px;
+  height: 40px;
+}
+
+button.btn-primary > span {
+  font-size: 15px;
+}
+
+button.btn-primary > i {
+  font-size: 20px;
+}

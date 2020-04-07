@@ -1,32 +1,35 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
+
 import { ZonesService } from "../services/zones.service";
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { TeamsService, Team } from "../services/teams.service";
+import { TeamState } from "../store/state/team.state";
+import { AddTeam } from "../store/actions/team.actions";
+
 
 @Component({
-    templateUrl: './add-team.component.html'
+    templateUrl: "./add-team.component.html"
 })
 export class AddTeamComponent implements OnInit {
-  private newTeam: Team;
-  private tiers: number[];
-  private zones: string[];
-  private imgURL: string;
+  @ViewChild("f", { static: false }) addTeamForm: NgForm;
+  public tiers: number[];
+  public zones: string[];
+  private flagData: string;
 
-  public imagePath: File[];
   public message: string;
 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<AddTeamComponent>,
-    private teamsService: TeamsService,
-    private zonesService: ZonesService) {
+    private zonesService: ZonesService,
+    private store: Store<{ team: TeamState }> ) {
   }
 
   ngOnInit(): void {
     this.tiers = [0, 1, 2, 3];
     this.zonesService.getZones().subscribe(result => { this.zones = result; }, error => console.error(error));
-    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
   }
 
   preview(files: File[]) {
@@ -40,17 +43,17 @@ export class AddTeamComponent implements OnInit {
     }
 
     const previewReader = new FileReader();
-    this.imagePath = files;
     previewReader.readAsDataURL(files[0]);
     previewReader.onload = () => {
       console.log(previewReader.result);
-      this.newTeam.flag = previewReader.result as string;
+      this.flagData = previewReader.result as string;
     }
   }
 
-  addTeam() {
-    this.teamsService.addTeam(this.newTeam).subscribe(data => console.log(data));
-    this.newTeam = { id: 0, name: "", tier: 1, qualificationZone: "", flag: null };
+  onSubmit() {
+    this.addTeamForm.value.flag = this.flagData;
+    console.log(this.addTeamForm.value);
+    this.store.dispatch(AddTeam({ team: this.addTeamForm.value }));
     this.dialogRef.close();
   }
 }

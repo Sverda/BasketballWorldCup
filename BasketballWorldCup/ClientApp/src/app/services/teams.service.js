@@ -15,7 +15,7 @@ var rxjs_1 = require("rxjs");
 var TeamsService = /** @class */ (function () {
     function TeamsService(http, baseUrl) {
         this.http = http;
-        this.teamsUrl = 'api/teams';
+        this.teamsUrl = "api/teams";
         this.baseUrl = baseUrl;
         this.addedUserSubject = new rxjs_1.Subject();
     }
@@ -23,23 +23,26 @@ var TeamsService = /** @class */ (function () {
         return this.http.get(this.baseUrl + this.teamsUrl);
     };
     TeamsService.prototype.getTeamsByTier = function (tier) {
-        return this.http.get(this.baseUrl + this.teamsUrl + '/' + tier);
+        return this.http.get(this.baseUrl + this.teamsUrl + "/" + tier);
+    };
+    TeamsService.prototype.getTeamsByZone = function (zone) {
+        return this.http.get(this.baseUrl + this.teamsUrl + "/zone/" + zone);
     };
     TeamsService.prototype.addTeam = function (team) {
         this.addedUserSubject.next(team);
         var httpOptions = {
             headers: new http_1.HttpHeaders({
-                'Content-Type': 'application/json'
+                'Content-Type': "application/json"
             })
         };
         return this.http.post(this.baseUrl + this.teamsUrl, team, httpOptions);
     };
-    TeamsService.prototype.deleteTeam = function (team) {
-        return this.http.delete(this.baseUrl + this.teamsUrl + '/' + team.id);
+    TeamsService.prototype.deleteTeam = function (teamId) {
+        return this.http.delete(this.baseUrl + this.teamsUrl + "/" + teamId);
     };
     TeamsService = __decorate([
-        core_1.Injectable({ providedIn: 'root' }),
-        __param(1, core_1.Inject('BASE_URL'))
+        core_1.Injectable({ providedIn: "root" }),
+        __param(1, core_1.Inject("BASE_URL"))
     ], TeamsService);
     return TeamsService;
 }());

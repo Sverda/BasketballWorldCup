@@ -1,0 +1,30 @@
+<app-wizard-step [title]="title" (nextStepClicked)="goToNextStep()">
+  <form class="col-12" [formGroup]="selectTeamsGroup">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Selected</th>
+        <th scope="col">Flag</th>
+        <th scope="col">Name</th>
+        <th scope="col">Tier</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let team of teams" (click)="selectTeam(team)">
+        <td>
+          <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
+        </td>
+        <td>
+          <img [src]="team.flag" />
+        </td>
+        <td>
+          {{team.name}}
+        </td>
+        <td>
+          {{team.tier + 1}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</app-wizard-step>
