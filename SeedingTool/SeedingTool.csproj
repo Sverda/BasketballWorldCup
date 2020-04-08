@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BasketballWorldCup.Database\BasketballWorldCup.Database.csproj" />
     <ProjectReference Include="..\BasketballWorldCup.Model\BasketballWorldCup.Model.csproj" />
   </ItemGroup>
 
