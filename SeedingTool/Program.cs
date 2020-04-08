@@ -9,6 +9,12 @@ namespace SeedingTool
     {
         static void Main(string[] args)
         {
+            SeedTeams();
+            PatchAmpersandInUrl();
+        }
+
+        private static void SeedTeams()
+        {
             var options = new DbContextOptionsBuilder<BasketballContext>()
                 .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;")
                 .Options;
@@ -31,6 +37,29 @@ namespace SeedingTool
             var europeTeams = europeMapper.MapHtmlIntoTeamsModel();
             context.Teams.AddRange(europeTeams);
 
+            context.SaveChanges();
+            transaction.Commit();
+        }
+
+        private static void PatchAmpersandInUrl()
+        {
+            var options = new DbContextOptionsBuilder<BasketballContext>()
+                .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;")
+                .Options;
+            using var context = new BasketballContext(options);
+            using var transaction = context.Database.BeginTransaction();
+
+            foreach (var team in context.Teams)
+            {
+                if (!team.Flag.Contains("amp;"))
+                {
+                    continue;
+                }
+
+                team.Flag = team.Flag.Replace("amp;", string.Empty);
+            }
+
+            context.SaveChanges();
             transaction.Commit();
         }
     }
