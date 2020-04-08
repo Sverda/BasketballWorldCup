@@ -1,4 +1,3 @@
-using BasketballWorldCup.Tests.HtmlTeamsData.Helpers;
 using NUnit.Framework;
 
 namespace BasketballWorldCup.Tests
@@ -13,7 +12,7 @@ namespace BasketballWorldCup.Tests
         [Test]
         public void ParseFirstTeam()
         {
-            HtmlDataHelper.GetAfricaHtml();
+
         }
     }
 }

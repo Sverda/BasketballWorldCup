@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BasketballWorldCup.Model\BasketballWorldCup.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="HtmlTeamsData\AfricaTeams.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
