@@ -18,19 +18,4 @@
     <ProjectReference Include="..\BasketballWorldCup.Model\BasketballWorldCup.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="HtmlTeamsData\AfricaTeams.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="HtmlTeamsData\AmericasTeams.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="HtmlTeamsData\AsiaTeams.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="HtmlTeamsData\EuropeTeams.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

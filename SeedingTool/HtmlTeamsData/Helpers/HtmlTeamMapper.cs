@@ -3,7 +3,7 @@ using HtmlAgilityPack;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BasketballWorldCup.Tests.HtmlTeamsData.Helpers
+namespace SeedingTool.HtmlTeamsData.Helpers
 {
     public class HtmlTeamMapper
     {
