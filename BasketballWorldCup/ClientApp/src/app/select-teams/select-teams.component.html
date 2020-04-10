@@ -1,5 +1,13 @@
 <app-wizard-step [title]="title" (nextStepClicked)="goToNextStep()">
   <form class="col-12" [formGroup]="selectTeamsGroup">
+    <div class="form-group">
+      <div>
+        <mat-checkbox [checked]="hasAmount()">Select eight teams</mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox [checked]="hasTier()">Select at least two first tier teams</mat-checkbox>
+      </div>
+    </div>
     <table formArrayName="teamsControl" class="table table-bordered table-hover">
       <thead class="thead-light">
       <tr>
@@ -10,20 +18,20 @@
       </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let team of teams" (click)="selectTeam(team)">
-          <td>
-            <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
-          </td>
-          <td>
-            <img class="team-flag" [src]="team.flag" />
-          </td>
-          <td>
-            {{team.name}}
-          </td>
-          <td>
-            {{team.tier + 1}}
-          </td>
-        </tr>
+      <tr *ngFor="let team of teams" (click)="selectTeam(team)">
+        <td>
+          <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
+        </td>
+        <td>
+          <img class="team-flag" [src]="team.flag"/>
+        </td>
+        <td>
+          {{team.name}}
+        </td>
+        <td>
+          {{team.tier + 1}}
+        </td>
+      </tr>
       </tbody>
     </table>
   </form>

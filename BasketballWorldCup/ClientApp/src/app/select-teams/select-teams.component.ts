@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, FormArray , FormControl } from "@angular/forms";
-import { map, filter } from "rxjs/operators";
+import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
@@ -44,7 +44,7 @@ export class SelectTeamsComponent implements OnInit {
     this.selectTeamsGroup = this.fb.group({
       teamsControl: this.fb.array(
         this.teams.map((team: Team) => this.fb.control(team.name)),
-        this.amountValidator.bind(this)
+        [this.amountValidator.bind(this), this.firstTierValidator.bind(this)]
       )
     });
   }
@@ -56,10 +56,31 @@ export class SelectTeamsComponent implements OnInit {
 
     let selectedTeams = this.teams.filter(t => t.isSelected).length;
     if (selectedTeams !== 8) {
-      return { "incorrectAmount": true };
+      return { incorrectAmount: true };
     }
 
     return null;
+  }
+
+  firstTierValidator(form: FormArray): { [s: string]: boolean } {
+    if (this.teams === undefined) {
+      return null;
+    }
+
+    let selectedTeams = this.teams.filter(t => t.isSelected && t.tier === 0).length;
+    if (selectedTeams < 2) {
+      return { incorrectFirstTier: true };
+    }
+
+    return null;
+  }
+
+  hasAmount(): boolean {
+    return !this.selectTeamsGroup.get("teamsControl").hasError("incorrectAmount");
+  }
+
+  hasTier(): boolean {
+    return !this.selectTeamsGroup.get("teamsControl").hasError("incorrectFirstTier");
   }
 
   selectTeam(team: Team) {
