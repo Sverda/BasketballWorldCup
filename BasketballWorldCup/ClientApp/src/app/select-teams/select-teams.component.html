@@ -1,6 +1,6 @@
 <app-wizard-step [title]="title" (nextStepClicked)="goToNextStep()">
   <form class="col-12" [formGroup]="selectTeamsGroup">
-    <table class="table table-bordered table-hover">
+    <table formArrayName="teamsControl" class="table table-bordered table-hover">
       <thead class="thead-light">
       <tr>
         <th scope="col">Selected</th>
@@ -10,7 +10,7 @@
       </tr>
       </thead>
       <tbody>
-        <tr id="teamsRows" *ngFor="let team of teams" (click)="selectTeam(team)">
+        <tr *ngFor="let team of teams" (click)="selectTeam(team)">
           <td>
             <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
           </td>

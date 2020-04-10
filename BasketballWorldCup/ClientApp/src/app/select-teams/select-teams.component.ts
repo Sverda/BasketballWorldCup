@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
-import { map } from "rxjs/operators";
+import { FormBuilder, FormGroup, FormArray , FormControl } from "@angular/forms";
+import { map, filter } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
@@ -36,13 +36,30 @@ export class SelectTeamsComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Zone: " + this.zoneId;
-    this.selectTeamsGroup = this.fb.group({
-      "teamsRows": new FormControl(null)
-    });
 
     this.store.select(state => state.team.teams)
       .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
       .subscribe(result => { this.teams = result; }, error => console.error(error));
+
+    this.selectTeamsGroup = this.fb.group({
+      teamsControl: this.fb.array(
+        this.teams.map((team: Team) => this.fb.control(team.name)),
+        this.amountValidator.bind(this)
+      )
+    });
+  }
+
+  amountValidator(form: FormArray ): { [s: string]: boolean } {
+    if (this.teams === undefined) {
+      return null;
+    }
+
+    let selectedTeams = this.teams.filter(t => t.isSelected).length;
+    if (selectedTeams !== 8) {
+      return { "incorrectAmount": true };
+    }
+
+    return null;
   }
 
   selectTeam(team: Team) {
@@ -54,9 +71,15 @@ export class SelectTeamsComponent implements OnInit {
     }
 
     this.store.dispatch(SelectOrUnselectTeam({ team: updatedTeam }));
+
+    this.selectTeamsGroup.setValue({ teamsControl: this.teams});
   }
 
   goToNextStep() {
     this.submitted = true;
+
+    if (!this.selectTeamsGroup.valid) {
+      return;
+    }
   }
 }
