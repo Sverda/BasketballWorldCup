@@ -10,20 +10,20 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let team of teams" (click)="selectTeam(team)">
-        <td>
-          <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
-        </td>
-        <td>
-          <img [src]="team.flag" />
-        </td>
-        <td>
-          {{team.name}}
-        </td>
-        <td>
-          {{team.tier + 1}}
-        </td>
-      </tr>
+        <tr id="teamsRows" *ngFor="let team of teams" (click)="selectTeam(team)">
+          <td>
+            <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
+          </td>
+          <td>
+            <img class="team-flag" [src]="team.flag" />
+          </td>
+          <td>
+            {{team.name}}
+          </td>
+          <td>
+            {{team.tier + 1}}
+          </td>
+        </tr>
       </tbody>
     </table>
   </form>
