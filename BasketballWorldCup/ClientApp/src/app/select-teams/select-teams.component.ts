@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { map, filter } from "rxjs/operators";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { ZonesService } from "../services/zones.service";
@@ -36,7 +36,9 @@ export class SelectTeamsComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Zone: " + this.zoneId;
-    this.selectTeamsGroup = this.fb.group({});
+    this.selectTeamsGroup = this.fb.group({
+      "teamsRows": new FormControl(null)
+    });
 
     this.store.select(state => state.team.teams)
       .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
