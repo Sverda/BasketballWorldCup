@@ -48,6 +48,7 @@ export class RandomSelectComponent implements OnInit {
     for (let i of amountArray) {
       const team = teams[Math.floor(Math.random() * teams.length)];
       randomTeams.push(team);
+      teams = teams.filter((t: Team) => t.id !== team.id);
     }
 
     return randomTeams;
