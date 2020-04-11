@@ -10,9 +10,6 @@ export class AsiaSelectTeamsComponent implements OnInit {
   public zoneName = "Asia & Oceania";
   public previousFormPath = "/simulation/americas";
 
-  constructor() { }
-
   ngOnInit(): void {
   }
-
 }

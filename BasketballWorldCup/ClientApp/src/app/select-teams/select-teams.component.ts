@@ -37,7 +37,7 @@ export class SelectTeamsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title = "Zone: " + this.zoneId;
+    this.title = "The Draw: " + this.zoneName;
 
     this.store.select(state => state.team.teams)
       .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
