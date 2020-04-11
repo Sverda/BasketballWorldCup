@@ -27,6 +27,8 @@ export class RandomSelectComponent implements OnInit {
   }
 
   public onClick() {
+    this.unselectTeams();
+
     const firstTier = this.teams.filter((team: Team) => team.tier === 0);
     const randomFirstTier = this.randomTeams(firstTier, 2);
     this.selectTeams(randomFirstTier);
@@ -34,6 +36,10 @@ export class RandomSelectComponent implements OnInit {
     const otherTiers = this.teams.filter((team: Team) => team.tier !== 0);
     const randomOtherTiers = this.randomTeams(otherTiers, 6);
     this.selectTeams(randomOtherTiers);
+  }
+
+  unselectTeams() {
+    this.selectTeams(this.teams.filter((team: Team) => team.isSelected && team.qualificationZone === this.zoneName));
   }
 
   randomTeams(teams: Team[], amount: number): Team[] {
