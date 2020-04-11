@@ -18,7 +18,7 @@ export class SelectTeamsComponent implements OnInit {
   public title: string;
   private submitted = false;
   public teams: Team[];
-  public selectTeamsGroup: FormGroup;
+  public teamsForm: FormGroup;
 
   @Input() zoneId: number;
   @Input() zoneName: string;
@@ -34,25 +34,26 @@ export class SelectTeamsComponent implements OnInit {
 
   ngOnInit() {
     this.title = "The Draw: " + this.zoneName;
+    this.teams = [];
 
-    this.store.select(state => state.team.teams)
-      .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
-      .subscribe(result => { this.teams = result; }, error => console.error(error));
-
-    this.selectTeamsGroup = this.fb.group({
+    this.teamsForm = this.fb.group({
       teamsControl: this.fb.array(
         this.teams.map((team: Team) => this.fb.control(team.name)),
         [this.amountValidator.bind(this), this.firstTierValidator.bind(this)]
       )
     });
+
+    this.store.select(state => state.team.teams)
+      .pipe(map((data: Team[]) => data.filter(t => t.qualificationZone === this.zoneName)))
+      .subscribe(result => { this.teams = result; this.teamsForm.patchValue({ teamsControl: result}); }, error => console.error(error));
   }
 
-  amountValidator(form: FormArray ): { [s: string]: boolean } {
+  amountValidator(): { [s: string]: boolean } {
     if (this.teams === undefined) {
       return null;
     }
 
-    let selectedTeams = this.teams.filter(t => t.isSelected).length;
+    const selectedTeams = this.teams.filter(t => t.isSelected).length;
     if (selectedTeams !== 8) {
       return { incorrectAmount: true };
     }
@@ -60,12 +61,12 @@ export class SelectTeamsComponent implements OnInit {
     return null;
   }
 
-  firstTierValidator(form: FormArray): { [s: string]: boolean } {
+  firstTierValidator(): { [s: string]: boolean } {
     if (this.teams === undefined) {
       return null;
     }
 
-    let selectedTeams = this.teams.filter(t => t.isSelected && t.tier === 0).length;
+    const selectedTeams = this.teams.filter(t => t.isSelected && t.tier === 0).length;
     if (selectedTeams < 2) {
       return { incorrectFirstTier: true };
     }
@@ -74,15 +75,15 @@ export class SelectTeamsComponent implements OnInit {
   }
 
   hasAmount(): boolean {
-    return !this.selectTeamsGroup.get("teamsControl").hasError("incorrectAmount");
+    return !this.teamsForm.get("teamsControl").hasError("incorrectAmount");
   }
 
   hasTier(): boolean {
-    return !this.selectTeamsGroup.get("teamsControl").hasError("incorrectFirstTier");
+    return !this.teamsForm.get("teamsControl").hasError("incorrectFirstTier");
   }
 
   selectTeam(team: Team) {
-    let updatedTeam = { ...team };
+    const updatedTeam = { ...team };
     if (updatedTeam.isSelected) {
       updatedTeam.isSelected = false;
     } else {
@@ -90,14 +91,12 @@ export class SelectTeamsComponent implements OnInit {
     }
 
     this.store.dispatch(SelectOrUnselectTeam({ team: updatedTeam }));
-
-    this.selectTeamsGroup.setValue({ teamsControl: this.teams});
   }
 
   goToNextStep() {
     this.submitted = true;
 
-    if (!this.selectTeamsGroup.valid) {
+    if (!this.teamsForm.valid) {
       return;
     }
 

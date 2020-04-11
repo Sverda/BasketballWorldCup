@@ -1,5 +1,5 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
-  <form class="col-12" [formGroup]="selectTeamsGroup">
+  <form class="col-12" [formGroup]="teamsForm">
     <div class="form-group">
       <div>
         <mat-checkbox disabled="true" [checked]="hasAmount()">
