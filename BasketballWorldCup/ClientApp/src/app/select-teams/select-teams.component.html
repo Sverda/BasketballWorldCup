@@ -2,10 +2,14 @@
   <form class="col-12" [formGroup]="selectTeamsGroup">
     <div class="form-group">
       <div>
-        <mat-checkbox [checked]="hasAmount()">Select eight teams</mat-checkbox>
+        <mat-checkbox disabled="true" [checked]="hasAmount()">
+          <span>Select eight teams</span>
+        </mat-checkbox>
       </div>
       <div>
-        <mat-checkbox [checked]="hasTier()">Select at least two first tier teams</mat-checkbox>
+        <mat-checkbox disabled="true" [checked]="hasTier()">
+          <span>Select at least two first tier teams</span>
+        </mat-checkbox>
       </div>
       <div>
         <app-random-select [zoneName]="zoneName"></app-random-select>
