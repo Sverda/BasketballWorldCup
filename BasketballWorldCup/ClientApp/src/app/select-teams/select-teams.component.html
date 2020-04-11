@@ -1,4 +1,4 @@
-<app-wizard-step [title]="title" (nextStepClicked)="goToNextStep()">
+<app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
   <form class="col-12" [formGroup]="selectTeamsGroup">
     <div class="form-group">
       <div>

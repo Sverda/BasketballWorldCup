@@ -24,6 +24,8 @@ export class SelectTeamsComponent implements OnInit {
 
   @Input() zoneId: number;
   @Input() zoneName: string;
+  @Input() previousFormPath: string;
+  @Input() nextFormPath: string;
 
   constructor(
     private readonly router: Router,
@@ -102,5 +104,19 @@ export class SelectTeamsComponent implements OnInit {
     if (!this.selectTeamsGroup.valid) {
       return;
     }
+
+    if (this.nextFormPath === undefined) {
+      return;
+    }
+
+    this.router.navigate([this.nextFormPath]);
+  }
+
+  goToPreviousStep() {
+    if (this.previousFormPath === undefined) {
+      return;
+    }
+
+    this.router.navigate([this.previousFormPath]);
   }
 }
