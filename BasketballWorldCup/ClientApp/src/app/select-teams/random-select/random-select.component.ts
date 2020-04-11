@@ -30,6 +30,10 @@ export class RandomSelectComponent implements OnInit {
     const firstTier = this.teams.filter((team: Team) => team.tier === 0);
     const randomFirstTier = this.randomTeams(firstTier, 2);
     this.selectTeams(randomFirstTier);
+
+    const otherTiers = this.teams.filter((team: Team) => team.tier !== 0);
+    const randomOtherTiers = this.randomTeams(otherTiers, 6);
+    this.selectTeams(randomOtherTiers);
   }
 
   randomTeams(teams: Team[], amount: number): Team[] {
