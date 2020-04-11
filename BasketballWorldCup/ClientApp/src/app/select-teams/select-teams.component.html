@@ -7,6 +7,9 @@
       <div>
         <mat-checkbox [checked]="hasTier()">Select at least two first tier teams</mat-checkbox>
       </div>
+      <div>
+        <app-random-select [zoneName]="zoneName"></app-random-select>
+      </div>
     </div>
     <table formArrayName="teamsControl" class="table table-bordered table-hover">
       <thead class="thead-light">

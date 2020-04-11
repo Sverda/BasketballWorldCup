@@ -5,8 +5,6 @@ import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
-import { ZonesService } from "../services/zones.service";
-import { TeamsService } from "../services/teams.service";
 import { Team } from "../model/team.interface";
 import { TeamState } from "../store/state/team.state";
 import { SelectOrUnselectTeam } from "../store/actions/team.actions";
@@ -30,8 +28,6 @@ export class SelectTeamsComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly teamsService: TeamsService,
-    private readonly zonesService: ZonesService,
     private readonly fb: FormBuilder,
     private store: Store<{ team: TeamState }> 
   ) {}

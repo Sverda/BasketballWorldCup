@@ -4,10 +4,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SelectTeamsComponent } from "./select-teams.component";
 import { MultiFormSharedModule } from "../multi-form-shared/multi-form-shared.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { RandomSelectComponent } from "./random-select/random-select.component";
 
 
 @NgModule({
-  declarations: [SelectTeamsComponent],
+  declarations: [
+    SelectTeamsComponent,
+    RandomSelectComponent],
   imports: [
     CommonModule,
     MultiFormSharedModule,
