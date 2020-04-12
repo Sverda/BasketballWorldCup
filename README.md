@@ -1,17 +1,17 @@
 # Symulacja Mistrzostw Świata w Koszykówce
 
 TODO:
-[checkbox:checked] Wybór drużyn
-[checkbox:checked] Walidacja wyboru
-[checkbox:unchecked] Losowanie
-[checkbox:unchecked] Pierwsza Faza Grupowa
-[checkbox:unchecked] Druga Faza Grupowa
-[checkbox:unchecked] Faza Finałowa
+- [x] Wybór drużyn
+- [x] Walidacja wyboru
+- [ ] Losowanie
+- [ ] Pierwsza Faza Grupowa
+- [ ] Druga Faza Grupowa
+- [ ] Faza Finałowa
 
 ## Wybór drużyn do mistrzostw
 
 Symulację można rozpocząć wybierając opcję "Start" z menu nawigacyjnego. 
-![Selection Start](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-start.jpg)
+![Selection Start](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-start.jpg)\
 Pokaże nam się panel wyboru drużyn. 
 ![Selection Panel](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-panel.jpg)
 Następnie należy wybrać drużyny, które wezmą udział w turnieju poprzez kliknięcie na nią. 
