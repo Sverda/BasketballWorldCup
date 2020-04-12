@@ -17,12 +17,11 @@ Pełna strona wygląda tak:
 ![Selection Full Page](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-fullpage.png)
 
 ### Wybór drużyny
-![Selection Panel](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-panel.jpg)
 Następnie należy wybrać drużyny, które wezmą udział w turnieju poprzez kliknięcie na nią. 
 Wybrana drużyna zostanie zaznaczona. Można również odznaczyć wcześniej zaznaczoną opcję klikając na nią ponownie. 
+![Selection Choose](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-choose.jpg)
 
 ### Walidacja
-![Selection Choose](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-choose.jpg)
 Każdy z panelu wyboru drużyn (jest ich cztery, dla każdej z Konfederacji - Europa, Azja i Oceania, Ameryki oraz Afryka) 
 posiada walidację mówiącą, czy podana Konfederacja może przystąpić do turnieju: 
 1. Każda z Konfederacji musi posiadać dokładnie dwie drużyny o sile 1. 
