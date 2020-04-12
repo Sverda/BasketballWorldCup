@@ -4,6 +4,12 @@ namespace BasketballWorldCup.Model
 {
     public class Pot
     {
-        public IEnumerable<Team> Teams { get; set; }
+        public int Id { get; set; }
+
+        public ICollection<Team> Teams { get; set; }
+
+        public int DrawId { get; set; }
+
+        public Draw Draw { get; set; }
     }
 }
