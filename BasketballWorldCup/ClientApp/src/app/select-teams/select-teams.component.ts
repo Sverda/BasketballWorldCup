@@ -27,7 +27,6 @@ export class SelectTeamsComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
     private store: Store<{ team: TeamState }> 
   ) {}
