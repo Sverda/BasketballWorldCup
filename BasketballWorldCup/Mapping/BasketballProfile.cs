@@ -16,7 +16,8 @@ namespace BasketballWorldCup.Mapping
 
             CreateMap<TeamDto, Team>()
                 .ForMember(team => team.QualificationZone,
-                    member => member.MapFrom(dto => dto.QualificationZone.GetEnumFromDescription<QualificationZone>()));
+                    member => member.MapFrom(dto => dto.QualificationZone.GetEnumFromDescription<QualificationZone>()))
+                .ForMember(team => team.TeamPots, opt => opt.Ignore());
         }
     }
 }
