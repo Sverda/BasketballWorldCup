@@ -21,8 +21,16 @@ namespace BasketballWorldCup.Database
                 .HasMany(d => d.Pots)
                 .WithOne(p => p.Draw);
 
-            modelBuilder.Entity<Pot>()
-                .HasMany(p => p.Teams);
+            modelBuilder.Entity<TeamPot>()
+                .HasKey(tp => new { tp.TeamId, tp.PotId });
+            modelBuilder.Entity<TeamPot>()
+                .HasOne(tp => tp.Pot)
+                .WithMany(p => p.TeamPots)
+                .HasForeignKey(tp => tp.PotId);
+            modelBuilder.Entity<TeamPot>()
+                .HasOne(tp => tp.Team)
+                .WithMany(t => t.TeamPots)
+                .HasForeignKey(tp => tp.TeamId);
         }
     }
 }

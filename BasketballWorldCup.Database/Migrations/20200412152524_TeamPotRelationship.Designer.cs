@@ -3,14 +3,16 @@ using BasketballWorldCup.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasketballWorldCup.Database.Migrations
 {
     [DbContext(typeof(BasketballContext))]
-    partial class BasketballContextModelSnapshot : ModelSnapshot
+    [Migration("20200412152524_TeamPotRelationship")]
+    partial class TeamPotRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

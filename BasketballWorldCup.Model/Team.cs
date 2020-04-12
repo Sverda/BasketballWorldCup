@@ -1,4 +1,6 @@
-﻿namespace BasketballWorldCup.Model
+﻿using System.Collections.Generic;
+
+namespace BasketballWorldCup.Model
 {
     public class Team
     {
@@ -11,5 +13,7 @@
         public QualificationZone QualificationZone { get; set; }
 
         public string Flag { get; set; }
+
+        public ICollection<TeamPot> TeamPots { get; set; }
     }
 }

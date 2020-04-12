@@ -6,7 +6,7 @@ namespace BasketballWorldCup.Model
     {
         public int Id { get; set; }
 
-        public ICollection<Team> Teams { get; set; }
+        public ICollection<TeamPot> TeamPots { get; set; }
 
         public int DrawId { get; set; }
 
