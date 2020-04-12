@@ -21,6 +21,7 @@ Każdy z panelu wyboru drużyn (jest ich cztery, dla każdej z Konfederacji - Eu
 posiada walidację mówiącą, czy podana Konfederacja może przystąpić do turnieju: 
 1. Każda z Konfederacji musi posiadać dokładnie dwie drużyny o sile 1. 
 2. Każda z Konfederacji musi posiadać łącznie 8 drużyn. 
+
 Po spełnieniu tych ograniczeń pola wyboru (ang. checkboxes) zostaną zaznaczone jako spełnione. 
 ![Selection Validation](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-validation.jpg)
 Ponadto po wybraniu drużyn zostanie odblokowany przycisk pozwalający wybrać kolejne drużyny z następnej Konfederacji. 
