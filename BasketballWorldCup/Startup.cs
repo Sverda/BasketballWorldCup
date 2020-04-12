@@ -37,6 +37,7 @@ namespace BasketballWorldCup
                     @"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;"));
             services.AddTransient<ITeamsService, TeamsService>();
             services.AddTransient<IZonesService, ZonesService>();
+            services.AddTransient<IDrawsService, DrawsService>();
             services.AddAutoMapper(typeof(BasketballProfile));
         }
 
