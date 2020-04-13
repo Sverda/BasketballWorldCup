@@ -33,12 +33,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\model\draw.interface.ts" />
+    <None Remove="ClientApp\src\app\model\pot.interface.ts" />
     <None Remove="ClientApp\src\app\model\team.interface.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.actions.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.reducer.ts" />
+    <None Remove="ClientApp\src\app\store\actions\draw.actions.ts" />
+    <None Remove="ClientApp\src\app\store\effects\draw.effects.ts" />
     <None Remove="ClientApp\src\app\store\effects\team.effects.ts" />
+    <None Remove="ClientApp\src\app\store\reducers\draw.reducer.ts" />
     <None Remove="ClientApp\src\app\store\selectors\team.selector.ts" />
     <None Remove="ClientApp\src\app\store\state\app.state.ts" />
+    <None Remove="ClientApp\src\app\store\state\draw.state.ts" />
     <None Remove="ClientApp\src\app\store\state\team.state.ts" />
   </ItemGroup>
 
@@ -49,13 +55,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\model\draw.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\pot.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\team.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\actions\draw.actions.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\actions\team.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\effects\draw.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\effects\team.effects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\reducers\draw.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\reducers\team.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\teams.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\selectors\team.selector.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\app.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\state\draw.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\team.state.ts" />
   </ItemGroup>
 

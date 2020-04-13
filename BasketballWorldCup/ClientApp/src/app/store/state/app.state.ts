@@ -1,15 +1,18 @@
 import { RouterReducerState } from "@ngrx/router-store";
 
 import { TeamState, initialTeamState } from "./team.state";
+import { DrawState, initialDrawState } from "./draw.state";
 
 
 export interface AppState {
   router?: RouterReducerState;
-  teams: TeamState;
+  team: TeamState;
+  draw: DrawState;
 }
 
 export const initialAppState = {
-  teams: initialTeamState
+  team: initialTeamState,
+  draw: initialDrawState
 }
 
 export function getInitialState(): AppState {

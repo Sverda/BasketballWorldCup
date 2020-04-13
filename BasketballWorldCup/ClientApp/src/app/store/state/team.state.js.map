@@ -1,1 +1,1 @@
-{"version":3,"file":"team.state.js","sourceRoot":"","sources":["team.state.ts"],"names":[],"mappings":";;AAWa,QAAA,gBAAgB,GAC7B;IACE,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,IAAI;IACZ,MAAM,EAAE,IAAI;IACZ,QAAQ,EAAE,IAAI;IACd,IAAI,EAAE,IAAI;CACX,CAAA"}
+{"version":3,"file":"team.state.js","sourceRoot":"","sources":["team.state.ts"],"names":[],"mappings":";;AAOa,QAAA,gBAAgB,GAC7B;IACE,KAAK,EAAE,IAAI;CACZ,CAAA"}
