@@ -25,6 +25,14 @@ var DrawsService = /** @class */ (function () {
         };
         return this.http.post(this.baseUrl + this.drawsUrl, teams, httpOptions);
     };
+    DrawsService.prototype.updateDrawWithGroups = function (draw) {
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': "application/json"
+            })
+        };
+        return this.http.patch(this.baseUrl + this.drawsUrl, draw.id, httpOptions);
+    };
     DrawsService = __decorate([
         core_1.Injectable({ providedIn: "root" }),
         __param(1, core_1.Inject("BASE_URL"))

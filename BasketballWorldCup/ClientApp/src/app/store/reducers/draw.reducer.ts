@@ -19,6 +19,14 @@ const drawReducer = createReducer(
     (state, { draw }) => ({
       ...state,
       draw: draw
+    })),
+  on(DrawActions.UpdateDrawWithGroupsSuccess,
+    (state, { draw }) => ({
+      ...state,
+      draw: {
+        pots: [...state.draw.pots],
+        groups: draw.groups
+      }
     }))
 );
 

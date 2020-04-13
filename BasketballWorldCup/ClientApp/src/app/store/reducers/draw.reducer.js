@@ -10,6 +10,13 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var store_1 = require("@ngrx/store");
 var draw_state_1 = require("../state/draw.state");
@@ -20,6 +27,12 @@ var drawReducer = store_1.createReducer(draw_state_1.initialDrawState, store_1.o
 }), store_1.on(DrawActions.AddDrawSuccess, function (state, _a) {
     var draw = _a.draw;
     return (__assign(__assign({}, state), { draw: draw }));
+}), store_1.on(DrawActions.UpdateDrawWithGroupsSuccess, function (state, _a) {
+    var draw = _a.draw;
+    return (__assign(__assign({}, state), { draw: {
+            pots: __spreadArrays(state.draw.pots),
+            groups: draw.groups
+        } }));
 }));
 function reducer(state, action) {
     return drawReducer(state, action);

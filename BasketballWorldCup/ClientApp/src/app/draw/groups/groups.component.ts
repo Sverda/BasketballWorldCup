@@ -2,16 +2,16 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 
-import { Draw } from "../../model/draw.interface";
 import { AppState } from "../../store/state/app.state";
+import { Draw } from "../../model/draw.interface";
 import { AddDraw } from "../../store/actions/draw.actions";
 
 @Component({
-  selector: "app-pots",
-  templateUrl: "./pots.component.html",
-  styleUrls: ["./pots.component.css"]
+  selector: "app-groups",
+  templateUrl: "./groups.component.html",
+  styleUrls: ["./groups.component.css"]
 })
-export class PotsComponent implements OnInit {
+export class GroupsComponent implements OnInit {
   public title: string;
   public draw: Draw;
 
@@ -20,7 +20,7 @@ export class PotsComponent implements OnInit {
     private readonly store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    this.title = "The Draw: Pots";
+    this.title = "The Draw: Groups";
 
     this.store
       .select(state => state.draw)
@@ -29,13 +29,16 @@ export class PotsComponent implements OnInit {
     if (this.draw === null) {
       this.store.dispatch(AddDraw());
     }
+    else if (this.draw.groups === null) {
+      this.store.dispatch(UpdateDrawWithGroups());
+    }
   }
 
   goToNextStep() {
-    this.router.navigate(["/simulation/groups"]);
+
   }
 
   goToPreviousStep() {
-    this.router.navigate(["/simulation/asia"]);
+    this.router.navigate(["/simulation/pots"]);
   }
 }

@@ -25,4 +25,14 @@ export class DrawsService {
 
     return this.http.post<Draw>(this.baseUrl + this.drawsUrl, teams, httpOptions);
   }
+
+  updateDrawWithGroups(draw: Draw): Observable<Draw> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': "application/json"
+      })
+    };
+
+    return this.http.patch<Draw>(this.baseUrl + this.drawsUrl, draw.id, httpOptions);
+  }
 }

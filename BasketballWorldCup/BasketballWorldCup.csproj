@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\model\draw.interface.ts" />
+    <None Remove="ClientApp\src\app\model\group.interface.ts" />
     <None Remove="ClientApp\src\app\model\pot.interface.ts" />
     <None Remove="ClientApp\src\app\model\team.interface.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.actions.ts" />
@@ -56,6 +57,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\model\draw.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\group.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\pot.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\team.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\actions\draw.actions.ts" />
@@ -69,6 +71,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\store\state\app.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\draw.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\team.state.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\model\group.interface.js">
+      <DependentUpon>group.interface.ts</DependentUpon>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

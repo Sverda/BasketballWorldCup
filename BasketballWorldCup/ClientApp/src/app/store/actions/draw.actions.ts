@@ -20,3 +20,12 @@ export const AddDrawSuccess = createAction(
   "[Draw] Add Draw Success",
   props<{ draw: Draw }>()
 );
+
+export const UpdateDrawWithGroups = createAction(
+  "[Draw] Update Draw With Groups"
+);
+
+export const UpdateDrawWithGroupsSuccess = createAction(
+  "[Draw] Update Draw With Groups Success",
+  props<{ draw: Draw }>()
+);
