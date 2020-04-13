@@ -5,6 +5,6 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
 {
     public interface IDrawsService
     {
-        Draw PutIntoPots(IEnumerable<Team> teams);
+        Draw PutIntoPots(IEnumerable<int> teamsIds);
     }
 }

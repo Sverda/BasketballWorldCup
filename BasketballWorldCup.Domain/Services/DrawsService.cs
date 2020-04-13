@@ -16,14 +16,15 @@ namespace BasketballWorldCup.Domain.Services
             _context = context;
         }
 
-        public Draw PutIntoPots(IEnumerable<Team> teams)
+        public Draw PutIntoPots(IEnumerable<int> teamsIds)
         {
-            var teamsCount = teams.Count();
+            var teamsCount = teamsIds.Count();
             if (teamsCount % 4 != 0)
             {
                 throw new ArgumentException($"Unequal pots with teams count of {teamsCount}");
             }
 
+            var teams = _context.Teams.Where(t => teamsIds.Contains(t.Id)).ToList();
             var rankedTeams = teams.OrderBy(t => t.Tier);
             var groupsOfFours = rankedTeams
                 .Select((team, index) => new { team, index })

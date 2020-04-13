@@ -4,6 +4,7 @@ using BasketballWorldCup.Mapping.Dto;
 using BasketballWorldCup.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BasketballWorldCup.Controllers
 {
@@ -29,7 +30,8 @@ namespace BasketballWorldCup.Controllers
         public IActionResult Post([FromBody]TeamDto[] teamsDtos)
         {
             var teams = _mapper.Map<IEnumerable<Team>>(teamsDtos);
-            var draw = _drawsService.PutIntoPots(teams);
+            var teamsIds = teams.Select(t => t.Id);
+            var draw = _drawsService.PutIntoPots(teamsIds);
             return Ok(draw);
         }
     }
