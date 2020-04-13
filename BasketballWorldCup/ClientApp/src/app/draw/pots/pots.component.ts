@@ -22,11 +22,13 @@ export class PotsComponent implements OnInit {
   ngOnInit(): void {
     this.title = "The Draw: Pots";
 
-    this.store.dispatch(AddDraw());
-
     this.store
       .select(state => state.draw)
       .subscribe(result => this.draw = result.draw, error => console.error(error));
+
+    if (this.draw === null) {
+      this.store.dispatch(AddDraw());
+    }
   }
 
   goToNextStep() {
