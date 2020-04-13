@@ -2,7 +2,7 @@
 
 namespace BasketballWorldCup.Mapping.Dto
 {
-    internal class TeamDto
+    public class TeamDto
     {
         public int Id { get; set; }
 

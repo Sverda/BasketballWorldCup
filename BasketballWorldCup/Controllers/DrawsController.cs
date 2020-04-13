@@ -32,7 +32,8 @@ namespace BasketballWorldCup.Controllers
             var teams = _mapper.Map<IEnumerable<Team>>(teamsDtos);
             var teamsIds = teams.Select(t => t.Id);
             var draw = _drawsService.PutIntoPots(teamsIds);
-            return Ok(draw);
+            var drawDto = _mapper.Map<DrawDto>(draw);
+            return Ok(drawDto);
         }
     }
 }

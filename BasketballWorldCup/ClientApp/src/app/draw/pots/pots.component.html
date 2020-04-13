@@ -1,28 +1,26 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <table class="table table-bordered table-hover" *ngFor="let pot of draw?.pots; let i = index">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">Pot {{ i }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let team of pot.teams">
-              <td>
-                <img class="team-flag" [src]="team.flag" />
-              </td>
-              <td>
-                {{team.name}}
-              </td>
-              <td>
-                {{team.tier + 1}}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <div class="col" *ngFor="let pot of draw?.pots; let i = index">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col"><span>Pot {{ i + 1 }}</span></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let team of pot.teams">
+        <td>
+          <img class="team-flag" [src]="team.flag" />
+        </td>
+        <td>
+          <span>{{team.name}}</span>
+        </td>
+        <td>
+          {{team.tier + 1}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </app-wizard-step>
