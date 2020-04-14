@@ -78,7 +78,7 @@ namespace BasketballWorldCup
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(120);
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(180);
                 }
             });
         }

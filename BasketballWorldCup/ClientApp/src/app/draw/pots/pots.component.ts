@@ -26,7 +26,7 @@ export class PotsComponent implements OnInit {
       .select(state => state.draw)
       .subscribe(result => this.draw = result.draw, error => console.error(error));
 
-    if (this.draw === null) {
+    if (this.draw.pots === null) {
       this.store.dispatch(AddDraw());
     }
   }

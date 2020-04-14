@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: "pots",
         loadChildren: () => import("../draw/pots/pots.module").then(m => m.PotsModule)
+      },
+      {
+        path: "groups",
+        loadChildren: () => import("../draw/groups/groups.module").then(m => m.GroupsModule)
       }
     ]
   }

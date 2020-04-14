@@ -7,5 +7,9 @@ export interface DrawState {
 
 export const initialDrawState: DrawState =
 {
-  draw: null
+  draw: {
+    id: 0,
+    pots: null,
+    groups: null
+  }
 }

@@ -26,13 +26,10 @@ var drawReducer = store_1.createReducer(draw_state_1.initialDrawState, store_1.o
     return (__assign(__assign({}, state), { draw: draw }));
 }), store_1.on(DrawActions.AddDrawSuccess, function (state, _a) {
     var draw = _a.draw;
-    return (__assign(__assign({}, state), { draw: draw }));
+    return (__assign(__assign({}, state), { draw: __assign(__assign({}, state.draw), { id: draw.id, pots: draw.pots }) }));
 }), store_1.on(DrawActions.UpdateDrawWithGroupsSuccess, function (state, _a) {
     var draw = _a.draw;
-    return (__assign(__assign({}, state), { draw: {
-            pots: __spreadArrays(state.draw.pots),
-            groups: draw.groups
-        } }));
+    return (__assign(__assign({}, state), { draw: __assign(__assign({}, state.draw), { pots: __spreadArrays(state.draw.pots), groups: draw.groups }) }));
 }));
 function reducer(state, action) {
     return drawReducer(state, action);
