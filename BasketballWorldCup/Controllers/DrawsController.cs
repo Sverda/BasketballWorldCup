@@ -20,8 +20,8 @@ namespace BasketballWorldCup.Controllers
             _drawsService = drawsService;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{drawId}")]
+        public IActionResult Get(int drawId)
         {
             return Ok();
         }
@@ -29,11 +29,19 @@ namespace BasketballWorldCup.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]TeamDto[] teamsDtos)
         {
+            // TODO: Send only Ids from client app
             var teams = _mapper.Map<IEnumerable<Team>>(teamsDtos);
             var teamsIds = teams.Select(t => t.Id);
             var draw = _drawsService.PutIntoPots(teamsIds);
             var drawDto = _mapper.Map<DrawDto>(draw);
             return Ok(drawDto);
+        }
+
+        [HttpPatch]
+        [Route("{drawId}")]
+        public IActionResult Patch(int drawId)
+        {
+            return Ok();
         }
     }
 }

@@ -35,5 +35,16 @@ namespace BasketballWorldCup.Domain.Services
             _context.SaveChanges();
             return draw;
         }
+
+        public Draw FillWithGroups(int drawId)
+        {
+            var draw = _context.Draws.Single(d => d.Id == drawId);
+
+            // TODO: Model for groups
+            // TODO: Put one team from pot into group. Repeat
+
+            _context.SaveChanges();
+            return draw;
+        }
     }
 }

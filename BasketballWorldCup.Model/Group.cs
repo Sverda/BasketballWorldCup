@@ -2,7 +2,7 @@
 
 namespace BasketballWorldCup.Model
 {
-    public class Pot
+    public class Group
     {
         public int Id { get; set; }
 
@@ -10,6 +10,8 @@ namespace BasketballWorldCup.Model
 
         public Draw Draw { get; set; }
 
-        public ICollection<TeamPot> TeamPots { get; set; }
+        public string Letter { get; set; }
+
+        public ICollection<TeamGroup> TeamGroups { get; set; }
     }
 }

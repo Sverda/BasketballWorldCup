@@ -33,6 +33,6 @@ export class DrawsService {
       })
     };
 
-    return this.http.patch<Draw>(this.baseUrl + this.drawsUrl, draw.id, httpOptions);
+    return this.http.patch<Draw>(this.baseUrl + this.drawsUrl + "/" + draw.id, null, httpOptions);
   }
 }

@@ -15,5 +15,7 @@ namespace BasketballWorldCup.Model
         public string Flag { get; set; }
 
         public ICollection<TeamPot> TeamPots { get; set; }
+
+        public ICollection<TeamGroup> TeamGroups { get; set; }
     }
 }

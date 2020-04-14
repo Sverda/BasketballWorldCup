@@ -9,6 +9,8 @@ namespace BasketballWorldCup.Database
 
         public DbSet<Pot> Pots { get; set; }
 
+        public DbSet<Group> Groups { get; set; }
+
         public DbSet<Team> Teams { get; set; }
 
         public BasketballContext(DbContextOptions<BasketballContext> options) : base(options)
@@ -31,6 +33,17 @@ namespace BasketballWorldCup.Database
                 .HasOne(tp => tp.Team)
                 .WithMany(t => t.TeamPots)
                 .HasForeignKey(tp => tp.TeamId);
+
+            modelBuilder.Entity<TeamGroup>()
+                .HasKey(tg => new { tg.TeamId, tg.GroupId });
+            modelBuilder.Entity<TeamGroup>()
+                .HasOne(tg => tg.Group)
+                .WithMany(g => g.TeamGroups)
+                .HasForeignKey(tg => tg.GroupId);
+            modelBuilder.Entity<TeamGroup>()
+                .HasOne(tg => tg.Team)
+                .WithMany(t => t.TeamGroups)
+                .HasForeignKey(tg => tg.TeamId);
         }
     }
 }

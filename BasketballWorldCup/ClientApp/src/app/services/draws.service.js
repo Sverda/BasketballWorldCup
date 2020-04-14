@@ -31,7 +31,7 @@ var DrawsService = /** @class */ (function () {
                 'Content-Type': "application/json"
             })
         };
-        return this.http.patch(this.baseUrl + this.drawsUrl, draw.id, httpOptions);
+        return this.http.patch(this.baseUrl + this.drawsUrl + "/" + draw.id, null, httpOptions);
     };
     DrawsService = __decorate([
         core_1.Injectable({ providedIn: "root" }),
