@@ -20,12 +20,15 @@ namespace BasketballWorldCup.Mapping
                 .ForMember(team => team.TeamPots, opt => opt.Ignore());
 
             CreateMap<Draw, DrawDto>()
-                .ForMember(dto => dto.Pots, member => member.MapFrom(draw => draw.Pots));
-            CreateMap<DrawDto, Draw>()
-                .ForMember(draw => draw.Pots, member => member.MapFrom(dto => dto.Pots));
+                .ForMember(dto => dto.Pots, member => member.MapFrom(draw => draw.Pots))
+                .ForMember(dto => dto.Groups, member => member.MapFrom(draw => draw.Groups));
 
             CreateMap<Pot, PotDto>()
                 .ForMember(dto => dto.Teams, member => member.MapFrom(pot => pot.TeamPots.Select(tp => tp.Team)));
+
+            CreateMap<Group, GroupDto>()
+                .ForMember(dto => dto.Letter, member => member.MapFrom(group => group.Letter))
+                .ForMember(dto => dto.Teams, member => member.MapFrom(group => group.TeamGroups.Select(tg => tg.Team)));
         }
     }
 }

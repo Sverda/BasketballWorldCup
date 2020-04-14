@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 
 import { AppState } from "../../store/state/app.state";
 import { Draw } from "../../model/draw.interface";
-import { AddDraw } from "../../store/actions/draw.actions";
+import { AddDraw, UpdateDrawWithGroups } from "../../store/actions/draw.actions";
 
 @Component({
   selector: "app-groups",
@@ -28,6 +28,7 @@ export class GroupsComponent implements OnInit {
 
     if (this.draw === null) {
       this.store.dispatch(AddDraw());
+      this.store.dispatch(UpdateDrawWithGroups());
     }
     else if (this.draw.groups === null) {
       this.store.dispatch(UpdateDrawWithGroups());
