@@ -32,7 +32,7 @@ namespace BasketballWorldCup.Controllers
             // TODO: Send only Ids from client app
             var teams = _mapper.Map<IEnumerable<Team>>(teamsDtos);
             var teamsIds = teams.Select(t => t.Id);
-            var draw = _drawsService.PutIntoPots(teamsIds);
+            var draw = _drawsService.SeedPots(teamsIds);
             var drawDto = _mapper.Map<DrawDto>(draw);
             return Ok(drawDto);
         }
@@ -41,7 +41,9 @@ namespace BasketballWorldCup.Controllers
         [Route("{drawId}")]
         public IActionResult Patch(int drawId)
         {
-            return Ok();
+            var draw = _drawsService.AssignGroups(drawId);
+            var drawDto = _mapper.Map<DrawDto>(draw);
+            return Ok(drawDto);
         }
     }
 }

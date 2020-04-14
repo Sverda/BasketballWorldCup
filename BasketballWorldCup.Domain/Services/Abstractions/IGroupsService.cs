@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace BasketballWorldCup.Domain.Services.Abstractions
 {
-    public interface IDrawsService
+    public interface IGroupsService
     {
-        Draw SeedPots(IEnumerable<int> teamsIds);
-
-        Draw AssignGroups(int drawId);
+        IEnumerable<Group> DrawIntoGroups(Pot[] pots);
     }
 }

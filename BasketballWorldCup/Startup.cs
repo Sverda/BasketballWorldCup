@@ -38,6 +38,7 @@ namespace BasketballWorldCup
             services.AddTransient<ITeamsService, TeamsService>();
             services.AddTransient<IZonesService, ZonesService>();
             services.AddTransient<IDrawsService, DrawsService>();
+            services.AddTransient<IGroupsService, GroupsService>();
             services.AddAutoMapper(typeof(BasketballProfile));
         }
 

@@ -10,13 +10,15 @@ namespace BasketballWorldCup.Domain.Services
     public class DrawsService : IDrawsService
     {
         private readonly BasketballContext _context;
+        private readonly IGroupsService _groupsService;
 
-        public DrawsService(BasketballContext context)
+        public DrawsService(BasketballContext context, IGroupsService groupsService)
         {
             _context = context;
+            _groupsService = groupsService;
         }
 
-        public Draw PutIntoPots(IEnumerable<int> teamsIds)
+        public Draw SeedPots(IEnumerable<int> teamsIds)
         {
             var teamsCount = teamsIds.Count();
             if (teamsCount % 4 != 0)
@@ -36,13 +38,10 @@ namespace BasketballWorldCup.Domain.Services
             return draw;
         }
 
-        public Draw FillWithGroups(int drawId)
+        public Draw AssignGroups(int drawId)
         {
             var draw = _context.Draws.Single(d => d.Id == drawId);
-
-            // TODO: Model for groups
-            // TODO: Put one team from pot into group. Repeat
-
+            draw.Groups = (ICollection<Group>)_groupsService.DrawIntoGroups(draw.Pots.ToArray());
             _context.SaveChanges();
             return draw;
         }
