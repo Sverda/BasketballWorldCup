@@ -1,6 +1,7 @@
 ﻿using BasketballWorldCup.Database;
 using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,11 @@ namespace BasketballWorldCup.Domain.Services
 
         public Draw AssignGroups(int drawId)
         {
-            var draw = _context.Draws.Single(d => d.Id == drawId);
+            var draw = _context.Draws
+                .Include(d => d.Pots)
+                .ThenInclude(p => p.TeamPots)
+                .ThenInclude(tp => tp.Team)
+                .Single(d => d.Id == drawId);
             draw.Groups = (ICollection<Group>)_groupsService.DrawIntoGroups(draw.Pots.ToArray());
             _context.SaveChanges();
             return draw;

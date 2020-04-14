@@ -3,6 +3,7 @@ using BasketballWorldCup.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BasketballWorldCup.Domain.Services
 {
@@ -72,7 +73,8 @@ namespace BasketballWorldCup.Domain.Services
             {
                 var group = new Group
                 {
-                    Letter = startingLetter + i
+                    Letter = Encoding.ASCII.GetString(new[] { (byte)(startingLetter[0] + i) }),
+                    TeamGroups = new List<TeamGroup>()
                 };
                 freshFirstRoundGroups.Add(group);
             }
