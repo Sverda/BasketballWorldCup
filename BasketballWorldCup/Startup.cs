@@ -37,6 +37,8 @@ namespace BasketballWorldCup
                     @"Server=(localdb)\mssqllocaldb;Database=BasketballWorldCup;Trusted_Connection=True;"));
             services.AddTransient<ITeamsService, TeamsService>();
             services.AddTransient<IZonesService, ZonesService>();
+            services.AddTransient<IDrawsService, DrawsService>();
+            services.AddTransient<IGroupsService, GroupsService>();
             services.AddAutoMapper(typeof(BasketballProfile));
         }
 
@@ -76,7 +78,7 @@ namespace BasketballWorldCup
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(120);
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(180);
                 }
             });
         }

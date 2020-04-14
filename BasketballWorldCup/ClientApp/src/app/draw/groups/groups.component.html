@@ -1,0 +1,26 @@
+<app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
+  <div class="col" *ngFor="let group of draw?.groups">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col"><span>Group {{ group.letter }}</span></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let team of group.teams">
+        <td>
+          <img class="team-flag" [src]="team.flag" />
+        </td>
+        <td>
+          <span>{{team.name}}</span>
+        </td>
+        <td>
+          {{team.tier + 1}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</app-wizard-step>

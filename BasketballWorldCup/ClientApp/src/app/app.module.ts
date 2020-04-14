@@ -1,17 +1,19 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { AppRoutingModule } from "./app-routing.module";
 import * as fromTeam from "./store/reducers/team.reducer";
 import { TeamEffects } from "./store/effects/team.effects";
+import * as fromDraw from "./store/reducers/draw.reducer";
+import { DrawEffects } from "./store/effects/draw.effects";
 
 @NgModule({
   declarations: [
@@ -24,8 +26,8 @@ import { TeamEffects } from "./store/effects/team.effects";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([TeamEffects]),
-    StoreModule.forRoot({ team: fromTeam.reducer }),
+    EffectsModule.forRoot([TeamEffects, DrawEffects]),
+    StoreModule.forRoot({ team: fromTeam.reducer, draw: fromDraw.reducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

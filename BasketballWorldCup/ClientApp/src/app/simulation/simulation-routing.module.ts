@@ -22,6 +22,14 @@ const routes: Routes = [
       {
         path: "asia",
         loadChildren: () => import("../select-teams/asia-select-teams/asia-select-teams.module").then(m => m.AsiaSelectTeamsModule)
+      },
+      {
+        path: "pots",
+        loadChildren: () => import("../draw/pots/pots.module").then(m => m.PotsModule)
+      },
+      {
+        path: "groups",
+        loadChildren: () => import("../draw/groups/groups.module").then(m => m.GroupsModule)
       }
     ]
   }

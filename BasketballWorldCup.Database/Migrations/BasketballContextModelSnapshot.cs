@@ -18,6 +18,55 @@ namespace BasketballWorldCup.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BasketballWorldCup.Model.Draw", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Draws");
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DrawId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Letter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrawId");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.Pot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DrawId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrawId");
+
+                    b.ToTable("Pots");
+                });
+
             modelBuilder.Entity("BasketballWorldCup.Model.Team", b =>
                 {
                     b.Property<int>("Id")
@@ -40,6 +89,84 @@ namespace BasketballWorldCup.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.TeamGroup", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeamId", "GroupId");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("TeamGroup");
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.TeamPot", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PotId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeamId", "PotId");
+
+                    b.HasIndex("PotId");
+
+                    b.ToTable("TeamPot");
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.Group", b =>
+                {
+                    b.HasOne("BasketballWorldCup.Model.Draw", "Draw")
+                        .WithMany()
+                        .HasForeignKey("DrawId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.Pot", b =>
+                {
+                    b.HasOne("BasketballWorldCup.Model.Draw", "Draw")
+                        .WithMany("Pots")
+                        .HasForeignKey("DrawId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.TeamGroup", b =>
+                {
+                    b.HasOne("BasketballWorldCup.Model.Group", "Group")
+                        .WithMany("TeamGroups")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BasketballWorldCup.Model.Team", "Team")
+                        .WithMany("TeamGroups")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BasketballWorldCup.Model.TeamPot", b =>
+                {
+                    b.HasOne("BasketballWorldCup.Model.Pot", "Pot")
+                        .WithMany("TeamPots")
+                        .HasForeignKey("PotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BasketballWorldCup.Model.Team", "Team")
+                        .WithMany("TeamPots")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

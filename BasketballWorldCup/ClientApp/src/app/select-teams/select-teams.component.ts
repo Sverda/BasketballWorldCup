@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
@@ -27,13 +27,12 @@ export class SelectTeamsComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
     private store: Store<{ team: TeamState }> 
   ) {}
 
   ngOnInit() {
-    this.title = "The Draw: " + this.zoneName;
+    this.title = "Qualifications: " + this.zoneName;
     this.teams = [];
 
     this.teamsForm = this.fb.group({
