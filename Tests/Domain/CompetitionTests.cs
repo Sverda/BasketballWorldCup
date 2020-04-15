@@ -20,23 +20,19 @@ namespace Domain
             {
                 new Team
                 {
-                    Name = "Team 1",
-                    Tier = Tier.First
+                    Id = 1
                 },
                 new Team
                 {
-                    Name = "Team 2",
-                    Tier = Tier.Second
+                    Id = 2
                 },
                 new Team
                 {
-                    Name = "Team 3",
-                    Tier = Tier.Third
+                    Id = 3
                 },
                 new Team
                 {
-                    Name = "Team 4",
-                    Tier = Tier.Fourth
+                    Id = 4
                 }
             };
             var group = new Group
@@ -58,7 +54,7 @@ namespace Domain
             var matches = new RoundRobinMatchmake().Matching(group);
 
             // Assert
-            Assert.That(matches, Has.Length.EqualTo(12));
+            Assert.That(matches, Has.Count.EqualTo(12));
         }
     }
 }
