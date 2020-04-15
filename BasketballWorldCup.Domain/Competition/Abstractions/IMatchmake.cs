@@ -1,10 +1,11 @@
 ﻿using BasketballWorldCup.Model;
 using BasketballWorldCup.Model.Competition;
+using System.Collections.Generic;
 
 namespace BasketballWorldCup.Domain.Competition.Abstractions
 {
-    public interface ICompetition
+    public interface IMatchmake
     {
-        CompetitionResult Compete(Group group);
+        IEnumerable<Match> Matching(Group group);
     }
 }
