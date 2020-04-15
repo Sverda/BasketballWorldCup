@@ -8,6 +8,6 @@ namespace BasketballWorldCup.Model.Competition
 
         public Group Group { get; set; }
 
-        public ICollection<PlayResult> PlayResults { get; set; }
+        public ICollection<MatchResult> MatchResults { get; set; }
     }
 }
