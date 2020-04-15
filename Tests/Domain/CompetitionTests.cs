@@ -1,5 +1,5 @@
+using BasketballWorldCup.Domain.Competition;
 using BasketballWorldCup.Model;
-using BasketballWorldCup.Model.Competition;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -55,7 +55,7 @@ namespace Domain
             }
 
             // Act
-            var matches = new List<Match>();
+            var matches = new RoundRobinMatchmake().Matching(group);
 
             // Assert
             Assert.That(matches, Has.Length.EqualTo(12));

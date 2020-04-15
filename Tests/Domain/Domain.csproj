@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BasketballWorldCup.Domain\BasketballWorldCup.Domain.csproj" />
     <ProjectReference Include="..\..\BasketballWorldCup.Model\BasketballWorldCup.Model.csproj" />
   </ItemGroup>
 
