@@ -1,6 +1,6 @@
 ﻿namespace BasketballWorldCup.Domain.Competition.Abstractions
 {
-    public interface IMatch
+    public interface IPlay
     {
     }
 }
