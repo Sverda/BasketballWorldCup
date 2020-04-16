@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class CompetitionTests
+    public class MatchmakeTests
     {
         [SetUp]
         public void Setup()
@@ -54,7 +54,7 @@ namespace Domain
             var matches = new RoundRobinMatchmake().Matching(group);
 
             // Assert
-            Assert.That(matches, Has.Count.EqualTo(12));
+            Assert.That(matches, Has.Count.EqualTo(6));
         }
     }
 }

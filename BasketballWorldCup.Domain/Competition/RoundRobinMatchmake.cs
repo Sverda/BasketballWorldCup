@@ -1,4 +1,5 @@
 ﻿using BasketballWorldCup.Domain.Competition.Abstractions;
+using BasketballWorldCup.Domain.Helpers;
 using BasketballWorldCup.Model;
 using BasketballWorldCup.Model.Competition;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace BasketballWorldCup.Domain.Competition
                 from host in @group.TeamGroups.Select(tg => tg.Team)
                 from guest in @group.TeamGroups.Select(tg => tg.Team).Where(t => t.Id != host.Id)
                 select new Match { Host = host, Guest = guest };
-            return matches.ToList();
+            return matches.Distinct(new MatchComparer()).ToList();
         }
     }
 }
