@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketballWorldCup.Domain",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2AEB1BC3-0025-41AD-B761-CBD60B0E28BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeedingTool", "SeedingTool\SeedingTool.csproj", "{37D92E01-3368-4B71-81AB-9B1E4696A713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeedingTool", "SeedingTool\SeedingTool.csproj", "{37D92E01-3368-4B71-81AB-9B1E4696A713}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D0D8479-3C30-4BC9-8C31-1FEE6036AC62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Tests\Domain\Domain.csproj", "{9A8F50D2-BF71-41B8-976E-BCDFC404EE27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +45,17 @@ Global
 		{37D92E01-3368-4B71-81AB-9B1E4696A713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37D92E01-3368-4B71-81AB-9B1E4696A713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37D92E01-3368-4B71-81AB-9B1E4696A713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8F50D2-BF71-41B8-976E-BCDFC404EE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8F50D2-BF71-41B8-976E-BCDFC404EE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8F50D2-BF71-41B8-976E-BCDFC404EE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8F50D2-BF71-41B8-976E-BCDFC404EE27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{37D92E01-3368-4B71-81AB-9B1E4696A713} = {2AEB1BC3-0025-41AD-B761-CBD60B0E28BE}
+		{9A8F50D2-BF71-41B8-976E-BCDFC404EE27} = {8D0D8479-3C30-4BC9-8C31-1FEE6036AC62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {91E10B84-5803-48A6-9CA6-99C6F43E09DD}
