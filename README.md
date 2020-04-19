@@ -3,7 +3,7 @@
 TODO:
 - [x] Wybór drużyn
 - [x] Walidacja wyboru
-- [ ] Losowanie
+- [x] Losowanie
 - [ ] Pierwsza Faza Grupowa
 - [ ] Druga Faza Grupowa
 - [ ] Faza Finałowa
@@ -34,3 +34,13 @@ Po spełnieniu tych ograniczeń pola wyboru (ang. checkboxes) zostaną zaznaczon
 Ponadto po wybraniu drużyn zostanie odblokowany przycisk przekierowujący do wyboru drużyn z następnej Konfederacji. 
 A w wypadku chęci zmiany poprzedniej Konfederacji przycisk "Previous Step" pozwolil się cofnąć. 
 ![Selection Next](https://github.com/Sverda/BasketballWorldCup/blob/master/images/selection-next.jpg)
+
+### Losowanie: Podział na koszyki
+Po wybraniu drużyn dla każdej konfederacji aplikacja podzieli nasze drużyny na koszyki na podstawie siły każdej z nich. 
+Najsilniejsze z nich znajdą się w pierwszych koszykach. 
+![Pots](https://github.com/Sverda/BasketballWorldCup/blob/master/images/pots.jpg)
+
+### Losowanie: Podział na grupy A-H
+Tworzenie grup odbywa się poprzez wybranie losowego zespołu z każdego koszyka 1, 4, 5, 8 i umieszczenie go do jednej z grup A, C, E, G. 
+Analogicznie tworzone są grupy B, D, F, H z koszyków 2, 3, 6, 7. 
+![Groups](https://github.com/Sverda/BasketballWorldCup/blob/master/images/groups.jpg)
