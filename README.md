@@ -44,3 +44,17 @@ Najsilniejsze z nich znajdą się w pierwszych koszykach.
 Tworzenie grup odbywa się poprzez wybranie losowego zespołu z każdego koszyka 1, 4, 5, 8 i umieszczenie go do jednej z grup A, C, E, G. 
 Analogicznie tworzone są grupy B, D, F, H z koszyków 2, 3, 6, 7. 
 ![Groups](images/groups.jpg)
+
+### Przykład podziału na koszyki i losowania drużyn
+
+Dla poniżej zaprezentowanego podziału na koszyki. 
+![Groups Example](images/example-groups.jpg)
+Możemy otrzymać następujące grupy: 
+![Pots Example](images/example-pots.jpg)
+W przypadku otrzymania takiego podziału na grupy, stały sie następujące rzeczy. 
+1. Z koszyków 1, 4, 5, 8 wybraliśmy losowo po jednej drużynie i wrzuciliśmy do Grupy A. 
+![Pots Selection 1](images/example-pots-selection1.jpg)
+2. Następnie z tych samych koszyków, pomijając poprzednio wybrane drużymy, losujemy po jednej drużynie do Grupy C
+![Pots Selection 2](images/example-pots-selection2.jpg)
+3. Operację 2 powtarzamy dla grup E i G. 
+4. Analogicznie jak w przypadku kroków 1-3 działamy z grupami B, D, F, H i koszykami 2, 3, 6, 7. 
