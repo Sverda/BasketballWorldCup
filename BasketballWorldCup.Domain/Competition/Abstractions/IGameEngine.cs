@@ -2,7 +2,7 @@
 
 namespace BasketballWorldCup.Domain.Competition.Abstractions
 {
-    public interface IPlay
+    public interface IGameEngine
     {
         MatchResult Play(Match match);
     }

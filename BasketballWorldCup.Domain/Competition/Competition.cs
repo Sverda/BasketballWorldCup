@@ -1,7 +1,6 @@
 ﻿using BasketballWorldCup.Domain.Competition.Abstractions;
 using BasketballWorldCup.Model;
 using BasketballWorldCup.Model.Competition;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BasketballWorldCup.Domain.Competition
@@ -9,22 +8,22 @@ namespace BasketballWorldCup.Domain.Competition
     public class Competition : ICompetition
     {
         private readonly IMatchmake _matchmake;
-        private readonly IPlay _play;
+        private readonly IGameEngine _gameEngine;
 
-        public Competition(IMatchmake matchmake, IPlay play)
+        public Competition(IMatchmake matchmake, IGameEngine gameEngine)
         {
             _matchmake = matchmake;
-            _play = play;
+            _gameEngine = gameEngine;
         }
 
         public CompetitionResult Compete(Group group)
         {
             var matches = _matchmake.Matching(group);
-            var matchResults = matches.Select(m => _play.Play(m));
+            var matchResults = matches.Select(m => _gameEngine.Play(m)).ToList();
             return new CompetitionResult
             {
                 Group = group,
-                MatchResults = (ICollection<MatchResult>)matchResults
+                MatchResults = matchResults
             };
         }
     }
