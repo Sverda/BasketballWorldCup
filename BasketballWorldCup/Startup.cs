@@ -1,5 +1,7 @@
 using AutoMapper;
 using BasketballWorldCup.Database;
+using BasketballWorldCup.Domain.Competition;
+using BasketballWorldCup.Domain.Competition.Abstractions;
 using BasketballWorldCup.Domain.Services;
 using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Mapping;
@@ -39,6 +41,9 @@ namespace BasketballWorldCup
             services.AddTransient<IZonesService, ZonesService>();
             services.AddTransient<IDrawsService, DrawsService>();
             services.AddTransient<IGroupsService, GroupsService>();
+            services.AddTransient<ICompetitionService, CompetitionService>();
+            services.AddTransient<IMatchmake, RoundRobinMatchmake>();
+            services.AddTransient<IGameEngine, GameEngine>();
             services.AddAutoMapper(typeof(BasketballProfile));
         }
 

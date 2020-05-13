@@ -16,11 +16,11 @@ namespace BasketballWorldCup.Domain.Competition
             _gameEngine = gameEngine;
         }
 
-        public CompetitionResult Compete(Group group)
+        public GroupResult Compete(Group group)
         {
             var matches = _matchmake.Matching(group);
             var matchResults = matches.Select(m => _gameEngine.Play(m)).ToList();
-            return new CompetitionResult
+            return new GroupResult
             {
                 Group = group,
                 MatchResults = matchResults

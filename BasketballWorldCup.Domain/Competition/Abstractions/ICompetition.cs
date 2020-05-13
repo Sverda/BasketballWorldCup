@@ -5,6 +5,6 @@ namespace BasketballWorldCup.Domain.Competition.Abstractions
 {
     public interface ICompetition
     {
-        CompetitionResult Compete(Group group);
+        GroupResult Compete(Group group);
     }
 }

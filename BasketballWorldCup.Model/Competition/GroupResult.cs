@@ -2,7 +2,7 @@
 
 namespace BasketballWorldCup.Model.Competition
 {
-    public class CompetitionResult
+    public class GroupResult
     {
         public int Id { get; set; }
 
