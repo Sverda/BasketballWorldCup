@@ -1,5 +1,8 @@
-﻿using BasketballWorldCup.Domain.Services.Abstractions;
+﻿using AutoMapper;
+using BasketballWorldCup.Domain.Services.Abstractions;
+using BasketballWorldCup.Mapping.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BasketballWorldCup.Controllers
 {
@@ -8,18 +11,21 @@ namespace BasketballWorldCup.Controllers
     public class CompetitionController : ControllerBase
     {
         private readonly ICompetitionService _competitionService;
+        private readonly IMapper _mapper;
 
-        public CompetitionController(ICompetitionService competitionService)
+        public CompetitionController(ICompetitionService competitionService, IMapper mapper)
         {
             _competitionService = competitionService;
+            _mapper = mapper;
         }
 
         [HttpPost]
         [Route("firstRound/{drawId}")]
         public IActionResult FirstRound(int drawId)
         {
-            var groupsResult = _competitionService.FirstRound(drawId);
-            return Ok(groupsResult);
+            var groupResult = _competitionService.FirstRound(drawId);
+            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(groupResult);
+            return Ok(dto);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BasketballWorldCup.Mapping.Dto;
 using BasketballWorldCup.Model;
+using BasketballWorldCup.Model.Competition;
 using BasketballWorldCup.Model.Helpers;
 using System.Linq;
 
@@ -29,6 +30,19 @@ namespace BasketballWorldCup.Mapping
             CreateMap<Group, GroupDto>()
                 .ForMember(dto => dto.Letter, member => member.MapFrom(group => group.Letter))
                 .ForMember(dto => dto.Teams, member => member.MapFrom(group => group.TeamGroups.Select(tg => tg.Team)));
+
+            CreateMap<PlayResult, PlayResultDto>()
+                .ForMember(dto => dto.TeamId, member => member.MapFrom(play => play.Team.Id))
+                .ForMember(dto => dto.PointsFor, member => member.MapFrom(play => play.PointsFor))
+                .ForMember(dto => dto.PointsAgainst, member => member.MapFrom(play => play.PointsAgainst));
+
+            CreateMap<MatchResult, MatchResultDto>()
+                .ForMember(dto => dto.Host, member => member.MapFrom(match => match.Host))
+                .ForMember(dto => dto.Guest, member => member.MapFrom(match => match.Guest));
+
+            CreateMap<GroupResult, GroupResultDto>()
+                .ForMember(dto => dto.GroupLetter, member => member.MapFrom(group => group.Group.Letter))
+                .ForMember(dto => dto.MatchResults, member => member.MapFrom(group => group.MatchResults));
         }
     }
 }
