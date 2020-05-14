@@ -34,18 +34,25 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\model\draw.interface.ts" />
+    <None Remove="ClientApp\src\app\model\group-result.interface.ts" />
     <None Remove="ClientApp\src\app\model\group.interface.ts" />
+    <None Remove="ClientApp\src\app\model\match-result.interface.ts" />
+    <None Remove="ClientApp\src\app\model\play-result.interface.ts" />
     <None Remove="ClientApp\src\app\model\pot.interface.ts" />
     <None Remove="ClientApp\src\app\model\team.interface.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.actions.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.reducer.ts" />
     <None Remove="ClientApp\src\app\store\actions\draw.actions.ts" />
+    <None Remove="ClientApp\src\app\store\actions\rounds.actions.ts" />
     <None Remove="ClientApp\src\app\store\effects\draw.effects.ts" />
+    <None Remove="ClientApp\src\app\store\effects\rounds.effects.ts" />
     <None Remove="ClientApp\src\app\store\effects\team.effects.ts" />
     <None Remove="ClientApp\src\app\store\reducers\draw.reducer.ts" />
+    <None Remove="ClientApp\src\app\store\reducers\rounds.reducer.ts" />
     <None Remove="ClientApp\src\app\store\selectors\team.selector.ts" />
     <None Remove="ClientApp\src\app\store\state\app.state.ts" />
     <None Remove="ClientApp\src\app\store\state\draw.state.ts" />
+    <None Remove="ClientApp\src\app\store\state\rounds.state.ts" />
     <None Remove="ClientApp\src\app\store\state\team.state.ts" />
   </ItemGroup>
 
@@ -56,24 +63,43 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\model\play-result.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\model\match-result.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\model\group-result.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\model\draw.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\group.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\pot.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\team.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\actions\rounds.actions.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\actions\draw.actions.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\actions\team.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\effects\rounds.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\effects\draw.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\effects\team.effects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\reducers\rounds.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\reducers\draw.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\reducers\team.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\teams.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\selectors\team.selector.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\app.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\draw.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\state\rounds.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\store\state\team.state.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClientApp\src\app\model\play-result.interface.js">
+      <DependentUpon>play-result.interface.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\model\match-result.interface.js">
+      <DependentUpon>match-result.interface.ts</DependentUpon>
+    </None>
     <None Update="ClientApp\src\app\model\group.interface.js">
       <DependentUpon>group.interface.ts</DependentUpon>
     </None>

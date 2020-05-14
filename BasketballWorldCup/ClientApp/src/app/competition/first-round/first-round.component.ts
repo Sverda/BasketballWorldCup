@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 
 import { AppState } from "../../store/state/app.state";
+import { GroupResult } from "../../model/group-result.interface";
+import { GetFirstRound } from "../../store/actions/rounds.actions";
 
 @Component({
   selector: "app-first-round",
@@ -11,6 +13,7 @@ import { AppState } from "../../store/state/app.state";
 })
 export class FirstRoundComponent implements OnInit {
   public title: string;
+  public groupsResult: GroupResult[];
 
   constructor(
     private readonly router: Router,
@@ -18,6 +21,14 @@ export class FirstRoundComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = "The First Round: Result";
+
+    this.store
+      .select(state => state.rounds.firstRound)
+      .subscribe(result => this.groupsResult = result, error => console.error(error));
+    
+    if (this.groupsResult === null) {
+      this.store.dispatch(GetFirstRound());
+    }
   }
 
   goToNextStep() {

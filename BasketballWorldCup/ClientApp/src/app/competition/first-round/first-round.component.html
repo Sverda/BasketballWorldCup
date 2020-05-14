@@ -1,3 +1,16 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
-  
+  <div class="col" *ngFor="let group of groupsResult">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col"><span>Group {{ group.groupLetter }}</span></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let match of group.matchResults">
+        <td>{{match.host.teamId}} {{match.host.pointsFor}} - {{match.guest.pointsFor}} {{match.guest.teamId}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </app-wizard-step>

@@ -14,6 +14,8 @@ import * as fromTeam from "./store/reducers/team.reducer";
 import { TeamEffects } from "./store/effects/team.effects";
 import * as fromDraw from "./store/reducers/draw.reducer";
 import { DrawEffects } from "./store/effects/draw.effects";
+import * as fromRounds from "./store/reducers/rounds.reducer";
+import { RoundsEffects } from "./store/effects/rounds.effects";
 
 @NgModule({
   declarations: [
@@ -26,8 +28,8 @@ import { DrawEffects } from "./store/effects/draw.effects";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([TeamEffects, DrawEffects]),
-    StoreModule.forRoot({ team: fromTeam.reducer, draw: fromDraw.reducer }),
+    EffectsModule.forRoot([TeamEffects, DrawEffects, RoundsEffects]),
+    StoreModule.forRoot({ team: fromTeam.reducer, draw: fromDraw.reducer, rounds: fromRounds.reducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

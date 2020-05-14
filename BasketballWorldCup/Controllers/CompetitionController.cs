@@ -19,7 +19,7 @@ namespace BasketballWorldCup.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("firstRound/{drawId}")]
         public IActionResult FirstRound(int drawId)
         {
