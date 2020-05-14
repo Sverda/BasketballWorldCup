@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path: "groups",
         loadChildren: () => import("../draw/groups/groups.module").then(m => m.GroupsModule)
+      },
+      {
+        path: "first-round",
+        loadChildren: () => import("../competition/first-round/first-round.module").then(m => m.FirstRoundModule)
       }
     ]
   }

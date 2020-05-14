@@ -36,7 +36,7 @@ export class GroupsComponent implements OnInit {
   }
 
   goToNextStep() {
-
+    this.router.navigate(["/simulation/first-round"]);
   }
 
   goToPreviousStep() {

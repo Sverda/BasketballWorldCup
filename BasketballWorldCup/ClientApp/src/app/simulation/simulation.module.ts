@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SimulationComponent } from './simulation.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { SimulationComponent } from "./simulation.component";
 import { CoreModule } from "../core/core.module";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
 import { SimulationRoutingModule } from "./simulation-routing.module";
 
 
