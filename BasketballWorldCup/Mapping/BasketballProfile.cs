@@ -32,9 +32,9 @@ namespace BasketballWorldCup.Mapping
                 .ForMember(dto => dto.Teams, member => member.MapFrom(group => group.TeamGroups.Select(tg => tg.Team)));
 
             CreateMap<PlayResult, PlayResultDto>()
-                .ForMember(dto => dto.TeamId, member => member.MapFrom(play => play.Team.Id))
-                .ForMember(dto => dto.PointsFor, member => member.MapFrom(play => play.PointsFor))
-                .ForMember(dto => dto.PointsAgainst, member => member.MapFrom(play => play.PointsAgainst));
+                .ForMember(dto => dto.TeamName, member => member.MapFrom(play => play.Team.Name))
+                .ForMember(dto => dto.TeamFlag, member => member.MapFrom(play => play.Team.Flag))
+                .ForMember(dto => dto.PointsFor, member => member.MapFrom(play => play.PointsFor));
 
             CreateMap<MatchResult, MatchResultDto>()
                 .ForMember(dto => dto.Host, member => member.MapFrom(match => match.Host))

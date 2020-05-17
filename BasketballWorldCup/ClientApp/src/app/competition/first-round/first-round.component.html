@@ -1,14 +1,27 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
   <div class="col" *ngFor="let group of groupsResult">
+    <h2>Group {{ group.groupLetter }}</h2>
     <table class="table table-bordered table-hover">
       <thead class="thead-light">
       <tr>
-        <th scope="col"><span>Group {{ group.groupLetter }}</span></th>
+        <th scope="col">Host</th>
+        <th scope="col"><span>Points For</span></th>
+        <th scope="col"></th>
+        <th scope="col"><span>Points For</span></th>
+        <th scope="col">Guest</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let match of group.matchResults">
-        <td>{{match.host.teamId}} {{match.host.pointsFor}} - {{match.guest.pointsFor}} {{match.guest.teamId}}</td>
+        <td>
+          <img class="team-flag" [src]="match.host.teamFlag"/><span>{{match.host.teamName}}</span>
+        </td>
+        <td>{{match.host.pointsFor}}</td>
+        <td>vs</td>
+        <td>{{match.guest.pointsFor}}</td>
+        <td>
+          <img class="team-flag" [src]="match.guest.teamFlag"/><span>{{match.guest.teamName}}</span>
+        </td>
       </tr>
       </tbody>
     </table>

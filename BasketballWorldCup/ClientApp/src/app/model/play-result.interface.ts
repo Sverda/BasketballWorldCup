@@ -1,5 +1,5 @@
 export interface PlayResult {
-  teamId: number;
+  teamName: string;
+  teamFlag: string;
   pointsFor: number;
-  pointsAgainst: number;
 }

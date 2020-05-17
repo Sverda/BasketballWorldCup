@@ -2,10 +2,10 @@
 {
     public class PlayResultDto
     {
-        public int TeamId { get; set; }
+        public string TeamName { get; set; }
+
+        public string TeamFlag { get; set; }
 
         public int PointsFor { get; set; }
-
-        public int PointsAgainst { get; set; }
     }
 }
