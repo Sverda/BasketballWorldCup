@@ -24,7 +24,9 @@ namespace Domain
 
             // Assert
             Assert.That(result.MatchResults.Select(m => m.Guest.PointsFor), Has.None.GreaterThan(130));
+            Assert.That(result.MatchResults.Select(m => m.Guest.PointsFor), Has.None.LessThan(60));
             Assert.That(result.MatchResults.Select(m => m.Host.PointsFor), Has.None.GreaterThan(130));
+            Assert.That(result.MatchResults.Select(m => m.Host.PointsFor), Has.None.LessThan(60));
         }
 
         private static Group ArrangeGroup()
