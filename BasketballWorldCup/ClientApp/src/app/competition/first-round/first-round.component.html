@@ -1,6 +1,6 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
   <div class="col" *ngFor="let group of groupsResult">
-    <h2>Group {{ group.groupLetter }}</h2>
+    <h2>Grupa {{ group.groupLetter }}</h2>
     <table class="table table-bordered table-hover">
       <thead class="thead-light">
       <tr>

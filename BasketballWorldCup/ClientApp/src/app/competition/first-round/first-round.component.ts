@@ -20,7 +20,7 @@ export class FirstRoundComponent implements OnInit {
     private readonly store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    this.title = "The First Round";
+    this.title = "Pierwsza Faza Grupowa";
 
     this.store
       .select(state => state.rounds.firstRound)
