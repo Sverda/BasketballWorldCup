@@ -32,7 +32,7 @@ export class SelectTeamsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title = "Qualifications: " + this.zoneName;
+    this.title = "Kwalifikacje: " + this.zoneName;
     this.teams = [];
 
     this.teamsForm = this.fb.group({

@@ -20,7 +20,7 @@ export class GroupsComponent implements OnInit {
     private readonly store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    this.title = "The Draw: Groups";
+    this.title = "Losowanie: Grupy";
 
     this.store
       .select(state => state.draw)

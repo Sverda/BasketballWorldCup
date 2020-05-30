@@ -20,7 +20,7 @@ export class PotsComponent implements OnInit {
     private readonly store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    this.title = "The Draw: Pots";
+    this.title = "Losowanie: Koszyki";
 
     this.store
       .select(state => state.draw)

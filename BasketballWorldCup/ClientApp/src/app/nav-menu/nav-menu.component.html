@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">FIBA Basketball World Cup</a>
+      <a class="navbar-brand" [routerLink]="['/']">Mistrzostwa Świata w Koszykówce</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -23,10 +23,10 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-white" [routerLink]="['/simulation']">Start</a>
+            <a class="nav-link text-white" [routerLink]="['/simulation']">Rozpocznij Symulację</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/teams-manager']">Teams Manager</a>
+            <a class="nav-link text-white" [routerLink]="['/teams-manager']">Zarządzaj Drużynami</a>
           </li>
         </ul>
       </div>

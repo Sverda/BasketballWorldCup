@@ -3,12 +3,12 @@
     <div class="form-group">
       <div>
         <mat-checkbox disabled="true" [checked]="hasAmount()">
-          <span>Select eight teams</span>
+          <span>Zaznaczono osiem drużyn</span>
         </mat-checkbox>
       </div>
       <div>
         <mat-checkbox disabled="true" [checked]="hasTier()">
-          <span>Select at least two first tier teams</span>
+          <span>Zaznaczono conajmniej dwie drużyny o sile 1</span>
         </mat-checkbox>
       </div>
       <div>
@@ -18,10 +18,10 @@
     <table formArrayName="teamsControl" class="table table-bordered table-hover">
       <thead class="thead-light">
       <tr>
-        <th scope="col">Selected</th>
-        <th scope="col">Flag</th>
-        <th scope="col">Name</th>
-        <th scope="col">Tier</th>
+        <th scope="col">Zaznaczona</th>
+        <th scope="col">Flaga</th>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Siła</th>
       </tr>
       </thead>
       <tbody>
