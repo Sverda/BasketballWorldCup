@@ -35,10 +35,12 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\model\draw.interface.ts" />
     <None Remove="ClientApp\src\app\model\group-result.interface.ts" />
+    <None Remove="ClientApp\src\app\model\group-summary.interface.ts" />
     <None Remove="ClientApp\src\app\model\group.interface.ts" />
     <None Remove="ClientApp\src\app\model\match-result.interface.ts" />
     <None Remove="ClientApp\src\app\model\play-result.interface.ts" />
     <None Remove="ClientApp\src\app\model\pot.interface.ts" />
+    <None Remove="ClientApp\src\app\model\team-summary.interface.ts" />
     <None Remove="ClientApp\src\app\model\team.interface.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.actions.ts" />
     <None Remove="ClientApp\src\app\select-teams\select-teams.reducer.ts" />
@@ -63,6 +65,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\model\team-summary.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\model\group-summary.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\model\play-result.interface.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

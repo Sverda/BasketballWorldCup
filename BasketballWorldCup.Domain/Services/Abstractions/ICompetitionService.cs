@@ -6,5 +6,7 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
     public interface ICompetitionService
     {
         IEnumerable<GroupResult> FirstRound(int drawId);
+
+        IEnumerable<GroupSummary> GroupsSummaries(IEnumerable<GroupResult> groupResults);
     }
 }
