@@ -15,31 +15,33 @@
         <app-random-select [zoneName]="zoneName"></app-random-select>
       </div>
     </div>
-    <table formArrayName="teamsControl" class="table table-bordered table-hover">
-      <thead class="thead-light">
-      <tr>
-        <th scope="col">Zaznaczona</th>
-        <th scope="col">Flaga</th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Siła</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let team of teams" (click)="selectTeam(team)">
-        <td>
-          <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
-        </td>
-        <td>
-          <img class="team-flag" [src]="team.flag"/>
-        </td>
-        <td>
-          {{team.name}}
-        </td>
-        <td>
-          {{team.tier + 1}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="two-columns">
+      <table formArrayName="teamsControl" class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Zaznaczona</th>
+          <th scope="col">Flaga</th>
+          <th scope="col">Nazwa</th>
+          <th scope="col">Siła</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let team of teams" (click)="selectTeam(team)">
+          <td>
+            <mat-checkbox [checked]="team.isSelected"></mat-checkbox>
+          </td>
+          <td>
+            <img class="team-flag" [src]="team.flag" />
+          </td>
+          <td>
+            {{team.name}}
+          </td>
+          <td>
+            {{team.tier + 1}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </form>
 </app-wizard-step>
