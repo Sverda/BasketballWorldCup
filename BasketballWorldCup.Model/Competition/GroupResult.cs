@@ -9,5 +9,7 @@ namespace BasketballWorldCup.Model.Competition
         public Group Group { get; set; }
 
         public ICollection<MatchResult> MatchResults { get; set; }
+
+        public ICollection<TeamSummary> Summaries { get; set; }
     }
 }

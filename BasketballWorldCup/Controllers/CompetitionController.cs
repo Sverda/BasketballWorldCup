@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Mapping.Dto;
-using BasketballWorldCup.Model.Competition;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BasketballWorldCup.Controllers
 {
@@ -26,19 +24,9 @@ namespace BasketballWorldCup.Controllers
         public IActionResult FirstRound(int drawId)
         {
             var groupResult = _competitionService.FirstRound(drawId);
-            var summary = _competitionService.GroupsSummaries(groupResult);
-            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(groupResult);
-            AssignSummariesToGroups(summary, dto);
+            var resultWithSummaries = _competitionService.GroupsSummaries(groupResult);
+            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(resultWithSummaries);
             return Ok(dto);
-        }
-
-        private static void AssignSummariesToGroups(IEnumerable<GroupSummary> summary, IEnumerable<GroupResultDto> dto)
-        {
-            foreach (var groupSummary in summary)
-            {
-                var group = dto.Single(d => d.GroupLetter == groupSummary.Letter);
-                group.GroupSummary = groupSummary;
-            }
         }
     }
 }

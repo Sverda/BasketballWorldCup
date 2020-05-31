@@ -29,40 +29,32 @@ namespace BasketballWorldCup.Domain.Services
             return draw.Groups.ToList().Select(g => _competition.Compete(g));
         }
 
-        public IEnumerable<GroupSummary> GroupsSummaries(IEnumerable<GroupResult> groupResults)
+        public IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults)
         {
-            var groupsSummaries = new List<GroupSummary>();
-            foreach (var groupResult in groupResults)
-            {
-                var hostNames = groupResult.MatchResults
-                    .Select(mr => mr.Host.Team.Name);
-                var guestNames = groupResult.MatchResults
-                    .Select(mr => mr.Guest.Team.Name);
-                var teamNames = hostNames.ToList();
-                teamNames.AddRange(guestNames);
-                var teamSummaries = teamNames
-                    .Distinct()
-                    .Select(teamName => new TeamSummary { TeamName = teamName })
-                    .ToList();
-                var groupSummary = new GroupSummary
-                {
-                    Letter = groupResult.Group.Letter,
-                    Summaries = teamSummaries
-                };
-                foreach (var matchResult in groupResult.MatchResults)
-                {
-                    var hostSummary = groupSummary.Summaries.Single(s => s.TeamName == matchResult.Host.Team.Name);
-                    MatchSummary(hostSummary, matchResult.Host);
-                    var guestSummary = groupSummary.Summaries.Single(s => s.TeamName == matchResult.Guest.Team.Name);
-                    MatchSummary(guestSummary, matchResult.Guest);
-                }
+            return groupResults
+                .Select(GroupSummary)
+                .ToList();
+        }
 
-                groupSummary = RankByPoints(groupSummary);
-                groupSummary.Summaries = groupSummary.Summaries.OrderBy(s => s.Loses).ToList();
-                groupsSummaries.Add(groupSummary);
+        private GroupResult GroupSummary(GroupResult groupResult)
+        {
+            var teamSummaries = groupResult.MatchResults
+                .Select(mr => mr.Guest.Team)
+                .Select(team => new TeamSummary { Team = team, Group = groupResult.Group })
+                .ToList();
+            foreach (var matchResult in groupResult.MatchResults)
+            {
+                var hostSummary = teamSummaries.Single(s => s.Team.Id == matchResult.Host.Team.Id);
+                MatchSummary(hostSummary, matchResult.Host);
+                var guestSummary = teamSummaries.Single(s => s.Team.Id == matchResult.Guest.Team.Id);
+                MatchSummary(guestSummary, matchResult.Guest);
             }
 
-            return groupsSummaries;
+            teamSummaries = RankByPoints(teamSummaries).ToList();
+            teamSummaries = teamSummaries.OrderBy(s => s.Loses).ToList();
+            _context.TeamSummaries.AddRange(teamSummaries);
+            groupResult.Summaries = teamSummaries;
+            return groupResult;
         }
 
         private static void MatchSummary(TeamSummary teamSummary, PlayResult matchResult)
@@ -82,16 +74,16 @@ namespace BasketballWorldCup.Domain.Services
             teamSummary.PointsAgainstSum += matchResult.PointsAgainst;
         }
 
-        private GroupSummary RankByPoints(GroupSummary groupSummary)
+        private static IEnumerable<TeamSummary> RankByPoints(IEnumerable<TeamSummary> teamSummaries)
         {
-            var rankedSummaries = groupSummary.Summaries.OrderBy(s => s.Points).ToArray();
-            for (int i = 0; i < 4; i++)
+            var rankedSummaries = teamSummaries.OrderBy(s => s.Points).ToArray();
+            for (var i = 0; i < 4; i++)
             {
-                var place = groupSummary.Summaries.Single(s => s.TeamName == rankedSummaries[i].TeamName);
+                var place = teamSummaries.Single(s => s.Team.Id == rankedSummaries[i].Team.Id);
                 place.Rank = i + 1;
             }
 
-            return groupSummary;
+            return teamSummaries;
         }
     }
 }

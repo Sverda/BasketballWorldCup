@@ -8,6 +8,6 @@ namespace BasketballWorldCup.Mapping.Dto
 
         public MatchResultDto[] MatchResults { get; set; }
 
-        public GroupSummary GroupSummary { get; set; }
+        public TeamSummary[] Summaries { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BasketballWorldCup.Model.Competition;
+using System.Collections.Generic;
 
 namespace BasketballWorldCup.Model
 {
@@ -13,5 +14,7 @@ namespace BasketballWorldCup.Model
         public string Letter { get; set; }
 
         public ICollection<TeamGroup> TeamGroups { get; set; }
+
+        public ICollection<TeamSummary> Summaries { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BasketballWorldCup.Model;
+using BasketballWorldCup.Model.Competition;
 using Microsoft.EntityFrameworkCore;
 
 namespace BasketballWorldCup.Database
@@ -12,6 +13,8 @@ namespace BasketballWorldCup.Database
         public DbSet<Group> Groups { get; set; }
 
         public DbSet<Team> Teams { get; set; }
+
+        public DbSet<TeamSummary> TeamSummaries { get; set; }
 
         public BasketballContext(DbContextOptions<BasketballContext> options) : base(options)
         {
@@ -47,6 +50,12 @@ namespace BasketballWorldCup.Database
                 .HasOne(tg => tg.Team)
                 .WithMany(t => t.TeamGroups)
                 .HasForeignKey(tg => tg.TeamId);
+
+            modelBuilder.Entity<TeamSummary>()
+                .HasOne(s => s.Group)
+                .WithMany(g => g.Summaries);
+            modelBuilder.Entity<TeamSummary>()
+                .HasOne(s => s.Team);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
     {
         IEnumerable<GroupResult> FirstRound(int drawId);
 
-        IEnumerable<GroupSummary> GroupsSummaries(IEnumerable<GroupResult> groupResults);
+        IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults);
     }
 }
