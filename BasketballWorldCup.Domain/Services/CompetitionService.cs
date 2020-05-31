@@ -38,8 +38,8 @@ namespace BasketballWorldCup.Domain.Services
 
         private GroupResult GroupSummary(GroupResult groupResult)
         {
-            var teamSummaries = groupResult.MatchResults
-                .Select(mr => mr.Guest.Team)
+            var teamSummaries = groupResult.Group.TeamGroups
+                .Select(tg => tg.Team)
                 .Select(team => new TeamSummary { Team = team, Group = groupResult.Group })
                 .ToList();
             foreach (var matchResult in groupResult.MatchResults)

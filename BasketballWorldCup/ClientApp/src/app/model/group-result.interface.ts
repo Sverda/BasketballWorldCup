@@ -1,8 +1,8 @@
 import { MatchResult } from "./match-result.interface";
-import { GroupSummary } from "./group-summary.interface";
+import { TeamSummary } from "./team-summary.interface";
 
 export interface GroupResult {
   groupLetter: string;
   matchResults: MatchResult[];
-  groupSummary: GroupSummary;
+  summaries: TeamSummary[];
 }

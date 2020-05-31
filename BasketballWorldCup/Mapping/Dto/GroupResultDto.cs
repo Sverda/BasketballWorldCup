@@ -1,6 +1,4 @@
-﻿using BasketballWorldCup.Model.Competition;
-
-namespace BasketballWorldCup.Mapping.Dto
+﻿namespace BasketballWorldCup.Mapping.Dto
 {
     public class GroupResultDto
     {
@@ -8,6 +6,6 @@ namespace BasketballWorldCup.Mapping.Dto
 
         public MatchResultDto[] MatchResults { get; set; }
 
-        public TeamSummary[] Summaries { get; set; }
+        public TeamSummaryDto[] Summaries { get; set; }
     }
 }
