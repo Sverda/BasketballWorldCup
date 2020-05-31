@@ -53,6 +53,7 @@ namespace BasketballWorldCup.Domain.Services
             teamSummaries = RankByPoints(teamSummaries).ToList();
             teamSummaries = teamSummaries.OrderBy(s => s.Loses).ToList();
             _context.TeamSummaries.AddRange(teamSummaries);
+            _context.SaveChanges();
             groupResult.Summaries = teamSummaries;
             return groupResult;
         }
