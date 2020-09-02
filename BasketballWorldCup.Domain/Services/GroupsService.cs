@@ -109,8 +109,14 @@ namespace BasketballWorldCup.Domain.Services
 
         private static Group ConstructGroup(Draw draw, string letter, Group firstBase, Group secondBase)
         {
-            var firstBests = firstBase.Summaries.OrderBy(s => s.Rank).Take(2).ToArray();
-            var secondBests = secondBase.Summaries.OrderBy(s => s.Rank).Take(2).ToArray();
+            var firstBests = firstBase.Summaries
+                .OrderByDescending(s => s.Rank)
+                .Take(2)
+                .ToArray();
+            var secondBests = secondBase.Summaries
+                .OrderByDescending(s => s.Rank)
+                .Take(2)
+                .ToArray();
             var group = new Group
             {
                 Draw = draw,
