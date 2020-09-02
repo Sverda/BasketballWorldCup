@@ -8,6 +8,7 @@ import { GroupResult } from "../model/group-result.interface";
 export class RoundsService {
   private readonly baseUrl: string;
   private firstRoundUrl = "api/competition/firstRound";
+  private secondRoundUrl = "api/competition/secondRound";
 
   constructor(
     private readonly http: HttpClient,
@@ -17,5 +18,9 @@ export class RoundsService {
 
   getFirstRound(drawId: number): Observable<GroupResult[]> {
     return this.http.get<GroupResult[]>(this.baseUrl + this.firstRoundUrl + "/" + drawId);
+  }
+
+  getSecondRound(drawId: number): Observable<GroupResult[]> {
+    return this.http.get<GroupResult[]>(this.baseUrl + this.secondRoundUrl + "/" + drawId);
   }
 }

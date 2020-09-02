@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 
 import { AppState } from "../../store/state/app.state";
 import { GroupResult } from "../../model/group-result.interface";
-import { GetFirstRound } from "../../store/actions/rounds.actions";
+import { GetSecondRound } from "../../store/actions/rounds.actions";
 
 @Component({
   selector: "app-second-round",
@@ -23,11 +23,11 @@ export class SecondRoundComponent implements OnInit {
     this.title = "Druga Faza Grupowa";
 
     this.store
-      .select(state => state.rounds.firstRound)
+      .select(state => state.rounds.secondRound)
       .subscribe(result => this.groupsResult = result, error => console.error(error));
     
     if (this.groupsResult === null) {
-      this.store.dispatch(GetFirstRound());
+      this.store.dispatch(GetSecondRound());
     }
   }
 
@@ -36,6 +36,6 @@ export class SecondRoundComponent implements OnInit {
   }
 
   goToPreviousStep() {
-    this.router.navigate(["/simulation/groups"]);
+    this.router.navigate(["/simulation/first-round"]);
   }
 }

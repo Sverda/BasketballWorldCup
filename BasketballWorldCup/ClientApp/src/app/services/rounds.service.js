@@ -9,15 +9,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RoundsService = void 0;
 var core_1 = require("@angular/core");
 var RoundsService = /** @class */ (function () {
     function RoundsService(http, baseUrl) {
         this.http = http;
         this.firstRoundUrl = "api/competition/firstRound";
+        this.secondRoundUrl = "api/competition/secondRound";
         this.baseUrl = baseUrl;
     }
     RoundsService.prototype.getFirstRound = function (drawId) {
         return this.http.get(this.baseUrl + this.firstRoundUrl + "/" + drawId);
+    };
+    RoundsService.prototype.getSecondRound = function (drawId) {
+        return this.http.get(this.baseUrl + this.secondRoundUrl + "/" + drawId);
     };
     RoundsService = __decorate([
         core_1.Injectable({ providedIn: "root" }),

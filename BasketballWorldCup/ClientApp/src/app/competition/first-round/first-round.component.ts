@@ -32,7 +32,7 @@ export class FirstRoundComponent implements OnInit {
   }
 
   goToNextStep() {
-
+    this.router.navigate(["/simulation/second-group"]);
   }
 
   goToPreviousStep() {
