@@ -13,7 +13,7 @@ const roundsReducer = createReducer(
   on(RoundsActions.GetFirstRoundSuccess,
     (state, { groupsResult }) => ({
       ...state,
-      secondRound: groupsResult
+      firstRound: groupsResult
     })),
   on(RoundsActions.GetSecondRound,
     state => ({
