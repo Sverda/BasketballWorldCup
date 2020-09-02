@@ -20,7 +20,7 @@ import { RoundsEffects } from "./store/effects/rounds.effects";
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

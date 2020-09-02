@@ -34,6 +34,10 @@ const routes: Routes = [
       {
         path: "first-round",
         loadChildren: () => import("../competition/first-round/first-round.module").then(m => m.FirstRoundModule)
+      },
+      {
+        path: "second-round",
+        loadChildren: () => import("../competition/second-round/second-round.module").then(m => m.SecondRoundModule)
       }
     ]
   }
