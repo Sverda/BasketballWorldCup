@@ -81,5 +81,68 @@ namespace BasketballWorldCup.Domain.Services
 
             return freshFirstRoundGroups;
         }
+
+        public IEnumerable<Group> ConstructSecondRoundGroups(Draw draw) =>
+            new[]
+            {
+                ConstructGroup(
+                    draw,
+                    "I",
+                    GetByLetter(draw, "A"),
+                    GetByLetter(draw, "B")),
+                ConstructGroup(
+                    draw,
+                    "J",
+                    GetByLetter(draw, "C"),
+                    GetByLetter(draw, "D")),
+                ConstructGroup(
+                    draw,
+                    "K",
+                    GetByLetter(draw, "E"),
+                    GetByLetter(draw, "F")),
+                ConstructGroup(
+                    draw,
+                    "L",
+                    GetByLetter(draw, "G"),
+                    GetByLetter(draw, "H"))
+            };
+
+        private static Group ConstructGroup(Draw draw, string letter, Group firstBase, Group secondBase)
+        {
+            var firstBests = firstBase.Summaries.OrderBy(s => s.Rank).Take(2).ToArray();
+            var secondBests = secondBase.Summaries.OrderBy(s => s.Rank).Take(2).ToArray();
+            var group = new Group
+            {
+                Draw = draw,
+                Letter = letter
+            };
+            group.TeamGroups = new List<TeamGroup>
+            {
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = firstBests[0].Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = firstBests[1].Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = secondBests[0].Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = secondBests[1].Team
+                },
+            };
+
+            return group;
+        }
+
+        private static Group GetByLetter(Draw draw, string letter) => draw.Groups.Single(g => g.Letter == letter);
     }
 }

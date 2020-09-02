@@ -6,5 +6,7 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
     public interface IGroupsService
     {
         IEnumerable<Group> DrawIntoGroups(Pot[] pots);
+
+        IEnumerable<Group> ConstructSecondRoundGroups(Draw draw);
     }
 }

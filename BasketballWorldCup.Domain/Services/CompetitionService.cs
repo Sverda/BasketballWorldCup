@@ -11,11 +11,13 @@ namespace BasketballWorldCup.Domain.Services
     public class CompetitionService : ICompetitionService
     {
         private readonly BasketballContext _context;
+        private readonly IGroupsService _groupsService;
         private readonly Competition.Competition _competition;
 
-        public CompetitionService(BasketballContext context, IMatchmake matchmake, IGameEngine gameEngine)
+        public CompetitionService(BasketballContext context, IMatchmake matchmake, IGameEngine gameEngine, IGroupsService groupsService)
         {
             _context = context;
+            _groupsService = groupsService;
             _competition = new Competition.Competition(matchmake, gameEngine);
         }
 
@@ -27,6 +29,19 @@ namespace BasketballWorldCup.Domain.Services
                 .ThenInclude(tg => tg.Team)
                 .Single(d => d.Id == drawId);
             return draw.Groups.ToList().Select(g => _competition.Compete(g));
+        }
+
+        public IEnumerable<GroupResult> SecondRound(int drawId)
+        {
+            var draw = _context.Draws
+                .Include(d => d.Groups)
+                .ThenInclude(g => g.Summaries)
+                .ThenInclude(s => s.Team)
+                .Single(d => d.Id == drawId);
+            var groups = _groupsService.ConstructSecondRoundGroups(draw);
+            _context.Groups.AddRange(groups);
+            _context.SaveChanges();
+            return groups.ToList().Select(g => _competition.Compete(g));
         }
 
         public IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults)
