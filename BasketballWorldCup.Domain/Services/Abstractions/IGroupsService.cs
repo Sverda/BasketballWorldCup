@@ -12,5 +12,7 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
         IEnumerable<Group> ConstructQuartersGroups(Draw draw);
 
         IEnumerable<Group> ConstructSemiFinalsGroups(Draw draw);
+
+        IEnumerable<Group> ConstructFinalsGroups(Draw draw);
     }
 }

@@ -73,7 +73,15 @@ namespace BasketballWorldCup.Domain.Services
 
         public IEnumerable<GroupResult> FinalRound(int drawId)
         {
-            throw new NotImplementedException();
+            var draw = _context.Draws
+                .Include(d => d.Groups)
+                .ThenInclude(g => g.Summaries)
+                .ThenInclude(s => s.Team)
+                .Single(d => d.Id == drawId);
+            var finalsGroups = _groupsService.ConstructFinalsGroups(draw);
+            _context.Groups.AddRange(finalsGroups);
+            _context.SaveChanges();
+            return finalsGroups.ToList().Select(g => _competition.Compete(g));
         }
 
         public IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults)

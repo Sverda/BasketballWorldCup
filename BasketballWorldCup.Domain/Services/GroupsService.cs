@@ -242,6 +242,44 @@ namespace BasketballWorldCup.Domain.Services
             return group;
         }
 
+        public IEnumerable<Group> ConstructFinalsGroups(Draw draw)
+        {
+            return new[]
+            {
+                ConstructFinalsGroup(
+                    draw,
+                    "F1",
+                    GetByLetter(draw, "S1"),
+                    GetByLetter(draw, "S2"))
+            };
+        }
+
+        private static Group ConstructFinalsGroup(Draw draw, string letter, Group firstBase, Group secondBase)
+        {
+            var firstBest = GetBestTeam(firstBase);
+            var secondBest = GetBestTeam(secondBase);
+            var group = new Group
+            {
+                Draw = draw,
+                Letter = letter
+            };
+            group.TeamGroups = new List<TeamGroup>
+            {
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = firstBest.Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = secondBest.Team
+                }
+            };
+
+            return group;
+        }
+
         private static TeamSummary[] GetTwoBestsTeams(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).Take(2).ToArray();
 
         private static TeamSummary GetBestTeam(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).First();

@@ -44,15 +44,20 @@ namespace BasketballWorldCup.Controllers
         [Route("finalRound/{drawId}")]
         public IActionResult FinalRound(int drawId)
         {
+            var result = new List<GroupResult>();
+
             var quarterResult = _competitionService.QuarterFinals(drawId);
             var quarterWithSummaries = _competitionService.GroupsSummaries(quarterResult);
+            result.AddRange(quarterWithSummaries);
 
             var semiResult = _competitionService.SemiFinals(drawId);
             var semiWithSummaries = _competitionService.GroupsSummaries(semiResult);
-
-            var result = new List<GroupResult>();
-            result.AddRange(quarterWithSummaries);
             result.AddRange(semiWithSummaries);
+
+            var finalsResult = _competitionService.FinalRound(drawId);
+            var finalsWithSummaries = _competitionService.GroupsSummaries(finalsResult);
+            result.AddRange(finalsWithSummaries);
+
             var dto = _mapper.Map<IEnumerable<GroupResultDto>>(result);
             return Ok(dto);
         }
