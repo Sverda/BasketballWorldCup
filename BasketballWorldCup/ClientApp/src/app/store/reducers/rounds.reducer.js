@@ -21,6 +21,9 @@ var roundsReducer = store_1.createReducer(rounds_state_1.initialRoundsState, sto
 }), store_1.on(RoundsActions.GetSecondRound, function (state) { return (__assign({}, state)); }), store_1.on(RoundsActions.GetSecondRoundSuccess, function (state, _a) {
     var groupsResult = _a.groupsResult;
     return (__assign(__assign({}, state), { secondRound: groupsResult }));
+}), store_1.on(RoundsActions.GetFinalRound, function (state) { return (__assign({}, state)); }), store_1.on(RoundsActions.GetFinalRoundSuccess, function (state, _a) {
+    var groupsResult = _a.groupsResult;
+    return (__assign(__assign({}, state), { finalRound: groupsResult }));
 }));
 function reducer(state, action) {
     return roundsReducer(state, action);

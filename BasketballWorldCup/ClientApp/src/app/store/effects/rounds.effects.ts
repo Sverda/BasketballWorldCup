@@ -5,7 +5,8 @@ import { map, mergeMap, withLatestFrom } from "rxjs/operators";
 
 import { AppState } from "../state/app.state";
 import { RoundsService } from "../../services/rounds.service";
-import { GetFirstRound, GetFirstRoundSuccess, GetSecondRound, GetSecondRoundSuccess } from "../actions/rounds.actions";
+import { GetFirstRound, GetFirstRoundSuccess, GetSecondRound, GetSecondRoundSuccess, GetFinalRound, GetFinalRoundSuccess
+} from "../actions/rounds.actions";
 
 
 @Injectable()
@@ -29,6 +30,14 @@ export class RoundsEffects {
       ofType(GetSecondRound),
       withLatestFrom(this.store$),
       mergeMap(([action, storeState]: [Action, AppState]) => this.roundsService.getSecondRound(storeState.draw.draw.id).pipe(map(results => GetSecondRoundSuccess({ groupsResult: results }))))
+    )
+  );
+
+  addFinalRoundEffect$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(GetFinalRound),
+      withLatestFrom(this.store$),
+      mergeMap(([action, storeState]: [Action, AppState]) => this.roundsService.getFinalRound(storeState.draw.draw.id).pipe(map(results => GetFinalRoundSuccess({ groupsResult: results }))))
     )
   );
 }

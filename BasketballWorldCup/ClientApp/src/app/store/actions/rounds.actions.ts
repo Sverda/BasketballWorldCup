@@ -20,3 +20,12 @@ export const GetSecondRoundSuccess = createAction(
   "[First Round] Get Second Round Success",
   props<{ groupsResult: GroupResult[] }>()
 );
+
+export const GetFinalRound = createAction(
+  "[First Round] Get Final Round"
+);
+
+export const GetFinalRoundSuccess = createAction(
+  "[First Round] Get Final Round Success",
+  props<{ groupsResult: GroupResult[] }>()
+);

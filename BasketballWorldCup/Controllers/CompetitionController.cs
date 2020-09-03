@@ -3,6 +3,7 @@ using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Mapping.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using BasketballWorldCup.Model.Competition;
 
 namespace BasketballWorldCup.Controllers
 {
@@ -43,9 +44,16 @@ namespace BasketballWorldCup.Controllers
         [Route("finalRound/{drawId}")]
         public IActionResult FinalRound(int drawId)
         {
-            var groupResult = _competitionService.FinalRound(drawId);
-            var resultWithSummaries = _competitionService.GroupsSummaries(groupResult);
-            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(resultWithSummaries);
+            var quarterResult = _competitionService.QuarterFinals(drawId);
+            var quarterWithSummaries = _competitionService.GroupsSummaries(quarterResult);
+
+            var semiResult = _competitionService.SemiFinals(drawId);
+            var semiWithSummaries = _competitionService.GroupsSummaries(semiResult);
+
+            var result = new List<GroupResult>();
+            result.AddRange(quarterWithSummaries);
+            result.AddRange(semiWithSummaries);
+            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(result);
             return Ok(dto);
         }
     }

@@ -16,6 +16,7 @@ var RoundsService = /** @class */ (function () {
         this.http = http;
         this.firstRoundUrl = "api/competition/firstRound";
         this.secondRoundUrl = "api/competition/secondRound";
+        this.finalRoundUrl = "api/competition/finalRound";
         this.baseUrl = baseUrl;
     }
     RoundsService.prototype.getFirstRound = function (drawId) {
@@ -23,6 +24,9 @@ var RoundsService = /** @class */ (function () {
     };
     RoundsService.prototype.getSecondRound = function (drawId) {
         return this.http.get(this.baseUrl + this.secondRoundUrl + "/" + drawId);
+    };
+    RoundsService.prototype.getFinalRound = function (drawId) {
+        return this.http.get(this.baseUrl + this.finalRoundUrl + "/" + drawId);
     };
     RoundsService = __decorate([
         core_1.Injectable({ providedIn: "root" }),

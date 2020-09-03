@@ -23,6 +23,15 @@ const roundsReducer = createReducer(
     (state, { groupsResult }) => ({
       ...state,
       secondRound: groupsResult
+    })),
+  on(RoundsActions.GetFinalRound,
+    state => ({
+      ...state
+    })),
+  on(RoundsActions.GetFinalRoundSuccess,
+    (state, { groupsResult }) => ({
+      ...state,
+      finalRound: groupsResult
     }))
 );
 

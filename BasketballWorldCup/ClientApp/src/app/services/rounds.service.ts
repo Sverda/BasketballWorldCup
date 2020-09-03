@@ -9,6 +9,7 @@ export class RoundsService {
   private readonly baseUrl: string;
   private firstRoundUrl = "api/competition/firstRound";
   private secondRoundUrl = "api/competition/secondRound";
+  private finalRoundUrl = "api/competition/finalRound";
 
   constructor(
     private readonly http: HttpClient,
@@ -22,5 +23,9 @@ export class RoundsService {
 
   getSecondRound(drawId: number): Observable<GroupResult[]> {
     return this.http.get<GroupResult[]>(this.baseUrl + this.secondRoundUrl + "/" + drawId);
+  }
+
+  getFinalRound(drawId: number): Observable<GroupResult[]> {
+    return this.http.get<GroupResult[]>(this.baseUrl + this.finalRoundUrl + "/" + drawId);
   }
 }

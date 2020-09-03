@@ -11,6 +11,10 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
 
         IEnumerable<GroupResult> FinalRound(int drawId);
 
+        IEnumerable<GroupResult> QuarterFinals(int drawId);
+
+        IEnumerable<GroupResult> SemiFinals(int drawId);
+
         IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults);
     }
 }

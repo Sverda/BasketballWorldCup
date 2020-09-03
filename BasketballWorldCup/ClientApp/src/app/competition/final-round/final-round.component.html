@@ -1,0 +1,54 @@
+<app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
+  <div class="row" *ngFor="let group of groupsResult">
+    <div class="col">
+      <h3>Wynik meczów grupy {{ group.groupLetter }}</h3>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Gospodarz</th>
+          <th scope="col"><span></span></th>
+          <th scope="col"></th>
+          <th scope="col"><span></span></th>
+          <th scope="col">Gość</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let match of group.matchResults">
+          <td>
+            <img class="team-flag" [src]="match.host.teamFlag" /><span>{{match.host.teamName}}</span>
+          </td>
+          <td>{{match.host.pointsFor}}</td>
+          <td>vs</td>
+          <td>{{match.guest.pointsFor}}</td>
+          <td>
+            <img class="team-flag" [src]="match.guest.teamFlag" /><span>{{match.guest.teamName}}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <h3>Podsumowanie grupy {{ group.groupLetter }}</h3>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Drużyna</th>
+          <th scope="col"><span>Wynik</span></th>
+          <th scope="col">Zwycięstwa</th>
+          <th scope="col"><span>Przegrane</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let teamSummary of group.summaries">
+          <td>
+            <img class="team-flag" [src]="teamSummary.teamFlag" /><span>{{teamSummary.teamName}}</span>
+          </td>
+          <td>{{teamSummary.points}}</td>
+          <td>{{teamSummary.wins}}</td>
+          <td>{{teamSummary.loses}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-wizard-step>

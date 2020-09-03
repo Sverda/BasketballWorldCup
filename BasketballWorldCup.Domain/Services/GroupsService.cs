@@ -244,7 +244,7 @@ namespace BasketballWorldCup.Domain.Services
 
         private static TeamSummary[] GetTwoBestsTeams(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).Take(2).ToArray();
 
-        private static TeamSummary GetBestTeam(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).Take(1).Single();
+        private static TeamSummary GetBestTeam(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).First();
 
         private Group GetByLetter(Draw draw, string letter) => draw.Groups.Single(g => g.Letter == letter);
     }

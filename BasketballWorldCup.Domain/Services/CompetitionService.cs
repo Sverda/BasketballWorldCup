@@ -1,4 +1,5 @@
-﻿using BasketballWorldCup.Database;
+﻿using System;
+using BasketballWorldCup.Database;
 using BasketballWorldCup.Domain.Competition.Abstractions;
 using BasketballWorldCup.Domain.Services.Abstractions;
 using BasketballWorldCup.Model.Competition;
@@ -44,7 +45,7 @@ namespace BasketballWorldCup.Domain.Services
             return groups.ToList().Select(g => _competition.Compete(g));
         }
 
-        public IEnumerable<GroupResult> FinalRound(int drawId)
+        public IEnumerable<GroupResult> QuarterFinals(int drawId)
         {
             var draw = _context.Draws
                 .Include(d => d.Groups)
@@ -53,19 +54,26 @@ namespace BasketballWorldCup.Domain.Services
                 .Single(d => d.Id == drawId);
             var quartersGroups = _groupsService.ConstructQuartersGroups(draw);
             _context.Groups.AddRange(quartersGroups);
-            var quartersResults = quartersGroups.ToList()
-                .Select(g => _competition.Compete(g));
+            _context.SaveChanges();
+            return quartersGroups.ToList().Select(g => _competition.Compete(g));
+        }
 
+        public IEnumerable<GroupResult> SemiFinals(int drawId)
+        {
+            var draw = _context.Draws
+                .Include(d => d.Groups)
+                .ThenInclude(g => g.Summaries)
+                .ThenInclude(s => s.Team)
+                .Single(d => d.Id == drawId);
             var semiFinalsGroups = _groupsService.ConstructSemiFinalsGroups(draw);
             _context.Groups.AddRange(semiFinalsGroups);
-            var semiFinalsResults = semiFinalsGroups.ToList()
-                .Select(g => _competition.Compete(g));
-
             _context.SaveChanges();
-            var results = new List<GroupResult>();
-            results.AddRange(quartersResults);
-            results.AddRange(semiFinalsResults);
-            return results;
+            return semiFinalsGroups.ToList().Select(g => _competition.Compete(g));
+        }
+
+        public IEnumerable<GroupResult> FinalRound(int drawId)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults)
@@ -117,7 +125,7 @@ namespace BasketballWorldCup.Domain.Services
         private static IEnumerable<TeamSummary> RankByPoints(IEnumerable<TeamSummary> teamSummaries)
         {
             var rankedSummaries = teamSummaries.OrderBy(s => s.Points).ToArray();
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < teamSummaries.Count(); i++)
             {
                 var place = teamSummaries.Single(s => s.Team.Id == rankedSummaries[i].Team.Id);
                 place.Rank = i + 1;
