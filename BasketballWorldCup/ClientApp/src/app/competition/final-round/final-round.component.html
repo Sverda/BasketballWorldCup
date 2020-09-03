@@ -1,7 +1,7 @@
 <app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
   <div class="row" *ngFor="let group of groupsResult">
     <div class="col">
-      <h3>Wynik meczów grupy {{ group.groupLetter }}</h3>
+      <h3>Wynik meczów pary {{ group.groupLetter }}</h3>
       <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr>
@@ -28,7 +28,7 @@
       </table>
     </div>
     <div class="col">
-      <h3>Podsumowanie grupy {{ group.groupLetter }}</h3>
+      <h3>Podsumowanie pary {{ group.groupLetter }}</h3>
       <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr>
