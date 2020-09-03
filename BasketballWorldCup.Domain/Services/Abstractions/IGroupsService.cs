@@ -8,5 +8,9 @@ namespace BasketballWorldCup.Domain.Services.Abstractions
         IEnumerable<Group> DrawIntoGroups(Pot[] pots);
 
         IEnumerable<Group> ConstructSecondRoundGroups(Draw draw);
+
+        IEnumerable<Group> ConstructQuartersGroups(Draw draw);
+
+        IEnumerable<Group> ConstructSemiFinalsGroups(Draw draw);
     }
 }

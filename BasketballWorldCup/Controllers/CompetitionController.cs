@@ -38,5 +38,15 @@ namespace BasketballWorldCup.Controllers
             var dto = _mapper.Map<IEnumerable<GroupResultDto>>(resultWithSummaries);
             return Ok(dto);
         }
+
+        [HttpGet]
+        [Route("finalRound/{drawId}")]
+        public IActionResult FinalRound(int drawId)
+        {
+            var groupResult = _competitionService.FinalRound(drawId);
+            var resultWithSummaries = _competitionService.GroupsSummaries(groupResult);
+            var dto = _mapper.Map<IEnumerable<GroupResultDto>>(resultWithSummaries);
+            return Ok(dto);
+        }
     }
 }

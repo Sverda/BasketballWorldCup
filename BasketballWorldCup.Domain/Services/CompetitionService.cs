@@ -44,6 +44,30 @@ namespace BasketballWorldCup.Domain.Services
             return groups.ToList().Select(g => _competition.Compete(g));
         }
 
+        public IEnumerable<GroupResult> FinalRound(int drawId)
+        {
+            var draw = _context.Draws
+                .Include(d => d.Groups)
+                .ThenInclude(g => g.Summaries)
+                .ThenInclude(s => s.Team)
+                .Single(d => d.Id == drawId);
+            var quartersGroups = _groupsService.ConstructQuartersGroups(draw);
+            _context.Groups.AddRange(quartersGroups);
+            var quartersResults = quartersGroups.ToList()
+                .Select(g => _competition.Compete(g));
+
+            var semiFinalsGroups = _groupsService.ConstructSemiFinalsGroups(draw);
+            _context.Groups.AddRange(semiFinalsGroups);
+            var semiFinalsResults = semiFinalsGroups.ToList()
+                .Select(g => _competition.Compete(g));
+
+            _context.SaveChanges();
+            var results = new List<GroupResult>();
+            results.AddRange(quartersResults);
+            results.AddRange(semiFinalsResults);
+            return results;
+        }
+
         public IEnumerable<GroupResult> GroupsSummaries(IEnumerable<GroupResult> groupResults)
         {
             return groupResults

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BasketballWorldCup.Model.Competition;
 
 namespace BasketballWorldCup.Domain.Services
 {
@@ -85,38 +86,32 @@ namespace BasketballWorldCup.Domain.Services
         public IEnumerable<Group> ConstructSecondRoundGroups(Draw draw) =>
             new[]
             {
-                ConstructGroup(
+                ConstructSecondRoundGroup(
                     draw,
                     "I",
                     GetByLetter(draw, "A"),
                     GetByLetter(draw, "B")),
-                ConstructGroup(
+                ConstructSecondRoundGroup(
                     draw,
                     "J",
                     GetByLetter(draw, "C"),
                     GetByLetter(draw, "D")),
-                ConstructGroup(
+                ConstructSecondRoundGroup(
                     draw,
                     "K",
                     GetByLetter(draw, "E"),
                     GetByLetter(draw, "F")),
-                ConstructGroup(
+                ConstructSecondRoundGroup(
                     draw,
                     "L",
                     GetByLetter(draw, "G"),
                     GetByLetter(draw, "H"))
             };
 
-        private static Group ConstructGroup(Draw draw, string letter, Group firstBase, Group secondBase)
+        private static Group ConstructSecondRoundGroup(Draw draw, string letter, Group firstBase, Group secondBase)
         {
-            var firstBests = firstBase.Summaries
-                .OrderByDescending(s => s.Rank)
-                .Take(2)
-                .ToArray();
-            var secondBests = secondBase.Summaries
-                .OrderByDescending(s => s.Rank)
-                .Take(2)
-                .ToArray();
+            var firstBests = GetTwoBestsTeams(firstBase);
+            var secondBests = GetTwoBestsTeams(secondBase);
             var group = new Group
             {
                 Draw = draw,
@@ -149,6 +144,108 @@ namespace BasketballWorldCup.Domain.Services
             return group;
         }
 
-        private static Group GetByLetter(Draw draw, string letter) => draw.Groups.Single(g => g.Letter == letter);
+        public IEnumerable<Group> ConstructQuartersGroups(Draw draw) =>
+            new[]
+            {
+                ConstructQuartersGroup(
+                    draw,
+                    "Q1",
+                    GetByLetter(draw, "I"),
+                    GetByLetter(draw, "J"),
+                    true),
+                ConstructQuartersGroup(
+                    draw,
+                    "Q2",
+                    GetByLetter(draw, "I"),
+                    GetByLetter(draw, "J"),
+                    false),
+                ConstructQuartersGroup(
+                    draw,
+                    "Q3",
+                    GetByLetter(draw, "K"),
+                    GetByLetter(draw, "L"),
+                    true),
+                ConstructQuartersGroup(
+                    draw,
+                    "Q4",
+                    GetByLetter(draw, "K"),
+                    GetByLetter(draw, "L"),
+                    false)
+            };
+
+        private static Group ConstructQuartersGroup(Draw draw, string letter, Group firstBase, Group secondBase, bool cross)
+        {
+            var firstBests = GetTwoBestsTeams(firstBase);
+            var secondBests = GetTwoBestsTeams(secondBase);
+            var group = new Group
+            {
+                Draw = draw,
+                Letter = letter
+            };
+            group.TeamGroups = new List<TeamGroup>
+            {
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = firstBests[cross ? 0 : 1].Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = secondBests[cross ? 1 : 0].Team
+                }
+            };
+
+            return group;
+        }
+
+        public IEnumerable<Group> ConstructSemiFinalsGroups(Draw draw)
+        {
+            return new[]
+            {
+                ConstructSemiFinalsGroup(
+                    draw,
+                    "S1",
+                    GetByLetter(draw, "Q1"),
+                    GetByLetter(draw, "Q2")),
+                ConstructSemiFinalsGroup(
+                    draw,
+                    "S2",
+                    GetByLetter(draw, "Q3"),
+                    GetByLetter(draw, "Q4"))
+            };
+        }
+
+        private static Group ConstructSemiFinalsGroup(Draw draw, string letter, Group firstBase, Group secondBase)
+        {
+            var firstBest = GetBestTeam(firstBase);
+            var secondBest = GetBestTeam(secondBase);
+            var group = new Group
+            {
+                Draw = draw,
+                Letter = letter
+            };
+            group.TeamGroups = new List<TeamGroup>
+            {
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = firstBest.Team
+                },
+                new TeamGroup
+                {
+                    Group = group,
+                    Team = secondBest.Team
+                }
+            };
+
+            return group;
+        }
+
+        private static TeamSummary[] GetTwoBestsTeams(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).Take(2).ToArray();
+
+        private static TeamSummary GetBestTeam(Group @group) => @group.Summaries.OrderByDescending(s => s.Rank).Take(1).Single();
+
+        private Group GetByLetter(Draw draw, string letter) => draw.Groups.Single(g => g.Letter == letter);
     }
 }
