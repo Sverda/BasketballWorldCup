@@ -39,8 +39,17 @@ namespace BasketballWorldCup.Domain.Competition
                 }
                 else
                 {
-                    // Wybranie akcji faulu
-                    return new FoulAction();
+                    value = random.NextDouble();
+                    if (1 - statistics.Foul < value)
+                    {
+                        // Akcja faulu z punktem dla przeciwnika - rzut osobisty udany
+                        return new PointsFoulAction();
+                    }
+                    else
+                    {
+                        // Akcja faulu bez punktu dla przeciwnika - rzut osobisty nieudany
+                        return new FoulAction();
+                    }
                 }
             }
             else if (statistics.Attack < value && value <= statistics.Attack + statistics.Steal)
@@ -50,8 +59,17 @@ namespace BasketballWorldCup.Domain.Competition
             }
             else
             {
-                // Wybranie akcji faulu
-                return new FoulAction();
+                value = random.NextDouble();
+                if (1 - statistics.Foul < value)
+                {
+                    // Akcja faulu z punktem dla przeciwnika - rzut osobisty udany
+                    return new PointsFoulAction();
+                }
+                else
+                {
+                    // Akcja faulu bez punktu dla przeciwnika - rzut osobisty nieudany
+                    return new FoulAction();
+                }
             }
         }
     }
