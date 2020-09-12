@@ -29,9 +29,9 @@ namespace BasketballWorldCup.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]TeamDto[] teamsDtos)
         {
-            // TODO: Send only Ids from client app
             var teams = _mapper.Map<IEnumerable<Team>>(teamsDtos);
             var teamsIds = teams.Select(t => t.Id);
+            // Losowanie do koszyków
             var draw = _drawsService.SeedPots(teamsIds);
             var drawDto = _mapper.Map<DrawDto>(draw);
             return Ok(drawDto);
@@ -41,6 +41,7 @@ namespace BasketballWorldCup.Controllers
         [Route("{drawId}")]
         public IActionResult Patch(int drawId)
         {
+            // Tworzenie grup A-H na podstawie koszyków
             var draw = _drawsService.AssignGroups(drawId);
             var drawDto = _mapper.Map<DrawDto>(draw);
             return Ok(drawDto);

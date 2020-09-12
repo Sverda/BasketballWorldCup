@@ -20,7 +20,7 @@ export class FinalRoundComponent implements OnInit {
     private readonly store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    this.title = "Faza Finałowa";
+    this.title = "Faza Pucharowa";
 
     this.store
       .select(state => state.rounds.finalRound)

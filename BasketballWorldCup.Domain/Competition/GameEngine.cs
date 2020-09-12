@@ -9,18 +9,27 @@ namespace BasketballWorldCup.Domain.Competition
     {
         private readonly TimeSpan _matchDeadline = TimeSpan.FromMinutes(40);
 
+        private readonly TimeSpan _extraTime = TimeSpan.FromMinutes(5);
+
         public MatchResult Play(Match match)
         {
             var generator = new ActionGenerator();
             var gameLog = new GameLog();
             var currentTeam = match.Host;
-            while (gameLog.Stats.GameplayTime < _matchDeadline)
+            var extraTimeCount = 0;
+            while (gameLog.Stats.GameplayTime < (_matchDeadline + _extraTime * extraTimeCount))
             {
                 var action = generator.FindAction(currentTeam.Tier);
                 action.Effect(gameLog.Stats, IsHost(match, currentTeam));
                 gameLog.Stats.GameplayTime += action.TimeConsumption;
                 gameLog.ActionsGroups.Add(action);
                 currentTeam = ChangeTeam(match, currentTeam);
+
+                if (gameLog.Stats.GameplayTime >= _matchDeadline 
+                    && gameLog.Stats.GuestPoints == gameLog.Stats.HostPoints)
+                {
+                    extraTimeCount++;
+                }
             }
 
             return PrepareResult(match, gameLog);

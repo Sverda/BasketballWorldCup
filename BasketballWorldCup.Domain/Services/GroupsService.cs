@@ -19,8 +19,9 @@ namespace BasketballWorldCup.Domain.Services
 
         public IEnumerable<Group> DrawIntoGroups(Pot[] pots)
         {
-            // TODO: Put one team from pot into group. Repeat. 
+            // Utworzenie pustych grup A-H
             var groups = FreshFirstRoundGroups().ToList();
+            // Podział koszyków na pierwszy zbiór
             var firstPotsSet = new List<Pot>
             {
                 pots[0],
@@ -28,8 +29,10 @@ namespace BasketballWorldCup.Domain.Services
                 pots[4],
                 pots[7]
             };
+            // Dodanie do pierwszego zbioru grup zespołów z pierwszego zbioru koszyków
             DrawSetIntoGroups(groups, firstPotsSet, 0);
 
+            // Podział koszyków na drugi zbiór
             var secondPotsSet = new List<Pot>
             {
                 pots[1],
@@ -37,9 +40,29 @@ namespace BasketballWorldCup.Domain.Services
                 pots[5],
                 pots[6]
             };
+            // Dodanie do drugiego zbioru grup zespołów z drugiego zbioru koszyków
             DrawSetIntoGroups(groups, secondPotsSet, 1);
 
             return groups;
+        }
+
+        private static IEnumerable<Group> FreshFirstRoundGroups()
+        {
+            const string startingLetter = "A";
+            const int groupsAmount = 8;
+
+            var freshFirstRoundGroups = new List<Group>();
+            for (var i = 0; i < groupsAmount; i++)
+            {
+                var group = new Group
+                {
+                    Letter = Encoding.ASCII.GetString(new[] { (byte)(startingLetter[0] + i) }),
+                    TeamGroups = new List<TeamGroup>()
+                };
+                freshFirstRoundGroups.Add(group);
+            }
+
+            return freshFirstRoundGroups;
         }
 
         private static void DrawSetIntoGroups(List<Group> groups, List<Pot> firstPotsSet, int set)
@@ -62,25 +85,6 @@ namespace BasketballWorldCup.Domain.Services
                     group.TeamGroups.Add(teamGroup);
                 }
             }
-        }
-
-        private static IEnumerable<Group> FreshFirstRoundGroups()
-        {
-            const string startingLetter = "A";
-            const int groupsAmount = 8;
-
-            var freshFirstRoundGroups = new List<Group>();
-            for (var i = 0; i < groupsAmount; i++)
-            {
-                var group = new Group
-                {
-                    Letter = Encoding.ASCII.GetString(new[] { (byte)(startingLetter[0] + i) }),
-                    TeamGroups = new List<TeamGroup>()
-                };
-                freshFirstRoundGroups.Add(group);
-            }
-
-            return freshFirstRoundGroups;
         }
 
         public IEnumerable<Group> ConstructSecondRoundGroups(Draw draw) =>
