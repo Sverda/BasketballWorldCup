@@ -3,6 +3,10 @@ import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
+    path: "hello",
+    loadChildren: () => import("./hello/hello.module").then(m => m.HelloModule)
+  },
+  {
     path: "simulation",
     loadChildren: () => import("./simulation/simulation.module").then(m => m.SimulationModule)
   },
@@ -12,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "simulation",
+    redirectTo: "hello",
     pathMatch: "full"
   }
 ];
