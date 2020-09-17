@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BasketballWorldCup.Domain.Competition.ActionGenerator">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\ActionGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Competition" BaseTypeListCollapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <AssociationLine Name="_matchmake" Type="BasketballWorldCup.Domain.Competition.Abstractions.IMatchmake">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.086" Y="0.069" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAABAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Competition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gameEngine" />
+      <Field Name="_matchmake" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.GameEngine" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAQAAAAgAAAFAAAABA=</HashCode>
+      <FileName>Competition\GameEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.GameLog">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\GameLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.GameStats">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAACAAAAAAIAQAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\GameStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.RoundRobinMatchmake" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\RoundRobinMatchmake.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Actions.FoulAction">
+    <Position X="0.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Actions\FoulAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Actions.LostBallAction">
+    <Position X="2.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Actions\LostBallAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Actions.PointsFoulAction">
+    <Position X="0.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Actions\PointsFoulAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Actions.ThreePointsAction">
+    <Position X="6" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Actions\ThreePointsAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Actions.TwoPointsAction">
+    <Position X="4.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Actions\TwoPointsAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasketballWorldCup.Domain.Competition.Abstractions.Action">
+    <Position X="3.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Abstractions\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BasketballWorldCup.Domain.Competition.Abstractions.IGameEngine">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Abstractions\IGameEngine.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasketballWorldCup.Domain.Competition.Abstractions.IMatchmake">
+    <Position X="5.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Competition\Abstractions\IMatchmake.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
