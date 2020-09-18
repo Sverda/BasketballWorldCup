@@ -22,6 +22,6 @@ export class HelloComponent {
   }
 
   goToFirstRound() {
-    this.router.navigate(["/simulation/africa"]);
+    this.router.navigate(["/instruction"]);
   }
 }
